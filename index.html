@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VimeStatHelper</title>
+
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <link href="css/minecraft-skinviewer.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+  <body>
+    <div class="container"> 
+      <h1>VimeStat <span class="badge bg-primary" style="border-radius: 10px;">Helper</span></h1> 
+      <div class="row">
+        <div class="col-md-3">
+          <div class="input-group mb-3">
+              <input type="text" class="form-control input-in" id="formGroupExampleInput" placeholder="Nickname" style="border-radius: 10px 0 0 10px;" onsubmit="">
+              <button class="btn btn-outline-primary search" style="border-radius: 0 10px 10px 0;">Search</button>
+              </div>
+            </div>
+            <div class="col-md-7">
+                
+            </div>
+          <div class="col-md-2">
+            <a type="button" href="https://www.donationalerts.com/r/miuno" class="btn btn-outline-primary w-100" style="border-radius: 10px;" target="_blank"> 
+              <i class="bi bi-cup-fill"></i> Buy Coffee
+            </a>
+        </div>
+      </div>
+    </div>
+    <div class="container hided" style="/*visibility: hidden;*/"> 
+      <div class="row">
+       <div class="col-md-3 text-center">
+          <div class="container bg-white border-10" style="padding-top: 30px">
+            <img id="skin" class="border-15" src="" alt="">
+            <h2 id="nick" class="">Nickname</h2>
+            <h5>Ранг <span id="rank" class=""></span></h5>
+            <div class="progress" style="height: 35px; border-radius: 10px;">
+              <div class="progress-bar" id="barr" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span id="progress"></span></div>
+            </div>
+            <h5 style="padding-top: 10px;">Уровень <span id="lvl" class="text-primary"></span></h5>
+            <h5>ID <span id="id" class="text-primary"></span></h5>
+            <h5 class="guild"><img id="avatar_url" class="border-10" src="" alt=""><span id="name" class="text-primary" style="padding-left: 10px;"></span></h5>
+
+<div class="container"> 
+            <!-- Skin Viewer HTML Elements -->
+            <div id="skin-viewer" class="mc-skin-viewer-11x legacy cape spin" style="padding-top: 20px;">
+              <div class="player">
+                <!-- Head -->
+                <div class="head">
+                  <div class="top st3d"></div>
+                  <div class="left st3d"></div>
+                  <div class="front st3d"></div>
+                  <div class="right st3d"></div>
+                  <div class="back st3d"></div>
+                  <div class="bottom st3d"></div>
+                  <div class="accessory">
+                    <div class="top st3d"></div>
+                    <div class="left st3d"></div>
+                    <div class="front st3d"></div>
+                    <div class="right st3d"></div>
+                    <div class="back st3d"></div>
+                    <div class="bottom st3d"></div>
+                  </div>
+                </div>
+                <!-- Body -->
+                <div class="body">
+                  <div class="top st3d"></div>
+                  <div class="left st3d"></div>
+                  <div class="front st3d"></div>
+                  <div class="right st3d"></div>
+                  <div class="back st3d"></div>
+                  <div class="bottom st3d"></div>
+                  <div class="accessory">
+                    <div class="top st3d"></div>
+                    <div class="left st3d"></div>
+                    <div class="front st3d"></div>
+                    <div class="right st3d"></div>
+                    <div class="back st3d"></div>
+                    <div class="bottom st3d"></div>
+                  </div>
+                </div>
+                <!-- Left Arm -->
+                <div class="left-arm">
+                  <div class="top st3d"></div>
+                  <div class="left st3d"></div>
+                  <div class="front st3d"></div>
+                  <div class="right st3d"></div>
+                  <div class="back st3d"></div>
+                  <div class="bottom st3d"></div>
+                  <div class="accessory">
+                    <div class="top st3d"></div>
+                    <div class="left st3d"></div>
+                    <div class="front st3d"></div>
+                    <div class="right st3d"></div>
+                    <div class="back st3d"></div>
+                    <div class="bottom st3d"></div>
+                  </div>
+                </div>
+                <!-- Right Arm -->
+                <div class="right-arm">
+                  <div class="top st3d"></div>
+                  <div class="left st3d"></div>
+                  <div class="front st3d"></div>
+                  <div class="right st3d"></div>
+                  <div class="back st3d"></div>
+                  <div class="bottom st3d"></div>
+                  <div class="accessory">
+                    <div class="top st3d"></div>
+                    <div class="left st3d"></div>
+                    <div class="front st3d"></div>
+                    <div class="right st3d"></div>
+                    <div class="back st3d"></div>
+                    <div class="bottom"></div>
+                  </div>
+                </div>
+                <!-- Left Leg -->
+                <div class="left-leg">
+                  <div class="top st3d"></div>
+                  <div class="left st3d"></div>
+                  <div class="front st3d"></div>
+                  <div class="right st3d"></div>
+                  <div class="back st3d"></div>
+                  <div class="bottom st3d"></div>
+                  <div class="accessory">
+                    <div class="top st3d"></div>
+                    <div class="left st3d"></div>
+                    <div class="front st3d"></div>
+                    <div class="right st3d"></div>
+                    <div class="back st3d"></div>
+                    <div class="bottom st3d"></div>
+                  </div>
+                </div>
+                <!-- Right Leg -->
+                <div class="right-leg">
+                  <div class="top st3d"></div>
+                  <div class="left st3d"></div>
+                  <div class="front st3d"></div>
+                  <div class="right st3d"></div>
+                  <div class="back st3d"></div>
+                  <div class="bottom st3d"></div>
+                  <div class="accessory">
+                    <div class="top st3d"></div>
+                    <div class="left st3d"></div>
+                    <div class="front st3d"></div>
+                    <div class="right st3d"></div>
+                    <div class="back st3d"></div>
+                    <div class="bottom st3d"></div>
+                  </div>
+                </div>
+                <!-- Cape -->
+<!--                <div class="cape ct3d">
+                  <div class="top ct3d"></div>
+                  <div class="left ct3d"></div>
+                  <div class="front ct3d"></div>
+                  <div class="right ct3d"></div>
+                  <div class="back ct3d"></div>
+                  <div class="bottom ct3d"></div>
+               </div> -->
+              </div>
+            </div>
+
+</div>
+
+  <div class="btn-group input-group" role="group" aria-label="Basic example" style="padding-top: 10px; padding-bottom: 10px;">
+      <a class="btn btn-outline-primary" id="skindownload" style="border-radius: 10px 0px 0px 10px;" target="_blank">Скин</a>
+      <a class="btn btn-outline-primary" id="capedownload" style="border-radius: 0px 10px 10px 0px;" target="_blank">Плащ</a>
+  </div>
+
+          </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="container">
+                  <div class="card-body bg-white border-10">
+                    <h4 class="card-title text-center">BedWars</h4>
+                    <h5>Убийств <span id="bwkillsglobal" class="text-primary"></span></h5>
+                    <h5>Смертей <span id="bwdeathsglobal" class="text-primary"></span></h5>
+                    <h5>Игр <span id="bwgamesglobal" class="text-primary"></span></h5>
+                    <h5>Побед <span id="bwwinsglobal" class="text-primary"></span></h5>
+                    <h5>Сломаных кроватей <span id="bwbedBreakedglobal" class="text-primary"></span></h5>
+                    <h5 style="padding-top: 10px;">Коэффициент убийств <span id="bwkdglobal" class="text-primary"></span></h5>
+                    <h5>Коэффициент побед <span id="bwgwglobal" class="text-primary"></span></h5>
+                    <h5>Убйисв за игру <span id="bwkgglobal" class="text-primary"></span></h5>
+                    <h5>Смертей за игру <span id="bwdgglobal" class="text-primary"></span></h5>
+                    <h5 style="padding-bottom: 10px;">Сломанных кроватей за игру <span id="bwbgglobal" class="text-primary"></span></h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="container">
+                  <div class="card-body bg-white border-10">
+                    <h4 class="card-title text-center">SkyWars</h4>
+                    <h5>Убийств <span id="swkillsglobal" class="text-primary"></span></h5>
+                    <h5>Смертей <span id="swdeathsglobal" class="text-primary"></span></h5>
+                    <h5>Игр <span id="swgamesglobal" class="text-primary"></span></h5>
+                    <h5>Побед <span id="swwinsglobal" class="text-primary"></span></h5>
+                    <!--<h5>Ничьих <span id="swdrawsglobal" class="text-primary"></span></h5> -->
+                    <h5>Серия побед <span id="swwinStreakglobal" class="text-primary"></span></h5>
+                    <h5 style="padding-top: 10px;">Коэффициент убийств <span id="swkdglobal" class="text-primary"></span></h5>
+                    <h5>Коэффициент побед <span id="swgwglobal" class="text-primary"></span></h5>
+                    <h5>Убйисв за игру <span id="swkgglobal" class="text-primary"></span></h5>
+                    <h5 style="padding-bottom: 10px;">Смертей за игру <span id="swdgglobal" class="text-primary"></span></h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="container">
+                  <div class="card-body bg-white border-10">
+                    <h4 class="card-title text-center">ClashPoint</h4>
+                    <h5>Убийств <span id="cpkillsglobal" class="text-primary"></span></h5>
+                    <h5>Смертей <span id="cpdeathsglobal" class="text-primary"></span></h5>
+                    <h5>Игр <span id="cpgamesglobal" class="text-primary"></span></h5>
+                    <h5>Побед <span id="cpwinsglobal" class="text-primary"></span></h5>
+                    <h5>Сломанных точек <span id="cpresourcePointsBreakedglobal" class="text-primary"></span></h5>
+                    <h5 style="padding-top: 10px;">Коэффициент убийств <span id="cpkdglobal" class="text-primary"></span></h5>
+                    <h5>Коэффициент побед <span id="cpgwglobal" class="text-primary"></span></h5>
+                    <h5>Убйисв за игру <span id="cpkgglobal" class="text-primary"></span></h5>
+                    <h5>Смертей за игру <span id="cpdgglobal" class="text-primary"></span></h5>
+                    <h5 style="padding-bottom: 10px;">Сломанных точек за игру <span id="cppgglobal" class="text-primary"></span></h5>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+       </div>
+    </div>
+  </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
