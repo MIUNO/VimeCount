@@ -54,6 +54,7 @@
           BWGlobal(json.stats.BW.global.kills, json.stats.BW.global.deaths, json.stats.BW.global.games, json.stats.BW.global.wins, json.stats.BW.global.bedBreaked)
           SWGlobal(json.stats.SW.global.kills, json.stats.SW.global.deaths, json.stats.SW.global.games, json.stats.SW.global.wins, json.stats.SW.global.winStreak)
           CPGlobal(json.stats.CP.global.kills, json.stats.CP.global.deaths, json.stats.CP.global.games, json.stats.CP.global.wins, json.stats.CP.global.resourcePointsBreaked)
+          Bridge(json.stats.BRIDGE.global.games, json.stats.BRIDGE.global.wins, json.stats.BRIDGE.global.kills, json.stats.BRIDGE.global.deaths, json.stats.BRIDGE.global.points)
         });
       }
     });
@@ -159,8 +160,16 @@
         document.querySelector(cpclass[i]).innerHTML = cp[i];
       }
     }
-
-    function Match(kills, deaths, games, wins, resourcePointsBreaked, winStreak, bedBreaked,){
+    function Bridge (games, wins, kills, deaths, points){
+      var brclass = ['#brkills', '#brdeaths', '#brgames', '#brwins', '#brpoints', '#brkd', '#brgw', '#brkg', '#brdg', '#brpg'];
+      var br = Match(kills, deaths, games, wins, points);
+      for (var i = 0; i < 10; i++) {
+        if (br[i] == 'NaN') {br[i] = 0}
+        if (br[i] == 'Infinity') {br[i] = '-'}
+        document.querySelector(brclass[i]).innerHTML = br[i];
+      }
+    }
+    function Match(kills, deaths, games, wins, points, resourcePointsBreaked, winStreak, bedBreaked){
 //      var draws = (games - wins) - deaths; // Ничьи
       var kd = (kills / deaths).toFixed(2);  // Убийсва\Смерти
       var gw = (wins / (games - wins)).toFixed(2); // Победы\Поражения
@@ -168,6 +177,7 @@
       var dg = (deaths / games).toFixed(2); // Среднее количество смертей за игру
       var bg = (bedBreaked / games).toFixed(2); // Среднее количество сломаных кроватей за игру
       var pg = (resourcePointsBreaked / games).toFixed(2); // Среднее количество сломаных точек за игру
+      var pg2 = (points / games).toFixed(2); // Среднее количество точек за игру
       if (bedBreaked != "NaN") {
         var matr = [kills, deaths, games, wins, bedBreaked, kd, gw, kg, dg, bg];
       }
@@ -177,5 +187,7 @@
       if (resourcePointsBreaked != "NaN") {
         var matr = [kills, deaths, games, wins, resourcePointsBreaked, kd, gw, kg, dg, pg];
       }
-      return matr;
+      if (points != "NaN") {
+        var matr = [kills, deaths, games, wins, points, kd, gw, kg, dg, pg2];
+      }      return matr;
     }
