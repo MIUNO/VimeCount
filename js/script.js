@@ -225,11 +225,9 @@
       var tab5 = [];
       for (var i = 0; i < 5; i++) {
         tab4 = ((tab2[i+15]-tab2[i+5])/tab2[i+5]*100).toFixed(1);
-        if (tab4 < 0) { tab4 = '↓  ' + tab4 + '%'; }
-        if (tab4 > 0) { tab4 = '↑  ' + tab4 + '%'; }
-        if (tab4 == 0) { tab4 = '=  ' + tab4 + '%'; }
-        if (tab4 == "NaN") { tab4 = ' - ';}
-        if (tab4 == "Infinity") { tab4 = ' - ';}
+        if (tab4 < 0) { tab4 = '<span>' + tab4 + '% </span><span class="badge bg-danger rounded-pill"><i class="bi bi-caret-down-fill"></i></span>'; }
+        if (tab4 > 0) { tab4 = '<span>' + tab4 + '% </span><span class="badge bg-success rounded-pill"><i class="bi bi-caret-up-fill"></i></span>'; }
+        if (tab4 == 0) { tab4 = '<span>' + tab4 + '% </span><span class="badge bg-warning rounded-pill"><i class="bi bi-caret-right-fill"></i></span>'; }
         tab5[i] = tab4;
       }
       return tab5;
