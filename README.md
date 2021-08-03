@@ -1,2 +1,2 @@
-# vimestat.github.io
+# vimestat
 ![Alt-текст](https://raw.githubusercontent.com/MIUNO/vimestat/main/скрин.png "")
