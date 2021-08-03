@@ -3,14 +3,17 @@
       search.onclick = function (){
           getPlayer();
           id = 'none';
-          one();
-//          GiveID2(id);
       }
 
       document.addEventListener( 'keyup', event => {
       if( event.code === 'Enter' ) 
         getPlayer();
       });
+
+
+
+
+
 
     function getPlayer() {
     var url = 'https://api.vimeworld.ru/user/name/' + inputIn.value;
@@ -27,20 +30,6 @@
     });
   }
 
-//    function GiveID2(id){
-//    var elementg = document.querySelector('.guild');
-//    var elementh = document.querySelector('.hided');
-//    var elementn = document.querySelector('.nickhide');
-//    if (id == 'none'){
-//       elementh.style.visibility = 'hidden';
-//       elementg.style.visibility = 'hidden';
-//       console.log('hidden');
-//      }
-//    else {
-//      elementh.style.visibility = 'visible';
-//      console.log('visible');
-//      }
-//    }
 
     function GiveID(id) {
     document.querySelector('#id').innerHTML = id;
@@ -51,9 +40,9 @@
       var contentType = response.headers.get("content-type");
       if(contentType && contentType.indexOf("application/json") !== -1) {
         return response.json().then(function(json) {
-          BWGlobal(json.stats.BW.global.kills, json.stats.BW.global.deaths, json.stats.BW.global.games, json.stats.BW.global.wins, json.stats.BW.global.bedBreaked)
-          SWGlobal(json.stats.SW.global.kills, json.stats.SW.global.deaths, json.stats.SW.global.games, json.stats.SW.global.wins, json.stats.SW.global.winStreak)
-          CPGlobal(json.stats.CP.global.kills, json.stats.CP.global.deaths, json.stats.CP.global.games, json.stats.CP.global.wins, json.stats.CP.global.resourcePointsBreaked)
+          BW(json.stats.BW.global.kills, json.stats.BW.global.deaths, json.stats.BW.global.games, json.stats.BW.global.wins, json.stats.BW.global.bedBreaked, json.stats.BW.season.monthly.kills, json.stats.BW.season.monthly.deaths, json.stats.BW.season.monthly.games, json.stats.BW.season.monthly.wins, json.stats.BW.season.monthly.bedBreaked)
+          SW(json.stats.SW.global.kills, json.stats.SW.global.deaths, json.stats.SW.global.games, json.stats.SW.global.wins, json.stats.SW.global.winStreak, json.stats.SW.season.monthly.kills, json.stats.SW.season.monthly.deaths, json.stats.SW.season.monthly.games, json.stats.SW.season.monthly.wins, json.stats.SW.season.monthly.winStreak)
+          CP(json.stats.CP.global.kills, json.stats.CP.global.deaths, json.stats.CP.global.games, json.stats.CP.global.wins, json.stats.CP.global.resourcePointsBreaked)
           Bridge(json.stats.BRIDGE.global.games, json.stats.BRIDGE.global.wins, json.stats.BRIDGE.global.kills, json.stats.BRIDGE.global.deaths, json.stats.BRIDGE.global.points)
         });
       }
@@ -111,10 +100,6 @@
                 skin3d.style.backgroundImage = skkkkk;
             }
 
-            window.addEventListener('error', function(skkkkk) {
-            console.log("e");
-            }, true);
-
 //          var cppppp = 'url(https://skin.vimeworld.ru/raw/cape/' + username + '.png)';
 //              for (var i = 0; i < 7; i++) {
 //               var cape3d = document.querySelectorAll('.ct3d')[i];
@@ -126,34 +111,57 @@
           capedw.setAttribute("href", 'https://skin.vimeworld.ru/raw/cape/' + username + '.png');
     }
 
-    function one(){
-    }
-    function two(){
-    }
-
-    function BWGlobal(kills, deaths, games, wins, bedBreaked) {
-      var bwclass = ['#bwkillsglobal', '#bwdeathsglobal', '#bwgamesglobal', '#bwwinsglobal', '#bwbedBreakedglobal', '#bwkdglobal', '#bwgwglobal', '#bwkgglobal', '#bwdgglobal', '#bwbgglobal'];
-      var bw =  Match(kills, deaths, games, wins, bedBreaked);
+    function BW(kills, deaths, games, wins, bedBreaked, mkills, mdeaths, mgames, mwins, mbedBreaked) {
+      var bwclassg = ['#bwkillsglobal', '#bwdeathsglobal', '#bwgamesglobal', '#bwwinsglobal', '#bwbedBreakedglobal', '#bwkdglobal', '#bwgwglobal', '#bwkgglobal', '#bwdgglobal', '#bwbgglobal'];
+      var bwg =  MatchG(kills, deaths, games, wins, bedBreaked);
       for (var i = 0; i < 10; i++) {
-        if (bw[i] == 'NaN') {bw[i] = 0}
-        if (bw[i] == 'Infinity') {bw[i] = '-'}
-        document.querySelector(bwclass[i]).innerHTML = bw[i];
+        if (bwg[i] == 'NaN') {bwg[i] = 0}
+        if (bwg[i] == 'Infinity') {bwg[i] = '-'}
+        document.querySelector(bwclassg[i]).innerHTML = bwg[i];
+      }
+      var bwclassm = ['#bwkillsmonthly', '#bwdeathsmonthly', '#bwgamesmonthly', '#bwwinsmonthly', '#bwbedBreakedmonthly', '#bwkdmonthly', '#bwgwmonthly', '#bwkgmonthly', '#bwdgmonthly', '#bwbgmonthly'];
+      var bwm =  MatchM(mkills, mdeaths, mgames, mwins, mbedBreaked);
+      for (var i = 0; i < 10; i++) {
+        if (bwm[i] == 'NaN') {bwm[i] = 0}
+        if (bwm[i] == 'Infinity') {bwm[i] = '-'}
+        document.querySelector(bwclassm[i]).innerHTML = bwm[i];
+      }
+
+      var bwtab = ['#tabbwkd', '#tabbwgw', '#tabbwgm', '#tabbwdg', '#tabbwbg'];
+      var arr = [];
+      var tabbw = MatchTab(arr.concat(bwg, bwm));
+      for (var i = 0; i < 5; i++) {
+          document.querySelector(bwtab[i]).innerHTML = tabbw[i];
       }
     }
 
-    function SWGlobal(kills, deaths, games, wins, winStreak) {
+    function SW(kills, deaths, games, wins, winStreak, mkills, mdeaths, mgames, mwins, mwinStreak) {
       var swclass = ['#swkillsglobal', '#swdeathsglobal', '#swgamesglobal', '#swwinsglobal', '#swwinStreakglobal', '#swkdglobal', '#swgwglobal', '#swkgglobal', '#swdgglobal'];
-      var sw = Match(kills, deaths, games, wins, winStreak);
+      var swg = MatchG(kills, deaths, games, wins, winStreak);
       for (var i = 0; i < 9; i++) {
-        if (sw[i] == 'NaN') {sw[i] = 0}
-        if (sw[i] == 'Infinity') {sw[i] = '-'}
-        document.querySelector(swclass[i]).innerHTML = sw[i];
+        if (swg[i] == 'NaN') {swg[i] = 0}
+        if (swg[i] == 'Infinity') {swg[i] = '-'}
+        document.querySelector(swclass[i]).innerHTML = swg[i];
+      }
+      var swclassm = ['#swkillsmonthly', '#swdeathsmonthly', '#swgamesmonthly', '#swwinsmonthly', '#swwinStreakmonthly', '#swkdmonthly', '#swgwmonthly', '#swkgmonthly', '#swdgmonthly'];
+      var swm = MatchM(mkills, mdeaths, mgames, mwins, mwinStreak);
+      for (var i = 0; i < 9; i++) {
+        if (swm[i] == 'NaN') {swm[i] = 0}
+        if (swm[i] == 'Infinity') {swm[i] = '-'}
+
+        document.querySelector(swclassm[i]).innerHTML = swm[i];
+      }
+      var swtab = ['#tabswkd', '#tabswgw', '#tabswgm', '#tabswdg', '#tabswbg'];
+      var arr = [];
+      var tabsw = MatchTab(arr.concat(swg, swm));
+      for (var i = 0; i < 4; i++) {
+          document.querySelector(swtab[i]).innerHTML = tabsw[i];
       }
     }
 
-    function CPGlobal(kills, deaths, games, wins, resourcePointsBreaked) {
+    function CP(kills, deaths, games, wins, resourcePointsBreaked) {
       var cpclass = ['#cpkillsglobal', '#cpdeathsglobal', '#cpgamesglobal', '#cpwinsglobal', '#cpresourcePointsBreakedglobal', '#cpkdglobal', '#cpgwglobal', '#cpkgglobal', '#cpdgglobal', '#cppgglobal'];
-      var cp = Match(kills, deaths, games, wins, resourcePointsBreaked);
+      var cp = MatchG(kills, deaths, games, wins, resourcePointsBreaked);
       for (var i = 0; i < 10; i++) {
         if (cp[i] == 'NaN') {cp[i] = 0}
         if (cp[i] == 'Infinity') {cp[i] = '-'}
@@ -162,14 +170,14 @@
     }
     function Bridge (games, wins, kills, deaths, points){
       var brclass = ['#brkills', '#brdeaths', '#brgames', '#brwins', '#brpoints', '#brkd', '#brgw', '#brkg', '#brdg', '#brpg'];
-      var br = Match(kills, deaths, games, wins, points);
+      var br = MatchG(kills, deaths, games, wins, points);
       for (var i = 0; i < 10; i++) {
         if (br[i] == 'NaN') {br[i] = 0}
         if (br[i] == 'Infinity') {br[i] = '-'}
         document.querySelector(brclass[i]).innerHTML = br[i];
       }
     }
-    function Match(kills, deaths, games, wins, points, resourcePointsBreaked, winStreak, bedBreaked){
+    function MatchG(kills, deaths, games, wins, points, resourcePointsBreaked, winStreak, bedBreaked){
 //      var draws = (games - wins) - deaths; // Ничьи
       var kd = (kills / deaths).toFixed(2);  // Убийсва\Смерти
       var gw = (wins / (games - wins)).toFixed(2); // Победы\Поражения
@@ -190,4 +198,39 @@
       if (points != "NaN") {
         var matr = [kills, deaths, games, wins, points, kd, gw, kg, dg, pg2];
       }      return matr;
+    }
+    function MatchM(mkills, mdeaths, mgames, mwins, mpoints, mresourcePointsBreaked, mwinStreak, mbedBreaked){
+//      var draws = (games - wins) - deaths; // Ничьи
+      var mkd = (mkills / mdeaths).toFixed(2);  // Убийсва\Смерти
+      var mgw = (mwins / (mgames - mwins)).toFixed(2); // Победы\Поражения
+      var mkg = (mkills / mgames).toFixed(2);  // Среднее количество убийств за игру
+      var mdg = (mdeaths / mgames).toFixed(2); // Среднее количество смертей за игру
+      var mbg = (mbedBreaked / mgames).toFixed(2); // Среднее количество сломаных кроватей за игру
+      var mpg = (mresourcePointsBreaked / mgames).toFixed(2); // Среднее количество сломаных точек за игру
+      var mpg2 = (mpoints / mgames).toFixed(2); // Среднее количество точек за игру
+      if (mbedBreaked != "NaN") {
+        var matr = [mkills, mdeaths, mgames, mwins, mbedBreaked, mkd, mgw, mkg, mdg, mbg];
+      }
+      if (mwinStreak != "NaN") {
+        var matr = [mkills, mdeaths, mgames, mwins, mwinStreak, mkd, mgw, mkg, mdg];
+      }
+      if (mresourcePointsBreaked != "NaN") {
+        var matr = [mkills, mdeaths, mgames, mwins, mresourcePointsBreaked, mkd, mgw, mkg, mdg, mpg];
+      }
+      if (mpoints != "NaN") {
+        var matr = [mkills, mdeaths, mgames, mwins, mpoints, mkd, mgw, mkg, mdg, mpg2];
+      }      return matr;
+    }
+    function MatchTab(tab2){
+      var tab5 = [];
+      for (var i = 0; i < 5; i++) {
+        tab4 = ((tab2[i+15]-tab2[i+5])/tab2[i+5]*100).toFixed(1);
+        if (tab4 < 0) { tab4 = '↓  ' + tab4 + '%'; }
+        if (tab4 > 0) { tab4 = '↑  ' + tab4 + '%'; }
+        if (tab4 == 0) { tab4 = '=  ' + tab4 + '%'; }
+        if (tab4 == "NaN") { tab4 = ' - ';}
+        if (tab4 == "Infinity") { tab4 = ' - ';}
+        tab5[i] = tab4;
+      }
+      return tab5;
     }

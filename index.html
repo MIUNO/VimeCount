@@ -165,7 +165,7 @@
 
 </div>
 
-  <div class="btn-group input-group" role="group" aria-label="Basic example" style="padding-top: 10px; padding-bottom: 10px;">
+  <div class="btn-group input-group" style="padding-top: 10px; padding-bottom: 10px;">
       <a class="btn btn-outline-primary" id="skindownload" style="border-radius: 10px 0px 0px 10px;" target="_blank">Скин</a>
       <a class="btn btn-outline-primary" id="capedownload" style="border-radius: 0px 10px 10px 0px;" target="_blank">Плащ</a>
   </div>
@@ -177,34 +177,113 @@
               <div class="col-sm-6">
                 <div class="container">
                   <div class="card-body bg-white border-10">
-                    <h4 class="card-title text-center text-primary">BedWars</h4>
-                    <h5>Убийств <span id="bwkillsglobal" class="text-primary"></span></h5>
-                    <h5>Смертей <span id="bwdeathsglobal" class="text-primary"></span></h5>
-                    <h5>Игр <span id="bwgamesglobal" class="text-primary"></span></h5>
-                    <h5>Побед <span id="bwwinsglobal" class="text-primary"></span></h5>
-                    <h5>Сломаных кроватей <span id="bwbedBreakedglobal" class="text-primary"></span></h5>
-                    <h5 style="padding-top: 10px;">Коэффициент убийств <span id="bwkdglobal" class="text-primary"></span></h5>
-                    <h5>Коэффициент побед <span id="bwgwglobal" class="text-primary"></span></h5>
-                    <h5>Убийств за игру <span id="bwkgglobal" class="text-primary"></span></h5>
-                    <h5>Смертей за игру <span id="bwdgglobal" class="text-primary"></span></h5>
-                    <h5 style="padding-bottom: 10px;">Сломанных кроватей за игру <span id="bwbgglobal" class="text-primary"></span></h5>
+                    <h3 class="card-title text-center text-primary" style="padding-bottom: 10px;">BedWars</h3>
+                      <ul class="nav nav-pills mb-3 justify-content-center" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link active" style="border-radius: 10px 0px 0px 10px;" data-bs-toggle="tab" href="#bwglobal">За всё время</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" style="border-radius: 0px 10px 10px 0px;" data-bs-toggle="tab" href="#bwmonthly">За этот месяц</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="bwglobal">
+                        <h5>Убийств <span id="bwkillsglobal" class="text-primary"></span></h5>
+                        <h5>Смертей <span id="bwdeathsglobal" class="text-primary"></span></h5>
+                        <h5>Игр <span id="bwgamesglobal" class="text-primary"></span></h5>
+                        <h5>Побед <span id="bwwinsglobal" class="text-primary"></span></h5>
+                        <h5>Сломаных кроватей <span id="bwbedBreakedglobal" class="text-primary"></span></h5>
+                        <h5 style="padding-top: 10px;">Коэффициент убийств <span id="bwkdglobal" class="text-primary"></span></h5>
+                        <h5>Коэффициент побед <span id="bwgwglobal" class="text-primary"></span></h5>
+                        <h5>Убийств за игру <span id="bwkgglobal" class="text-primary"></span></h5>
+                        <h5>Смертей за игру <span id="bwdgglobal" class="text-primary"></span></h5>
+                        <h5 style="padding-bottom: 10px;">Сломанных кроватей за игру <span id="bwbgglobal" class="text-primary"></span></h5>
+                      </div>
+                      <div class="tab-pane" id="bwmonthly">
+                        <h5>Убийств <span id="bwkillsmonthly" class="text-primary"></span></h5>
+                        <h5>Смертей <span id="bwdeathsmonthly" class="text-primary"></span></h5>
+                        <h5>Игр <span id="bwgamesmonthly" class="text-primary"></span></h5>
+                        <h5>Побед <span id="bwwinsmonthly" class="text-primary"></span></h5>
+                        <h5>Сломаных кроватей <span id="bwbedBreakedmonthly" class="text-primary"></span></h5>
+                        <h5 style="padding-top: 10px;">Коэффициент убийств <span id="bwkdmonthly" class="text-primary"></span></h5>
+                        <h5>Коэффициент побед <span id="bwgwmonthly" class="text-primary"></span></h5>
+                        <h5>Убийств за игру <span id="bwkgmonthly" class="text-primary"></span></h5>
+                        <h5>Смертей за игру <span id="bwdgmonthly" class="text-primary"></span></h5>
+                        <h5 style="padding-bottom: 10px;">Сломанных кроватей за игру <span id="bwbgmonthly" class="text-primary"></span></h5>
+                        </div>
+                      </div>
+                          <ul class="list-group list-group-flush">
+                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение коэффицента убийств</h6>
+                              <h6 class="badge bg-primary rounded-pill"><span id="tabbwkd"></span></h6>
+                             </li>
+                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение коэффицента побед</h6>
+                              <h6 class="badge bg-primary rounded-pill"><span id="tabbwgw"></span></h6>
+                             </li>
+                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение убийств за игру</h6>
+                              <h6 class="badge bg-primary rounded-pill"><span id="tabbwgm"></span></h6>
+                             </li>
+                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение смертей за игру</h6>
+                              <h6 class="badge bg-primary rounded-pill"><span id="tabbwdg"></span></h6>
+                             </li>
+                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение сломанных кроватей</h6>
+                              <h6 class="badge bg-primary rounded-pill"><span id="tabbwbg"></span></h6>
+                             </li>
+                          </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
+
               <div class="col-sm-6">
                 <div class="container">
                   <div class="card-body bg-white border-10">
-                    <h4 class="card-title text-center text-primary">SkyWars</h4>
-                    <h5>Убийств <span id="swkillsglobal" class="text-primary"></span></h5>
-                    <h5>Смертей <span id="swdeathsglobal" class="text-primary"></span></h5>
-                    <h5>Игр <span id="swgamesglobal" class="text-primary"></span></h5>
-                    <h5>Побед <span id="swwinsglobal" class="text-primary"></span></h5>
-                    <!--<h5>Ничьих <span id="swdrawsglobal" class="text-primary"></span></h5> -->
-                    <h5>Серия побед <span id="swwinStreakglobal" class="text-primary"></span></h5>
-                    <h5 style="padding-top: 10px;">Коэффициент убийств <span id="swkdglobal" class="text-primary"></span></h5>
-                    <h5>Коэффициент побед <span id="swgwglobal" class="text-primary"></span></h5>
-                    <h5>Убийств за игру <span id="swkgglobal" class="text-primary"></span></h5>
-                    <h5 style="padding-bottom: 10px;">Смертей за игру <span id="swdgglobal" class="text-primary"></span></h5>
+                    <h3 class="card-title text-center text-primary" style="padding-bottom: 10px;">SkyWars</h3>
+                      <ul class="nav nav-pills mb-3 justify-content-center" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link active" style="border-radius: 10px 0px 0px 10px;" data-bs-toggle="tab" href="#swglobal">За всё время</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" style="border-radius: 0px 10px 10px 0px;" data-bs-toggle="tab" href="#swmonthly">За этот месяц</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="swglobal">
+                          <h5>Убийств <span id="swkillsglobal" class="text-primary"></span></h5>
+                          <h5>Смертей <span id="swdeathsglobal" class="text-primary"></span></h5>
+                          <h5>Игр <span id="swgamesglobal" class="text-primary"></span></h5>
+                          <h5>Побед <span id="swwinsglobal" class="text-primary"></span></h5>
+                          <!--<h5>Ничьих <span id="swdrawsglobal" class="text-primary"></span></h5> -->
+                          <h5>Серия побед <span id="swwinStreakglobal" class="text-primary"></span></h5>
+                          <h5 style="padding-top: 10px;">Коэффициент убийств <span id="swkdglobal" class="text-primary"></span></h5>
+                          <h5>Коэффициент побед <span id="swgwglobal" class="text-primary"></span></h5>
+                          <h5>Убийств за игру <span id="swkgglobal" class="text-primary"></span></h5>
+                          <h5 style="padding-bottom: 10px;">Смертей за игру <span id="swdgglobal" class="text-primary"></span></h5>
+                        </div>
+                        <div class="tab-pane" id="swmonthly">
+                          <h5>Убийств <span id="swkillsmonthly" class="text-primary"></span></h5>
+                          <h5>Смертей <span id="swdeathsmonthly" class="text-primary"></span></h5>
+                          <h5>Игр <span id="swgamesmonthly" class="text-primary"></span></h5>
+                          <h5>Побед <span id="swwinsmonthly" class="text-primary"></span></h5>
+                          <h5 style="visibility: hidden;">Серия побед <span id="swwinStreakmonthly" class="text-primary"> - </span></h5>
+                          <h5 style="padding-top: 10px;">Коэффициент убийств <span id="swkdmonthly" class="text-primary"></span></h5>
+                          <h5>Коэффициент побед <span id="swgwmonthly" class="text-primary"></span></h5>
+                          <h5>Убийств за игру <span id="swkgmonthly" class="text-primary"></span></h5>
+                          <h5 style="padding-bottom: 10px;">Смертей за игру <span id="swdgmonthly" class="text-primary"></span></h5>
+                        </div>
+                      </div>
+                          <ul class="list-group list-group-flush">
+                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение коэффицента убийств</h6>
+                              <h6 class="badge bg-primary rounded-pill"><span id="tabswkd"></span></h6>
+                             </li>
+                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение коэффицента побед</h6>
+                              <h6 class="badge bg-primary rounded-pill"><span id="tabswgw"></span></h6>
+                             </li>
+                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение убийств за игру</h6>
+                              <h6 class="badge bg-primary rounded-pill"><span id="tabswgm"></span></h6>
+                             </li>
+                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение смертей за игру</h6>
+                              <h6 class="badge bg-primary rounded-pill"><span id="tabswdg"></span></h6>
+                             </li>
+                          </ul>
                   </div>
                 </div>
               </div>
@@ -246,6 +325,7 @@
        </div>
     </div>
   </div>
+</div>
   <div class="container">
     <div class="row">
       <div class="col-md-3">
