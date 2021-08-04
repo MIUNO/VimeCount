@@ -42,7 +42,7 @@
         return response.json().then(function(json) {
           BW(json.stats.BW.global.kills, json.stats.BW.global.deaths, json.stats.BW.global.games, json.stats.BW.global.wins, json.stats.BW.global.bedBreaked, json.stats.BW.season.monthly.kills, json.stats.BW.season.monthly.deaths, json.stats.BW.season.monthly.games, json.stats.BW.season.monthly.wins, json.stats.BW.season.monthly.bedBreaked)
           SW(json.stats.SW.global.kills, json.stats.SW.global.deaths, json.stats.SW.global.games, json.stats.SW.global.wins, json.stats.SW.global.winStreak, json.stats.SW.season.monthly.kills, json.stats.SW.season.monthly.deaths, json.stats.SW.season.monthly.games, json.stats.SW.season.monthly.wins, json.stats.SW.season.monthly.winStreak)
-          CP(json.stats.CP.global.kills, json.stats.CP.global.deaths, json.stats.CP.global.games, json.stats.CP.global.wins, json.stats.CP.global.resourcePointsBreaked)
+          CP(json.stats.CP.global.kills, json.stats.CP.global.deaths, json.stats.CP.global.games, json.stats.CP.global.wins, json.stats.CP.global.resourcePointsBreaked, json.stats.CP.season.monthly.kills, json.stats.CP.season.monthly.deaths, json.stats.CP.season.monthly.games, json.stats.CP.season.monthly.wins, json.stats.CP.season.monthly.resourcePointsBreaked)
           Bridge(json.stats.BRIDGE.global.games, json.stats.BRIDGE.global.wins, json.stats.BRIDGE.global.kills, json.stats.BRIDGE.global.deaths, json.stats.BRIDGE.global.points)
         });
       }
@@ -135,12 +135,12 @@
     }
 
     function SW(kills, deaths, games, wins, winStreak, mkills, mdeaths, mgames, mwins, mwinStreak) {
-      var swclass = ['#swkillsglobal', '#swdeathsglobal', '#swgamesglobal', '#swwinsglobal', '#swwinStreakglobal', '#swkdglobal', '#swgwglobal', '#swkgglobal', '#swdgglobal'];
+      var swclassg = ['#swkillsglobal', '#swdeathsglobal', '#swgamesglobal', '#swwinsglobal', '#swwinStreakglobal', '#swkdglobal', '#swgwglobal', '#swkgglobal', '#swdgglobal'];
       var swg = Match([kills, deaths, games, wins, winStreak]);
       for (var i = 0; i < 9; i++) {
         if (swg[i] == 'NaN') {swg[i] = 0}
         if (swg[i] == 'Infinity') {swg[i] = '-'}
-        document.querySelector(swclass[i]).innerHTML = swg[i];
+        document.querySelector(swclassg[i]).innerHTML = swg[i];
       }
       var swclassm = ['#swkillsmonthly', '#swdeathsmonthly', '#swgamesmonthly', '#swwinsmonthly', '#swwinStreakmonthly', '#swkdmonthly', '#swgwmonthly', '#swkgmonthly', '#swdgmonthly'];
       var swm = Match([mkills, mdeaths, mgames, mwins, mwinStreak]);
@@ -157,13 +157,26 @@
       }
     }
 
-    function CP(kills, deaths, games, wins, resourcePointsBreaked) {
-      var cpclass = ['#cpkillsglobal', '#cpdeathsglobal', '#cpgamesglobal', '#cpwinsglobal', '#cpresourcePointsBreakedglobal', '#cpkdglobal', '#cpgwglobal', '#cpkgglobal', '#cpdgglobal', '#cppgglobal']; 
-      var cp = Match([kills, deaths, games, wins, resourcePointsBreaked]);
+    function CP(kills, deaths, games, wins, resourcePointsBreaked, mkills, mdeaths, mgames, mwins, mresourcePointsBreaked) {
+      var cpclassg = ['#cpkillsglobal', '#cpdeathsglobal', '#cpgamesglobal', '#cpwinsglobal', '#cpresourcePointsBreakedglobal', '#cpkdglobal', '#cpgwglobal', '#cpkgglobal', '#cpdgglobal', '#cpbgglobal']; 
+      var cpg = Match([kills, deaths, games, wins, resourcePointsBreaked]);
       for (var i = 0; i < 10; i++) {
-        if (cp[i] == 'NaN') {cp[i] = 0}
-        if (cp[i] == 'Infinity') {cp[i] = '-'}
-        document.querySelector(cpclass[i]).innerHTML = cp[i];
+        if (cpg[i] == 'NaN') {cpg[i] = 0}
+        if (cpg[i] == 'Infinity') {cpg[i] = '-'}
+        document.querySelector(cpclassg[i]).innerHTML = cpg[i];
+      }
+      var cpclassm = ['#cpkillsmonthly', '#cpdeathsmonthly', '#cpgamesmonthly', '#cpwinsmonthly', '#cpresourcePointsBreakedmonthly', '#cpkdmonthly', '#cpgwmonthly', '#cpkgmonthly', '#cpdgmonthly', '#cpbgmonthly']; 
+      var cpm = Match([mkills, mdeaths, mgames, mwins, mresourcePointsBreaked]);
+      for (var i = 0; i < 10; i++) {
+        if (cpm[i] == 'NaN') {cpm[i] = 0}
+        if (cpm[i] == 'Infinity') {cpm[i] = '-'}
+        document.querySelector(cpclassm[i]).innerHTML = cpm[i];
+      }
+      var cptab = ['#tabcpkd', '#tabcpgw', '#tabcpgm', '#tabcpdg', '#tabcpbg'];
+      var arr = [];
+      var tabcp = MatchTab(arr.concat(cpg, cpm));
+      for (var i = 0; i < 5; i++) {
+          document.querySelector(cptab[i]).innerHTML = tabcp[i];
       }
     }
     function Bridge (games, wins, kills, deaths, points){

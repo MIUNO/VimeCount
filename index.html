@@ -290,20 +290,61 @@
               <div class="col-sm-6">
                 <div class="container">
                   <div class="card-body bg-white border-10">
-                    <h4 class="card-title text-center text-primary">ClashPoint</h4>
-                    <h5>Убийств <span id="cpkillsglobal" class="text-primary"></span></h5>
-                    <h5>Смертей <span id="cpdeathsglobal" class="text-primary"></span></h5>
-                    <h5>Игр <span id="cpgamesglobal" class="text-primary"></span></h5>
-                    <h5>Побед <span id="cpwinsglobal" class="text-primary"></span></h5>
-                    <h5>Сломанных точек <span id="cpresourcePointsBreakedglobal" class="text-primary"></span></h5>
-                    <h5 style="padding-top: 10px;">Коэффициент убийств <span id="cpkdglobal" class="text-primary"></span></h5>
-                    <h5>Коэффициент побед <span id="cpgwglobal" class="text-primary"></span></h5>
-                    <h5>Убийств за игру <span id="cpkgglobal" class="text-primary"></span></h5>
-                    <h5>Смертей за игру <span id="cpdgglobal" class="text-primary"></span></h5>
-                    <h5 style="padding-bottom: 10px;">Сломанных точек за игру <span id="cppgglobal" class="text-primary"></span></h5>
+                    <h3 class="card-title text-center text-primary" style="padding-bottom: 10px;">ClashPoint</h3>
+                      <ul class="nav nav-pills mb-3 justify-content-center" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link active" style="border-radius: 10px 0px 0px 10px;" data-bs-toggle="tab" href="#cpglobal">За всё время</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" style="border-radius: 0px 10px 10px 0px;" data-bs-toggle="tab" href="#cpmonthly">За этот месяц</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="cpglobal">
+                        <h5>Убийств <span id="cpkillsglobal" class="text-primary"></span></h5>
+                        <h5>Смертей <span id="cpdeathsglobal" class="text-primary"></span></h5>
+                        <h5>Игр <span id="cpgamesglobal" class="text-primary"></span></h5>
+                        <h5>Побед <span id="cpwinsglobal" class="text-primary"></span></h5>
+                        <h5>Сломаных кроватей <span id="cpresourcePointsBreakedglobal" class="text-primary"></span></h5>
+                        <h5 style="padding-top: 10px;">Коэффициент убийств <span id="cpkdglobal" class="text-primary"></span></h5>
+                        <h5>Коэффициент побед <span id="cpgwglobal" class="text-primary"></span></h5>
+                        <h5>Убийств за игру <span id="cpkgglobal" class="text-primary"></span></h5>
+                        <h5>Смертей за игру <span id="cpdgglobal" class="text-primary"></span></h5>
+                        <h5 style="padding-bottom: 10px;">Сломанных точек за игру <span id="cpbgglobal" class="text-primary"></span></h5>
+                      </div>
+                      <div class="tab-pane" id="cpmonthly">
+                        <h5>Убийств <span id="cpkillsmonthly" class="text-primary"></span></h5>
+                        <h5>Смертей <span id="cpdeathsmonthly" class="text-primary"></span></h5>
+                        <h5>Игр <span id="cpgamesmonthly" class="text-primary"></span></h5>
+                        <h5>Побед <span id="cpwinsmonthly" class="text-primary"></span></h5>
+                        <h5>Сломаных кроватей <span id="cpresourcePointsBreakedmonthly" class="text-primary"></span></h5>
+                        <h5 style="padding-top: 10px;">Коэффициент убийств <span id="cpkdmonthly" class="text-primary"></span></h5>
+                        <h5>Коэффициент побед <span id="cpgwmonthly" class="text-primary"></span></h5>
+                        <h5>Убийств за игру <span id="cpkgmonthly" class="text-primary"></span></h5>
+                        <h5>Смертей за игру <span id="cpdgmonthly" class="text-primary"></span></h5>
+                        <h5 style="padding-bottom: 10px;">Сломанных точек за игру <span id="cpbgmonthly" class="text-primary"></span></h5>
+                        </div>
+                      </div>
+                          <ul class="list-group list-group-flush">
+                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение коэффициента убийств</h6>
+                              <h6><span id="tabcpkd"></span></h6>
+                             </li>
+                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение коэффициента побед</h6>
+                              <h6 ><span id="tabcpgw"></span></h6>
+                             </li>
+                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение убийств за игру</h6>
+                              <h6><span id="tabcpgm"></span></h6>
+                             </li>
+                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение смертей за игру</h6>
+                              <h6><span id="tabcpdg"></span></h6>
+                             </li>
+                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение сломанных точек</h6>
+                              <h6><span id="tabcpbg"></span></h6>
+                             </li>
+                          </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
               <div class="col-sm-6">
                 <div class="container">
                   <div class="card-body bg-white border-10">
