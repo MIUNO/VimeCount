@@ -113,20 +113,19 @@
 
     function BW(kills, deaths, games, wins, bedBreaked, mkills, mdeaths, mgames, mwins, mbedBreaked) {
       var bwclassg = ['#bwkillsglobal', '#bwdeathsglobal', '#bwgamesglobal', '#bwwinsglobal', '#bwbedBreakedglobal', '#bwkdglobal', '#bwgwglobal', '#bwkgglobal', '#bwdgglobal', '#bwbgglobal'];
-      var bwg =  MatchG(kills, deaths, games, wins, bedBreaked);
+      var bwg =  Match([kills, deaths, games, wins, bedBreaked]);
       for (var i = 0; i < 10; i++) {
         if (bwg[i] == 'NaN') {bwg[i] = 0}
         if (bwg[i] == 'Infinity') {bwg[i] = '-'}
         document.querySelector(bwclassg[i]).innerHTML = bwg[i];
       }
       var bwclassm = ['#bwkillsmonthly', '#bwdeathsmonthly', '#bwgamesmonthly', '#bwwinsmonthly', '#bwbedBreakedmonthly', '#bwkdmonthly', '#bwgwmonthly', '#bwkgmonthly', '#bwdgmonthly', '#bwbgmonthly'];
-      var bwm =  MatchM(mkills, mdeaths, mgames, mwins, mbedBreaked);
+      var bwm =  Match([mkills, mdeaths, mgames, mwins, mbedBreaked]);
       for (var i = 0; i < 10; i++) {
         if (bwm[i] == 'NaN') {bwm[i] = 0}
         if (bwm[i] == 'Infinity') {bwm[i] = '-'}
         document.querySelector(bwclassm[i]).innerHTML = bwm[i];
       }
-
       var bwtab = ['#tabbwkd', '#tabbwgw', '#tabbwgm', '#tabbwdg', '#tabbwbg'];
       var arr = [];
       var tabbw = MatchTab(arr.concat(bwg, bwm));
@@ -137,18 +136,17 @@
 
     function SW(kills, deaths, games, wins, winStreak, mkills, mdeaths, mgames, mwins, mwinStreak) {
       var swclass = ['#swkillsglobal', '#swdeathsglobal', '#swgamesglobal', '#swwinsglobal', '#swwinStreakglobal', '#swkdglobal', '#swgwglobal', '#swkgglobal', '#swdgglobal'];
-      var swg = MatchG(kills, deaths, games, wins, winStreak);
+      var swg = Match([kills, deaths, games, wins, winStreak]);
       for (var i = 0; i < 9; i++) {
         if (swg[i] == 'NaN') {swg[i] = 0}
         if (swg[i] == 'Infinity') {swg[i] = '-'}
         document.querySelector(swclass[i]).innerHTML = swg[i];
       }
       var swclassm = ['#swkillsmonthly', '#swdeathsmonthly', '#swgamesmonthly', '#swwinsmonthly', '#swwinStreakmonthly', '#swkdmonthly', '#swgwmonthly', '#swkgmonthly', '#swdgmonthly'];
-      var swm = MatchM(mkills, mdeaths, mgames, mwins, mwinStreak);
+      var swm = Match([mkills, mdeaths, mgames, mwins, mwinStreak]);
       for (var i = 0; i < 9; i++) {
         if (swm[i] == 'NaN') {swm[i] = 0}
         if (swm[i] == 'Infinity') {swm[i] = '-'}
-
         document.querySelector(swclassm[i]).innerHTML = swm[i];
       }
       var swtab = ['#tabswkd', '#tabswgw', '#tabswgm', '#tabswdg', '#tabswbg'];
@@ -160,8 +158,8 @@
     }
 
     function CP(kills, deaths, games, wins, resourcePointsBreaked) {
-      var cpclass = ['#cpkillsglobal', '#cpdeathsglobal', '#cpgamesglobal', '#cpwinsglobal', '#cpresourcePointsBreakedglobal', '#cpkdglobal', '#cpgwglobal', '#cpkgglobal', '#cpdgglobal', '#cppgglobal'];
-      var cp = MatchG(kills, deaths, games, wins, resourcePointsBreaked);
+      var cpclass = ['#cpkillsglobal', '#cpdeathsglobal', '#cpgamesglobal', '#cpwinsglobal', '#cpresourcePointsBreakedglobal', '#cpkdglobal', '#cpgwglobal', '#cpkgglobal', '#cpdgglobal', '#cppgglobal']; 
+      var cp = Match([kills, deaths, games, wins, resourcePointsBreaked]);
       for (var i = 0; i < 10; i++) {
         if (cp[i] == 'NaN') {cp[i] = 0}
         if (cp[i] == 'Infinity') {cp[i] = '-'}
@@ -170,56 +168,24 @@
     }
     function Bridge (games, wins, kills, deaths, points){
       var brclass = ['#brkills', '#brdeaths', '#brgames', '#brwins', '#brpoints', '#brkd', '#brgw', '#brkg', '#brdg', '#brpg'];
-      var br = MatchG(kills, deaths, games, wins, points);
+      var br = Match([kills, deaths, games, wins, points]);
       for (var i = 0; i < 10; i++) {
         if (br[i] == 'NaN') {br[i] = 0}
         if (br[i] == 'Infinity') {br[i] = '-'}
         document.querySelector(brclass[i]).innerHTML = br[i];
       }
     }
-    function MatchG(kills, deaths, games, wins, points, resourcePointsBreaked, winStreak, bedBreaked){
-//      var draws = (games - wins) - deaths; // Ничьи
-      var kd = (kills / deaths).toFixed(2);  // Убийсва\Смерти
-      var gw = (wins / (games - wins)).toFixed(2); // Победы\Поражения
-      var kg = (kills / games).toFixed(2);  // Среднее количество убийств за игру
-      var dg = (deaths / games).toFixed(2); // Среднее количество смертей за игру
-      var bg = (bedBreaked / games).toFixed(2); // Среднее количество сломаных кроватей за игру
-      var pg = (resourcePointsBreaked / games).toFixed(2); // Среднее количество сломаных точек за игру
-      var pg2 = (points / games).toFixed(2); // Среднее количество точек за игру
-      if (bedBreaked != "NaN") {
-        var matr = [kills, deaths, games, wins, bedBreaked, kd, gw, kg, dg, bg];
-      }
-      if (winStreak != "NaN") {
-        var matr = [kills, deaths, games, wins, winStreak, kd, gw, kg, dg];
-      }
-      if (resourcePointsBreaked != "NaN") {
-        var matr = [kills, deaths, games, wins, resourcePointsBreaked, kd, gw, kg, dg, pg];
-      }
-      if (points != "NaN") {
-        var matr = [kills, deaths, games, wins, points, kd, gw, kg, dg, pg2];
-      }      return matr;
-    }
-    function MatchM(mkills, mdeaths, mgames, mwins, mpoints, mresourcePointsBreaked, mwinStreak, mbedBreaked){
-//      var draws = (games - wins) - deaths; // Ничьи
-      var mkd = (mkills / mdeaths).toFixed(2);  // Убийсва\Смерти
-      var mgw = (mwins / (mgames - mwins)).toFixed(2); // Победы\Поражения
-      var mkg = (mkills / mgames).toFixed(2);  // Среднее количество убийств за игру
-      var mdg = (mdeaths / mgames).toFixed(2); // Среднее количество смертей за игру
-      var mbg = (mbedBreaked / mgames).toFixed(2); // Среднее количество сломаных кроватей за игру
-      var mpg = (mresourcePointsBreaked / mgames).toFixed(2); // Среднее количество сломаных точек за игру
-      var mpg2 = (mpoints / mgames).toFixed(2); // Среднее количество точек за игру
-      if (mbedBreaked != "NaN") {
-        var matr = [mkills, mdeaths, mgames, mwins, mbedBreaked, mkd, mgw, mkg, mdg, mbg];
-      }
-      if (mwinStreak != "NaN") {
-        var matr = [mkills, mdeaths, mgames, mwins, mwinStreak, mkd, mgw, mkg, mdg];
-      }
-      if (mresourcePointsBreaked != "NaN") {
-        var matr = [mkills, mdeaths, mgames, mwins, mresourcePointsBreaked, mkd, mgw, mkg, mdg, mpg];
-      }
-      if (mpoints != "NaN") {
-        var matr = [mkills, mdeaths, mgames, mwins, mpoints, mkd, mgw, mkg, mdg, mpg2];
-      }      return matr;
+    function Match(matchmas){
+      //kills - matchmas[0] deaths - matchmas[1] games - matchmas[2] wins - matchmas[3] points, resourcePointsBreaked, winStreak, bedBreaked - matchmas[4]
+      var kd = (matchmas[0] / matchmas[1]).toFixed(2);  // Убийсва\Смерти
+      var gw = (matchmas[3] / (matchmas[2] - matchmas[3])).toFixed(2); // Победы\Поражения
+      var kg = (matchmas[0] / matchmas[2]).toFixed(2);  // Среднее количество убийств за игру
+      var dg = (matchmas[1] / matchmas[2]).toFixed(2); // Среднее количество смертей за игру
+      var bg = (matchmas[4] / matchmas[2]).toFixed(2); // Среднее количество сломаных кроватей за игру
+      var arr = [];
+      var matr = [kd, gw, kg, dg, bg];
+      var tab = arr.concat(matchmas, matr);
+      return tab;
     }
     function MatchTab(tab2){
       var tab5 = [];
