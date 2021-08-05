@@ -109,18 +109,31 @@
 
     function Skin(username){
           var skk = document.querySelector('#skin');
+          var skk2 = document.querySelector('#skin-viewer');
           skk.setAttribute("src", 'http://skin.vimeworld.ru/helm/' + username + '/64.png');
           var skkkkk = 'url(https://skin.vimeworld.ru/raw/skin/' + username + '.png)';
             for (var i = 0; i < 71; i++) {
                 var skin3d = document.querySelectorAll('.st3d')[i];
                 skin3d.style.backgroundImage = skkkkk;
             }
+            var cppppp = 'url(https://skin.vimeworld.ru/raw/cape/' + username + '.png)';     
+              var img = new Image();     
+              img.src = 'https://skin.vimeworld.ru/raw/cape/' + username + '.png'; 
+                img.onload = function() {      
+                var width = this.width;
+                var hight = this.height;
+                if (width == 64 && hight == 32){
+                  skk2.setAttribute("class", 'mc-skin-viewer-9x legacy cape spin');
+                }
+                else {
+                  skk2.setAttribute("class", 'mc-skin-viewer-9x legacy legacy-cape spin');
+                }
+              }        
 
-//          var cppppp = 'url(https://skin.vimeworld.ru/raw/cape/' + username + '.png)';
-//              for (var i = 0; i < 7; i++) {
-//               var cape3d = document.querySelectorAll('.ct3d')[i];
-//               cape3d.style.backgroundImage = cppppp;
-//           }
+              for (var i = 0; i < 7; i++) {
+               var cape3d = document.querySelectorAll('.ct3d')[i];
+               cape3d.style.backgroundImage = cppppp;
+           }
           var skindw = document.querySelector('#skindownload');
           skindw.setAttribute("href", 'https://skin.vimeworld.ru/raw/skin/' + username + '.png');
           var capedw = document.querySelector('#capedownload');
