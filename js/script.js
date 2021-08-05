@@ -88,7 +88,12 @@
       gavatar.style.height = '32px';
    }
 
-
+   function guilderror(){
+      var gavatar = document.querySelector('#avatar_url');
+      gavatar.setAttribute("src", 'https://vimeworld.ru/images/guild.png');
+      gavatar.style.width = '32px';
+      gavatar.style.height = '32px';
+  }
 
     function Skin(username){
           var skk = document.querySelector('#skin');
