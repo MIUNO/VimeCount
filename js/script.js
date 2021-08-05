@@ -3,17 +3,13 @@
       search.onclick = function (){
           getPlayer();
           id = 'none';
+          getOnline();
       }
 
       document.addEventListener( 'keyup', event => {
       if( event.code === 'Enter' ) 
         getPlayer();
       });
-
-
-
-
-
 
     function getPlayer() {
     var url = 'https://api.vimeworld.ru/user/name/' + inputIn.value;
@@ -30,6 +26,22 @@
     });
   }
 
+    function getOnline() {
+    var url = 'https://api.vimeworld.ru/online';
+    fetch(url).then(function(response) {
+      var contentType = response.headers.get("content-type");
+      if(contentType && contentType.indexOf("application/json") !== -1) {
+        return response.json().then(function(json) {
+          GiveOnline(json.separated)
+        });
+      }
+    });
+  }
+  function GiveOnline(Obema){
+    var Obema2 = Object.values(Obema);
+  }
+
+
 
     function GiveID(id) {
     document.querySelector('#id').innerHTML = id;
@@ -40,9 +52,9 @@
       var contentType = response.headers.get("content-type");
       if(contentType && contentType.indexOf("application/json") !== -1) {
         return response.json().then(function(json) {
-          BW(json.stats.BW.global.kills, json.stats.BW.global.deaths, json.stats.BW.global.games, json.stats.BW.global.wins, json.stats.BW.global.bedBreaked, json.stats.BW.season.monthly.kills, json.stats.BW.season.monthly.deaths, json.stats.BW.season.monthly.games, json.stats.BW.season.monthly.wins, json.stats.BW.season.monthly.bedBreaked)
-          SW(json.stats.SW.global.kills, json.stats.SW.global.deaths, json.stats.SW.global.games, json.stats.SW.global.wins, json.stats.SW.global.winStreak, json.stats.SW.season.monthly.kills, json.stats.SW.season.monthly.deaths, json.stats.SW.season.monthly.games, json.stats.SW.season.monthly.wins, json.stats.SW.season.monthly.winStreak)
-          CP(json.stats.CP.global.kills, json.stats.CP.global.deaths, json.stats.CP.global.games, json.stats.CP.global.wins, json.stats.CP.global.resourcePointsBreaked, json.stats.CP.season.monthly.kills, json.stats.CP.season.monthly.deaths, json.stats.CP.season.monthly.games, json.stats.CP.season.monthly.wins, json.stats.CP.season.monthly.resourcePointsBreaked)
+          BW(json.stats.BW.global, json.stats.BW.season.monthly)
+          SW(json.stats.SW.global, json.stats.SW.season.monthly)
+          CP(json.stats.CP.global, json.stats.CP.season.monthly)
           Bridge(json.stats.BRIDGE.global.games, json.stats.BRIDGE.global.wins, json.stats.BRIDGE.global.kills, json.stats.BRIDGE.global.deaths, json.stats.BRIDGE.global.points)
         });
       }
@@ -101,7 +113,6 @@
           var skkkkk = 'url(https://skin.vimeworld.ru/raw/skin/' + username + '.png)';
             for (var i = 0; i < 71; i++) {
                 var skin3d = document.querySelectorAll('.st3d')[i];
-
                 skin3d.style.backgroundImage = skkkkk;
             }
 
@@ -116,16 +127,16 @@
           capedw.setAttribute("href", 'https://skin.vimeworld.ru/raw/cape/' + username + '.png');
     }
 
-    function BW(kills, deaths, games, wins, bedBreaked, mkills, mdeaths, mgames, mwins, mbedBreaked) {
+    function BW(Info1, Info2) {
       var bwclassg = ['#bwkillsglobal', '#bwdeathsglobal', '#bwgamesglobal', '#bwwinsglobal', '#bwbedBreakedglobal', '#bwkdglobal', '#bwgwglobal', '#bwkgglobal', '#bwdgglobal', '#bwbgglobal'];
-      var bwg =  Match([kills, deaths, games, wins, bedBreaked]);
+      var bwg =  Match(Object.values(Info1));
       for (var i = 0; i < 10; i++) {
         if (bwg[i] == 'NaN') {bwg[i] = 0}
         if (bwg[i] == 'Infinity') {bwg[i] = '-'}
         document.querySelector(bwclassg[i]).innerHTML = bwg[i];
       }
       var bwclassm = ['#bwkillsmonthly', '#bwdeathsmonthly', '#bwgamesmonthly', '#bwwinsmonthly', '#bwbedBreakedmonthly', '#bwkdmonthly', '#bwgwmonthly', '#bwkgmonthly', '#bwdgmonthly', '#bwbgmonthly'];
-      var bwm =  Match([mkills, mdeaths, mgames, mwins, mbedBreaked]);
+      var bwm =  Match(Object.values(Info2));
       for (var i = 0; i < 10; i++) {
         if (bwm[i] == 'NaN') {bwm[i] = 0}
         if (bwm[i] == 'Infinity') {bwm[i] = '-'}
@@ -139,16 +150,18 @@
       }
     }
 
-    function SW(kills, deaths, games, wins, winStreak, mkills, mdeaths, mgames, mwins, mwinStreak) {
+    function SW(Info1, Info2) {
       var swclassg = ['#swkillsglobal', '#swdeathsglobal', '#swgamesglobal', '#swwinsglobal', '#swwinStreakglobal', '#swkdglobal', '#swgwglobal', '#swkgglobal', '#swdgglobal'];
-      var swg = Match([kills, deaths, games, wins, winStreak]);
+      var sgg = Object.values(Info1);
+      var swg = Match([sgg[2],sgg[3],sgg[1],sgg[0],sgg[8]]);
       for (var i = 0; i < 9; i++) {
         if (swg[i] == 'NaN') {swg[i] = 0}
         if (swg[i] == 'Infinity') {swg[i] = '-'}
         document.querySelector(swclassg[i]).innerHTML = swg[i];
       }
       var swclassm = ['#swkillsmonthly', '#swdeathsmonthly', '#swgamesmonthly', '#swwinsmonthly', '#swwinStreakmonthly', '#swkdmonthly', '#swgwmonthly', '#swkgmonthly', '#swdgmonthly'];
-      var swm = Match([mkills, mdeaths, mgames, mwins, mwinStreak]);
+      var smm = Object.values(Info2);
+      var swm = Match([smm[2],smm[3],smm[1],smm[0],smm[8]]);
       for (var i = 0; i < 9; i++) {
         if (swm[i] == 'NaN') {swm[i] = 0}
         if (swm[i] == 'Infinity') {swm[i] = '-'}
@@ -162,16 +175,16 @@
       }
     }
 
-    function CP(kills, deaths, games, wins, resourcePointsBreaked, mkills, mdeaths, mgames, mwins, mresourcePointsBreaked) {
+    function CP(Info1, Info2) {
       var cpclassg = ['#cpkillsglobal', '#cpdeathsglobal', '#cpgamesglobal', '#cpwinsglobal', '#cpresourcePointsBreakedglobal', '#cpkdglobal', '#cpgwglobal', '#cpkgglobal', '#cpdgglobal', '#cpbgglobal']; 
-      var cpg = Match([kills, deaths, games, wins, resourcePointsBreaked]);
+      var cpg = Match(Object.values(Info1));
       for (var i = 0; i < 10; i++) {
         if (cpg[i] == 'NaN') {cpg[i] = 0}
         if (cpg[i] == 'Infinity') {cpg[i] = '-'}
         document.querySelector(cpclassg[i]).innerHTML = cpg[i];
       }
       var cpclassm = ['#cpkillsmonthly', '#cpdeathsmonthly', '#cpgamesmonthly', '#cpwinsmonthly', '#cpresourcePointsBreakedmonthly', '#cpkdmonthly', '#cpgwmonthly', '#cpkgmonthly', '#cpdgmonthly', '#cpbgmonthly']; 
-      var cpm = Match([mkills, mdeaths, mgames, mwins, mresourcePointsBreaked]);
+      var cpm = Match(Object.values(Info2));
       for (var i = 0; i < 10; i++) {
         if (cpm[i] == 'NaN') {cpm[i] = 0}
         if (cpm[i] == 'Infinity') {cpm[i] = '-'}
