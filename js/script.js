@@ -113,13 +113,12 @@
           var skk2 = document.querySelector('#skin-viewer');
           var skkkkk = 'url(https://skin.vimeworld.ru/raw/skin/' + username + '.png)';
           var steve = 'url(https://raw.githubusercontent.com/MIUNO/vimestat/main/img/Steve.png)';
-          skk.setAttribute("src", skkkkk);
+          var helm = 'https://skin.vimeworld.ru/helm/' + username + '/64.png';
+          skk.setAttribute("src", helm);
             var skin = new Image();
             skin.src = 'https://skin.vimeworld.ru/raw/skin/' + username + '.png';
-            console.log(skin);
                 skin.onerror = function(){
                   var skinn = steve;
-                  console.log('Steve');
                   for (var i = 0; i < 71; i++) {
                     var skin3d = document.querySelectorAll('.st3d')[i];
                     skin3d.style.backgroundImage = skinn;
@@ -127,7 +126,6 @@
                 }
                 skin.onload = function(){
                   var skinn = skkkkk;
-                  console.log('SQWE');
                   for (var i = 0; i < 71; i++) {
                     var skin3d = document.querySelectorAll('.st3d')[i];
                     skin3d.style.backgroundImage = skinn;
