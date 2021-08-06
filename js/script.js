@@ -95,31 +95,48 @@
       }
       document.querySelector('#name').innerHTML = name;
       var gavatar = document.querySelector('#avatar_url');
-      gavatar.setAttribute("src", avatar_url);
-      gavatar.style.width = '32px';
-      gavatar.style.height = '32px';
+      var guildd = new Image();
+      guildd.src = avatar_url;
+      guildd.onerror = function(){
+        gavatar.setAttribute("src", 'https://vimeworld.ru/images/guild.png');
+        gavatar.style.width = '32px';
+        gavatar.style.height = '32px';
+      }
+      guildd.onload = function(){
+        gavatar.setAttribute("src", avatar_url);
+        gavatar.style.width = '32px';
+        gavatar.style.height = '32px';
+      }
    }
-
-   function guilderror(){
-      var gavatar = document.querySelector('#avatar_url');
-      gavatar.setAttribute("src", 'https://vimeworld.ru/images/guild.png');
-      gavatar.style.width = '32px';
-      gavatar.style.height = '32px';
-  }
-
     function Skin(username){
           var skk = document.querySelector('#skin');
           var skk2 = document.querySelector('#skin-viewer');
-          skk.setAttribute("src", 'http://skin.vimeworld.ru/helm/' + username + '/64.png');
           var skkkkk = 'url(https://skin.vimeworld.ru/raw/skin/' + username + '.png)';
-            for (var i = 0; i < 71; i++) {
-                var skin3d = document.querySelectorAll('.st3d')[i];
-                skin3d.style.backgroundImage = skkkkk;
-            }
+          var steve = 'url(https://raw.githubusercontent.com/MIUNO/vimestat/main/img/Steve.png)';
+          skk.setAttribute("src", skkkkk);
+            var skin = new Image();
+            skin.src = 'https://skin.vimeworld.ru/raw/skin/' + username + '.png';
+            console.log(skin);
+                skin.onerror = function(){
+                  var skinn = steve;
+                  console.log('Steve');
+                  for (var i = 0; i < 71; i++) {
+                    var skin3d = document.querySelectorAll('.st3d')[i];
+                    skin3d.style.backgroundImage = skinn;
+                  }
+                }
+                skin.onload = function(){
+                  var skinn = skkkkk;
+                  console.log('SQWE');
+                  for (var i = 0; i < 71; i++) {
+                    var skin3d = document.querySelectorAll('.st3d')[i];
+                    skin3d.style.backgroundImage = skinn;
+                  }
+                }
             var cppppp = 'url(https://skin.vimeworld.ru/raw/cape/' + username + '.png)';     
-              var img = new Image();     
-              img.src = 'https://skin.vimeworld.ru/raw/cape/' + username + '.png'; 
-                img.onload = function() {      
+              var cape = new Image();     
+              cape.src = 'https://skin.vimeworld.ru/raw/cape/' + username + '.png'; 
+                cape.onload = function() {      
                 var width = this.width;
                 var hight = this.height;
                 if (width == 64 && hight == 32){
@@ -129,7 +146,6 @@
                   skk2.setAttribute("class", 'mc-skin-viewer-9x legacy legacy-cape spin');
                 }
               }        
-
               for (var i = 0; i < 7; i++) {
                var cape3d = document.querySelectorAll('.ct3d')[i];
                cape3d.style.backgroundImage = cppppp;
