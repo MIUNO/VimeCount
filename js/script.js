@@ -159,7 +159,6 @@
                   }
                 }
                 skin.onload = function(){
-                  console.log();
                   var skinn = 'url(' + skkkkk + ')';
                   var skin = skkkkk;
                   SkinColor(skin);
@@ -198,7 +197,6 @@
                 var vibrant = new Vibrant(imggg, 2);
                 var swatches = vibrant.swatches()
                 var vvv = Object.values(swatches);
-                console.log(vvv);
                 var aaa = [];
                 for (var i = 0; i < 6; i++) {
                     try {
