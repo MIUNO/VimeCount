@@ -1,8 +1,55 @@
       var inputIn = document.querySelector('.input-in');
       let search = document.querySelector('.search');
+
+      let bm0 = document.querySelector('.bm0');
+      let bm1 = document.querySelector('.bm1');
+      let bm2 = document.querySelector('.bm2');
+      let bm3 = document.querySelector('.bm3');
+      let bm4 = document.querySelector('.bm4');
+      let nbs0 = document.querySelector('.nick_bs0');
+      let nbs1 = document.querySelector('.nick_bs1');
+      let nbs2 = document.querySelector('.nick_bs2');
+      let nbs3 = document.querySelector('.nick_bs3');
+      let nbs4 = document.querySelector('.nick_bs4');
+      bm0.onclick = function (){ localStorage.setItem('nick0', inputIn.value); }
+      bm1.onclick = function (){ localStorage.setItem('nick1', inputIn.value); }
+      bm2.onclick = function (){ localStorage.setItem('nick2', inputIn.value); }
+      bm3.onclick = function (){ localStorage.setItem('nick3', inputIn.value); }
+      bm4.onclick = function (){ localStorage.setItem('nick4', inputIn.value); }
+      var a0 = localStorage.getItem('nick0');
+      var a1 = localStorage.getItem('nick1');
+      var a2 = localStorage.getItem('nick2');
+      var a3 = localStorage.getItem('nick3');
+      var a4 = localStorage.getItem('nick4');
+        var a = [a0, a1, a2, a3, a4];
+        var b = ['.nick_bs0', '.nick_bs1', '.nick_bs2', '.nick_bs3', '.nick_bs4'];
+        for(var i = 0; i < 5; i++){
+          if( a[i] == null) { a[i] = 'None'; }
+          document.querySelector(b[i]).innerHTML = a[i];
+        }
+      nbs0.onclick = function (){
+        inputIn.value = a0;
+        getPlayer();
+      }
+      nbs1.onclick = function (){
+        inputIn.value = a1;
+        getPlayer();
+      }
+      nbs2.onclick = function (){
+        inputIn.value = a2;
+        getPlayer();
+      }
+      nbs3.onclick = function (){
+        inputIn.value = a3;
+        getPlayer();
+      }
+      nbs4.onclick = function (){
+        inputIn.value = a4;
+        getPlayer();
+      }
+
       search.onclick = function (){
-          getPlayer();
-          id = 'none';
+        getPlayer();
       }
       getOnline();
       document.addEventListener( 'keyup', event => {
@@ -35,7 +82,6 @@
       }
     });
   }
-
   function getOnline() {
     var url = 'https://api.vimeworld.ru/online';
     fetch(url).then(function(response) {
