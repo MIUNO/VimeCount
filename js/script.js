@@ -11,42 +11,24 @@
       let nbs2 = document.querySelector('.nick_bs2');
       let nbs3 = document.querySelector('.nick_bs3');
       let nbs4 = document.querySelector('.nick_bs4');
-      bm0.onclick = function (){ localStorage.setItem('nick0', inputIn.value); }
-      bm1.onclick = function (){ localStorage.setItem('nick1', inputIn.value); }
-      bm2.onclick = function (){ localStorage.setItem('nick2', inputIn.value); }
-      bm3.onclick = function (){ localStorage.setItem('nick3', inputIn.value); }
-      bm4.onclick = function (){ localStorage.setItem('nick4', inputIn.value); }
-      var a0 = localStorage.getItem('nick0');
-      var a1 = localStorage.getItem('nick1');
-      var a2 = localStorage.getItem('nick2');
-      var a3 = localStorage.getItem('nick3');
-      var a4 = localStorage.getItem('nick4');
-        var a = [a0, a1, a2, a3, a4];
+      bm0.onclick = function (){ localStorage.nick0 = inputIn.value; }
+      bm1.onclick = function (){ localStorage.nick1 = inputIn.value; }
+      bm2.onclick = function (){ localStorage.nick2 = inputIn.value; }
+      bm3.onclick = function (){ localStorage.nick3 = inputIn.value; }
+      bm4.onclick = function (){ localStorage.nick4 = inputIn.value; }
+        var a = [nbs0, nbs1, nbs2, nbs3, nbs4];
         var b = ['.nick_bs0', '.nick_bs1', '.nick_bs2', '.nick_bs3', '.nick_bs4'];
+        var c = [localStorage.nick0, localStorage.nick1, localStorage.nick2, localStorage.nick3, localStorage.nick4];
         for(var i = 0; i < 5; i++){
-          if( a[i] == null) { a[i] = 'None'; }
-          document.querySelector(b[i]).innerHTML = a[i];
+          console.log(c[i]);
+          if( c[i] == null) { c[i] = ''; }
+          document.querySelector(b[i]).innerHTML = c[i];
         }
-      nbs0.onclick = function (){
-        inputIn.value = a0;
-        getPlayer();
-      }
-      nbs1.onclick = function (){
-        inputIn.value = a1;
-        getPlayer();
-      }
-      nbs2.onclick = function (){
-        inputIn.value = a2;
-        getPlayer();
-      }
-      nbs3.onclick = function (){
-        inputIn.value = a3;
-        getPlayer();
-      }
-      nbs4.onclick = function (){
-        inputIn.value = a4;
-        getPlayer();
-      }
+      nbs0.onclick = function (){ inputIn.value = localStorage.nick0; getPlayer(); }
+      nbs1.onclick = function (){ inputIn.value = localStorage.nick1; getPlayer(); }
+      nbs2.onclick = function (){ inputIn.value = localStorage.nick2; getPlayer(); }
+      nbs3.onclick = function (){ inputIn.value = localStorage.nick3; getPlayer(); }
+      nbs4.onclick = function (){ inputIn.value = localStorage.nick4; getPlayer(); }
 
       search.onclick = function (){
         getPlayer();
