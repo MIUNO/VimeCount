@@ -25,8 +25,8 @@
       }
         for(var i = 0; i < 5; i++){
           console.log(c[i]);
-          if( c[i] == null) { c[i] = ''; }
-          if( c[i] == undefined) { c[i] = ''; }
+          if( c[i] == null) { c[i] = 'Пусто'; }
+          if( c[i] == undefined) { c[i] = 'Пусто'; }
           document.querySelector(b[i]).innerHTML = c[i];
         }
       nbs0.onclick = function (){ inputIn.value = localStorage.nick0; getPlayer(); }
