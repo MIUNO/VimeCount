@@ -3,45 +3,56 @@
       search.onclick = function (){
           getPlayer();
           id = 'none';
-          getOnline();
       }
-
+      getOnline();
       document.addEventListener( 'keyup', event => {
       if( event.code === 'Enter' ) 
         getPlayer();
       });
-
-    function getPlayer() {
+  function getPlayer() {
     var url = 'https://api.vimeworld.ru/user/name/' + inputIn.value;
     fetch(url).then(function(response) {
       var contentType = response.headers.get("content-type");
       if(contentType && contentType.indexOf("application/json") !== -1) {
         return response.json().then(function(json) {
-//          GiveID2(json[0].id)
-          GiveID(json[0].id)
-          GiveMore(json[0].username, json[0].level, json[0].levelPercentage, json[0].rank)
-          GiveGuild(json[0].guild, json[0].guild.name, json[0].guild.id, json[0].guild.avatar_url)
+          try { GiveID(json[0].id) }
+          catch(err) {
+          $.toast({
+            heading: 'Ошибка',
+            text: 'Неверный никнейм',
+            loader: false,
+            position: 'bottom-right',
+            class: 'bg-danger text-white border-10',
+            hideAfter: 2000,
+            allowToastClose: true,
+          });
+          }
+          try { GiveGuild(json[0].guild, json[0].guild.name, json[0].guild.id, json[0].guild.avatar_url) }
+          catch(err) {}
+          try { GiveMore(json[0].username, json[0].level, json[0].levelPercentage, json[0].rank) }
+          catch(err) {}
         });
       }
     });
   }
 
-    function getOnline() {
+  function getOnline() {
     var url = 'https://api.vimeworld.ru/online';
     fetch(url).then(function(response) {
       var contentType = response.headers.get("content-type");
       if(contentType && contentType.indexOf("application/json") !== -1) {
         return response.json().then(function(json) {
-          GiveOnline(json.separated)
+          GiveOnline(json.total)
         });
       }
     });
   }
-  function GiveOnline(Obema){
-    var Obema2 = Object.values(Obema);
+
+  setInterval(getOnline, 10000);
+
+  function GiveOnline(online){
+    document.querySelector('#online').innerHTML = online;
   }
-
-
 
     function GiveID(id) {
     document.querySelector('#id').innerHTML = id;
@@ -59,7 +70,28 @@
         });
       }
     });
+    var url2 = 'https://api.vimeworld.ru/user/' + playerid + '/session';
+    fetch(url2).then(function(response) {
+      var contentType = response.headers.get("content-type");
+      if(contentType && contentType.indexOf("application/json") !== -1) {
+        return response.json().then(function(json) {
+          GiveSession(json.online.value)
+        });
+      }
+    });
+  }
+
+  function GiveSession(online){
+    var onl = document.querySelector('#session');
+    if(online == true){
+      document.querySelector('#session').innerHTML = 'Онлайн';
+      onl.setAttribute("class", 'badge bg-success');
     }
+    if(online == false){
+      document.querySelector('#session').innerHTML = 'Оффлайн';
+      onl.setAttribute("class", 'badge bg-danger');
+    }
+  }
     
     function GiveMore(username, level, levelPercentage, rank) {
       document.querySelector('#nick').innerHTML = username;
@@ -111,21 +143,26 @@
     function Skin(username){
           var skk = document.querySelector('#skin');
           var skk2 = document.querySelector('#skin-viewer');
-          var skkkkk = 'url(https://skin.vimeworld.ru/raw/skin/' + username + '.png)';
-          var steve = 'url(https://raw.githubusercontent.com/MIUNO/vimestat/main/img/Steve.png)';
+          var skkkkk = 'https://skin.vimeworld.ru/raw/skin/' + username + '.png';
+          var steve = 'https://raw.githubusercontent.com/MIUNO/vimestat/main/img/Steve.png';
           var helm = 'https://skin.vimeworld.ru/helm/' + username + '/64.png';
           skk.setAttribute("src", helm);
             var skin = new Image();
             skin.src = 'https://skin.vimeworld.ru/raw/skin/' + username + '.png';
                 skin.onerror = function(){
-                  var skinn = steve;
+                  var skinn = 'url(' + steve + ')';
+                  var skin = steve;
+                  SkinColor(skin);
                   for (var i = 0; i < 71; i++) {
                     var skin3d = document.querySelectorAll('.st3d')[i];
                     skin3d.style.backgroundImage = skinn;
                   }
                 }
                 skin.onload = function(){
-                  var skinn = skkkkk;
+                  console.log();
+                  var skinn = 'url(' + skkkkk + ')';
+                  var skin = skkkkk;
+                  SkinColor(skin);
                   for (var i = 0; i < 71; i++) {
                     var skin3d = document.querySelectorAll('.st3d')[i];
                     skin3d.style.backgroundImage = skinn;
@@ -152,6 +189,31 @@
           skindw.setAttribute("href", 'https://skin.vimeworld.ru/raw/skin/' + username + '.png');
           var capedw = document.querySelector('#capedownload');
           capedw.setAttribute("href", 'https://skin.vimeworld.ru/raw/cape/' + username + '.png');
+
+            function SkinColor(skin){
+            var imggg = document.createElement('img');
+            imggg.setAttribute('src', skin)
+            imggg.crossOrigin = "Anonymous";
+            imggg.addEventListener('load', function() {
+                var vibrant = new Vibrant(imggg, 2);
+                var swatches = vibrant.swatches()
+                var vvv = Object.values(swatches);
+                console.log(vvv);
+                var aaa = [];
+                for (var i = 0; i < 6; i++) {
+                    try {
+                      aaa[i] = vvv[i].rgb;
+                    }
+                    catch(err){
+                      if (vvv[i] == undefined) { delete aaa[i]; }
+                    }
+                }
+                var nnn = Object.values(aaa);
+                var color1 = nnn[0];
+                var skincontainer = document.querySelector('.skin-container');
+                skincontainer.style.backgroundColor =  'rgba(' + color1[0] + ', ' + color1[1] + ', ' + color1[2] + ', 0.5)';
+            });
+         }
     }
 
     function BW(Info1, Info2) {

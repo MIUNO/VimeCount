@@ -4,26 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VimeStatHelper</title>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
   <link href="css/style.css" rel="stylesheet" type="text/css">
   <link href="css/minecraft-skinviewer.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
   <body>
+
+
+
+
     <div class="container"> 
-      <h1>VimeStat <span class="badge bg-primary" style="border-radius: 10px;">Helper</span></h1> 
+      <div class="row">
+        <div class="col-md-4">
+          <h1>VimeStat <span class="badge bg-primary" style="border-radius: 10px;">Helper</span></h1> 
+        </div>
+        <div class="col-md-6"></div>
+        <div class="col-md-2" style="padding-top: 10px;">
+          <h4 class="text-center">Онлайн: <span id="online" class="text-primary"></span></h4>
+        </div>
+      </div>
       <div class="row">
         <div class="col-md-3">
           <div class="input-group mb-3">
-              <input type="text" class="form-control input-in" id="formGroupExampleInput" placeholder="Nickname" style="border-radius: 10px 0 0 10px;" onsubmit="">
+              <input type="text" class="form-control input-in" id="formGroupExampleInput" placeholder="Никнейм" style="border-radius: 10px 0 0 10px;" onsubmit="">
               <button class="btn btn-outline-primary search" style="border-radius: 0 10px 10px 0;">Search</button>
               </div>
             </div>
-            <div class="col-md-7">
-                
-            </div>
+            <div class="col-md-7"></div>
           <div class="col-md-2">
             <a type="button" href="https://www.donationalerts.com/r/miuno" class="btn btn-outline-primary w-100" style="border-radius: 10px;" target="_blank"> 
               <i class="bi bi-cup-fill"></i> Buy Coffee
@@ -35,9 +44,10 @@
       <div class="row">
        <div class="col-md-3 text-center">
           <div class="container bg-white border-10" style="padding-top: 30px">
-            <img id="skin" class="border-15" src="" alt="">
-            <h2 id="nick" class="">Nickname</h2>
-            <h5>Ранг <span id="rank" class=""></span></h5>
+            <img id="skin" class="border-15">
+            <h2 id="nick">Никнейм</h2>
+            <h4><span class="" style="border-radius: 15px;" id="session"></span></h4>
+            <h5>Ранг <span id="rank"></span></h5>
             <div class="progress" style="height: 35px; border-radius: 10px;">
               <div class="progress-bar" id="barr" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span id="progress"></span></div>
             </div>
@@ -45,7 +55,7 @@
             <h5>ID <span id="id" class="text-primary"></span></h5>
             <h5 class="guild"><img id="avatar_url" class="border-10" src=""><span id="name" class="text-primary" style="padding-left: 10px;"></span></h5>
 
-<div class="container"> 
+<div class="container skin-container"> 
             <!-- Skin Viewer HTML Elements -->
             <div id="skin-viewer" class="mc-skin-viewer-9x legacy cape spin" style="padding-top: 20px;">
               <div class="player">
@@ -371,11 +381,38 @@
     <div class="row">
       <div class="col-md-3">
         <div class="container">
-          <a>by <a class="text-primary" href="https://miuno.github.io" target="_blank">MIUNO</a> aka SQWE</a>
+          <a>by <a class="text-decoration-none text-primary" href="https://miuno.github.io" target="_blank">MIUNO</a> aka SQWE</a>
+          <button type="button" class="btn btn-outline-primary" style="margin-left:15px; border-radius: 10px;" data-bs-toggle="modal" data-bs-target="#Modal">О сайте</button>
         </div>
       </div>
     </div>
   </div>
+      </div>  
+        <div class="modal fade" id="Modal" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="border-radius: 15px; background-color: #F9F7F7;">
+              <div class="modal-header">
+                <h4 class="modal-title">О сайте</h4>
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" aria-label="Close" style="border-radius: 10px;">
+                  <span aria-hidden="true">Закрыть</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="container">
+                  <div class="card-body bg-white border-10">
+                    <h5>Статичный сайт созданный для работы c <span class="text-primary">API VimeWorld</span>, на сайте можно просматривать глобальную и месячную статистику, а также расширенную по ограниченному списку мини-игр. Такую как: средний показатель по играм, сравнение показателей глобальной и месячной статистики. Благодаря <a class="text-decoration-none text-primary" href="https://github.com/rkkoszewski" target="_blank"><i class="bi bi-github"></i>rkkoszewski</a> на сайте есть 3D визуализация скина и плаща игрока, с возможностью их скачивания.</h5>
+                    <hr>
+                    <h5><i class="bi bi-github"></i><span> Сайт  </span><a class="text-decoration-none text-primary" href="https://github.com/MIUNO/vimestat" target="_blank">Github</a></h5>
+                    <h5><i class="bi bi-github"></i><span> Автор  </span><a class="text-decoration-none text-primary" href="https://github.com/MIUNO" target="_blank">Github</a></h5>
+                    <h5><i class="bi bi-cup"></i><span> Помочь в развитии  </span><a class="text-decoration-none text-primary" href="https://www.donationalerts.com/r/miuno" target="_blank">DonationAlerts</a></h5>
+                    <h5><i class="bi bi-at"></i><span> Личный сайт  </span><a class="text-decoration-none text-primary" href="https://miuno.github.io" target="_blank">MIUNO</a></h5>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
 
@@ -393,7 +430,9 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/83562616" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vibrant.js/1.0.0/Vibrant.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
   </body>
