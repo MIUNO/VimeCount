@@ -1,27 +1,32 @@
       var inputIn = document.querySelector('.input-in');
-      let search = document.querySelector('.search');
+      var search = document.querySelector('.search');
 
-      let bm0 = document.querySelector('.bm0');
-      let bm1 = document.querySelector('.bm1');
-      let bm2 = document.querySelector('.bm2');
-      let bm3 = document.querySelector('.bm3');
-      let bm4 = document.querySelector('.bm4');
-      let nbs0 = document.querySelector('.nick_bs0');
-      let nbs1 = document.querySelector('.nick_bs1');
-      let nbs2 = document.querySelector('.nick_bs2');
-      let nbs3 = document.querySelector('.nick_bs3');
-      let nbs4 = document.querySelector('.nick_bs4');
-      bm0.onclick = function (){ localStorage.nick0 = inputIn.value; }
-      bm1.onclick = function (){ localStorage.nick1 = inputIn.value; }
-      bm2.onclick = function (){ localStorage.nick2 = inputIn.value; }
-      bm3.onclick = function (){ localStorage.nick3 = inputIn.value; }
-      bm4.onclick = function (){ localStorage.nick4 = inputIn.value; }
-        var a = [nbs0, nbs1, nbs2, nbs3, nbs4];
-        var b = ['.nick_bs0', '.nick_bs1', '.nick_bs2', '.nick_bs3', '.nick_bs4'];
-        var c = [localStorage.nick0, localStorage.nick1, localStorage.nick2, localStorage.nick3, localStorage.nick4];
+      var nbs0 = document.querySelector('.nick_bs0');
+      var nbs1 = document.querySelector('.nick_bs1');
+      var nbs2 = document.querySelector('.nick_bs2');
+      var nbs3 = document.querySelector('.nick_bs3');
+      var nbs4 = document.querySelector('.nick_bs4');
+      var b = ['.nick_bs0', '.nick_bs1', '.nick_bs2', '.nick_bs3', '.nick_bs4'];
+      var c = [localStorage.nick0, localStorage.nick1, localStorage.nick2, localStorage.nick3, localStorage.nick4];
+      document.querySelector('.bm0').onclick = function (){
+        localStorage.nick0 = inputIn.value; document.querySelector('.nick_bs0').innerHTML = localStorage.nick0;
+      }
+      document.querySelector('.bm1').onclick = function (){
+        localStorage.nick1 = inputIn.value; document.querySelector('.nick_bs1').innerHTML = localStorage.nick1;
+      }
+      document.querySelector('.bm2').onclick = function (){
+        localStorage.nick2 = inputIn.value; document.querySelector('.nick_bs2').innerHTML = localStorage.nick2;
+      }
+      document.querySelector('.bm3').onclick = function (){
+        localStorage.nick3 = inputIn.value; document.querySelector('.nick_bs3').innerHTML = localStorage.nick3;
+      }
+      document.querySelector('.bm4').onclick = function (){
+        localStorage.nick4 = inputIn.value; document.querySelector('.nick_bs4').innerHTML = localStorage.nick4;
+      }
         for(var i = 0; i < 5; i++){
           console.log(c[i]);
           if( c[i] == null) { c[i] = ''; }
+          if( c[i] == undefined) { c[i] = ''; }
           document.querySelector(b[i]).innerHTML = c[i];
         }
       nbs0.onclick = function (){ inputIn.value = localStorage.nick0; getPlayer(); }
@@ -30,14 +35,9 @@
       nbs3.onclick = function (){ inputIn.value = localStorage.nick3; getPlayer(); }
       nbs4.onclick = function (){ inputIn.value = localStorage.nick4; getPlayer(); }
 
-      search.onclick = function (){
-        getPlayer();
-      }
+      search.onclick = function (){ getPlayer(); }
+      document.addEventListener( 'keyup', event => { if( event.code === 'Enter' ) getPlayer(); });
       getOnline();
-      document.addEventListener( 'keyup', event => {
-      if( event.code === 'Enter' ) 
-        getPlayer();
-      });
   function getPlayer() {
     var url = 'https://api.vimeworld.ru/user/name/' + inputIn.value;
     fetch(url).then(function(response) {
