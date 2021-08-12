@@ -9,19 +9,19 @@
       var b = ['.nick_bs0', '.nick_bs1', '.nick_bs2', '.nick_bs3', '.nick_bs4'];
       var c = [localStorage.nick0, localStorage.nick1, localStorage.nick2, localStorage.nick3, localStorage.nick4];
       document.querySelector('.bm0').onclick = function (){
-        localStorage.nick0 = inputIn.value; document.querySelector('.nick_bs0').innerHTML = localStorage.nick0;
+        localStorage.nick0 = inputIn.value; document.querySelector('.nick_bs0').innerHTML = localStorage.nick0; Info();
       }
       document.querySelector('.bm1').onclick = function (){
-        localStorage.nick1 = inputIn.value; document.querySelector('.nick_bs1').innerHTML = localStorage.nick1;
+        localStorage.nick1 = inputIn.value; document.querySelector('.nick_bs1').innerHTML = localStorage.nick1; Info();
       }
       document.querySelector('.bm2').onclick = function (){
-        localStorage.nick2 = inputIn.value; document.querySelector('.nick_bs2').innerHTML = localStorage.nick2;
+        localStorage.nick2 = inputIn.value; document.querySelector('.nick_bs2').innerHTML = localStorage.nick2; Info();
       }
       document.querySelector('.bm3').onclick = function (){
-        localStorage.nick3 = inputIn.value; document.querySelector('.nick_bs3').innerHTML = localStorage.nick3;
+        localStorage.nick3 = inputIn.value; document.querySelector('.nick_bs3').innerHTML = localStorage.nick3; Info();
       }
       document.querySelector('.bm4').onclick = function (){
-        localStorage.nick4 = inputIn.value; document.querySelector('.nick_bs4').innerHTML = localStorage.nick4;
+        localStorage.nick4 = inputIn.value; document.querySelector('.nick_bs4').innerHTML = localStorage.nick4; Info();
       }
         for(var i = 0; i < 5; i++){
           console.log(c[i]);
@@ -34,6 +34,18 @@
       nbs2.onclick = function (){ inputIn.value = localStorage.nick2; getPlayer(); }
       nbs3.onclick = function (){ inputIn.value = localStorage.nick3; getPlayer(); }
       nbs4.onclick = function (){ inputIn.value = localStorage.nick4; getPlayer(); }
+
+      function Info(){
+          $.toast({
+            heading: 'Готово',
+            text: 'Ник сохранён',
+            loader: false,
+            position: 'bottom-right',
+            class: 'bg-success text-white border-10',
+            hideAfter: 2000,
+            allowToastClose: true,
+          });
+      }
 
       search.onclick = function (){ getPlayer(); }
       document.addEventListener( 'keyup', event => { if( event.code === 'Enter' ) getPlayer(); });
