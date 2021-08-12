@@ -9,7 +9,7 @@
       var b = ['.nick_bs0', '.nick_bs1', '.nick_bs2', '.nick_bs3', '.nick_bs4'];
       var c = [localStorage.nick0, localStorage.nick1, localStorage.nick2, localStorage.nick3, localStorage.nick4];
       document.querySelector('.bm0').onclick = function (){
-        localStorage.nick0 = inputIn.value; document.querySelector('.nick_bs0').innerHTML = localStorage.nick0; Info();
+        localStorage.nick0 = inputIn.value; document.querySelector('.nick_bs0').innerHTML = localStorage.nick0; if (inputIn.value == 'undefined') { inputIn.value = ''; } Info();
       }
       document.querySelector('.bm1').onclick = function (){
         localStorage.nick1 = inputIn.value; document.querySelector('.nick_bs1').innerHTML = localStorage.nick1; Info();
@@ -29,11 +29,11 @@
           if( c[i] == undefined) { c[i] = 'Пусто'; }
           document.querySelector(b[i]).innerHTML = c[i];
         }
-      nbs0.onclick = function (){ inputIn.value = localStorage.nick0; getPlayer(); }
-      nbs1.onclick = function (){ inputIn.value = localStorage.nick1; getPlayer(); }
-      nbs2.onclick = function (){ inputIn.value = localStorage.nick2; getPlayer(); }
-      nbs3.onclick = function (){ inputIn.value = localStorage.nick3; getPlayer(); }
-      nbs4.onclick = function (){ inputIn.value = localStorage.nick4; getPlayer(); }
+      nbs0.onclick = function (){ inputIn.value = localStorage.nick0; if (inputIn.value == 'undefined') { inputIn.value = ''; } getPlayer(); }
+      nbs1.onclick = function (){ inputIn.value = localStorage.nick1; if (inputIn.value == 'undefined') { inputIn.value = ''; } getPlayer(); }
+      nbs2.onclick = function (){ inputIn.value = localStorage.nick2; if (inputIn.value == 'undefined') { inputIn.value = ''; } getPlayer(); }
+      nbs3.onclick = function (){ inputIn.value = localStorage.nick3; if (inputIn.value == 'undefined') { inputIn.value = ''; } getPlayer(); }
+      nbs4.onclick = function (){ inputIn.value = localStorage.nick4; if (inputIn.value == 'undefined') { inputIn.value = ''; } getPlayer(); }
 
       function Info(){
           $.toast({
