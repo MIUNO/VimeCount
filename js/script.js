@@ -139,14 +139,14 @@
       document.querySelector('#rank').innerHTML = rank;
       var colorR = document.querySelector('#rank');
       if (rank == 'PLAYER') {colorR.style.color = '#1266F1';}
-      if (rank == 'VIP') {colorR.style.color = '#00B74A';}
-      if (rank == 'PREMIUM') {colorR.style.color = '#39C0ED';}
-      if (rank == 'HOLY') {colorR.style.color = '##FFA900';}
-      if (rank == 'IMMORTAL') {colorR.style.color = '#B23CFD';}
-      if (rank == 'BUILDER' || rank == 'SRBUILDER' || rank == 'MAPLEAD') {colorR.style.color = '#00B74A';}
-      if (rank == 'YOUTUBE') {colorR.style.color = '#D32F2F';}
-      if (rank == 'DEV' || rank == 'ORGANIZER' || rank == 'ADMIN') {colorR.style.color = '#00BCD4';}
-      if (rank == 'MODER' || rank == 'WARDEN' || rank == 'CHIEF') {colorR.style.color = '#304FFE';}
+      if (rank == 'VIP') {colorR.style.color = '#00be00';}
+      if (rank == 'PREMIUM') {colorR.style.color = '#00dada';}
+      if (rank == 'HOLY') {colorR.style.color = '#ffba2d';}
+      if (rank == 'IMMORTAL') {colorR.style.color = '#e800d5';}
+      if (rank == 'BUILDER' || rank == 'SRBUILDER' || rank == 'MAPLEAD') {colorR.style.color = '#009c00';}
+      if (rank == 'YOUTUBE') {colorR.style.color = '#fe3f3f';}
+      if (rank == 'DEV' || rank == 'ORGANIZER' || rank == 'ADMIN') {colorR.style.color = '#00bebe';}
+      if (rank == 'MODER' || rank == 'WARDEN' || rank == 'CHIEF') {colorR.style.color = '#1b00ff';}
       var elementg = document.querySelector('.guild');
         elementg.style.visibility = 'hidden';
       var barr = (levelPercentage*100) + '%';
@@ -193,19 +193,13 @@
                   var skinn = 'url(' + steve + ')';
                   var skin = steve;
                   SkinColor(skin);
-                  for (var i = 0; i < 71; i++) {
-                    var skin3d = document.querySelectorAll('.st3d')[i];
-                    skin3d.style.backgroundImage = skinn;
-                  }
+                  SkinSet(skinn);
                 }
                 skin.onload = function(){
                   var skinn = 'url(' + skkkkk + ')';
                   var skin = skkkkk;
                   SkinColor(skin);
-                  for (var i = 0; i < 71; i++) {
-                    var skin3d = document.querySelectorAll('.st3d')[i];
-                    skin3d.style.backgroundImage = skinn;
-                  }
+                  SkinSet(skinn);
                 }
             var cppppp = 'url(https://skin.vimeworld.ru/raw/cape/' + username + '.png)';     
               var cape = new Image();     
@@ -228,6 +222,13 @@
           skindw.setAttribute("href", 'https://skin.vimeworld.ru/raw/skin/' + username + '.png');
           var capedw = document.querySelector('#capedownload');
           capedw.setAttribute("href", 'https://skin.vimeworld.ru/raw/cape/' + username + '.png');
+
+            function SkinSet(skinn){
+                for (var i = 0; i < 71; i++) {
+                  var skin3d = document.querySelectorAll('.st3d')[i];
+                  skin3d.style.backgroundImage = skinn;
+                }
+            }
 
             function SkinColor(skin){
             var imggg = document.createElement('img');
