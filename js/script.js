@@ -1,5 +1,16 @@
-      var inputIn = document.querySelector('.input-in');
-      var search = document.querySelector('.search');
+  var inputIn = document.querySelector('#input-in'); // Поле ввода
+  var search = document.querySelector('#search'); // Кнопка поиска
+  inputIn.value = localStorage.inputNick;
+  if (inputIn.value == 'undefined') { inputIn.value = ''; }
+  else { getPlayer(); }
+  search.onclick = function (){ getPlayer(); localStorage.inputNick = inputIn.value; }
+  $("#input-in").keyup(function(event){
+    if(event.keyCode == 13){
+      localStorage.inputNick = inputIn.value;
+      getPlayer();
+    }
+  });
+  getOnline();
 
       var nbs0 = document.querySelector('.nick_bs0');
       var nbs1 = document.querySelector('.nick_bs1');
@@ -36,20 +47,92 @@
       nbs4.onclick = function (){ inputIn.value = localStorage.nick4; if (inputIn.value == 'undefined') { inputIn.value = ''; } getPlayer(); }
 
       function Info(){
-          $.toast({
-            heading: 'Готово',
-            text: 'Ник сохранён',
-            loader: false,
-            position: 'bottom-right',
-            class: 'bg-success text-white border-10',
-            hideAfter: 2000,
-            allowToastClose: true,
-          });
+          bulmaToast.toast({
+            message: 'Ник сохранён',
+            type: 'is-success',
+            duration: 2000,
+            position: "bottom-right",
+            animate: { in: 'fadeIn', out: 'fadeOut' }
+          })
       }
 
-      search.onclick = function (){ getPlayer(); }
-      document.addEventListener( 'keyup', event => { if( event.code === 'Enter' ) getPlayer(); });
-      getOnline();
+
+
+
+
+var activateTab = (el) => {
+  // Activate Tab Function
+  var target = $(el).attr('data-tab');
+  var tabsettarget = $(el).attr('data-tabset');
+  var parentUl = $(el).parent();
+  $(parentUl).children('li').each(function(){
+    $(this).removeClass('is-active');  
+  });
+  $(el).addClass('is-active');
+  
+  $("[data-tabsettarget='"+tabsettarget+"']").children('[data-tabtarget]').each(function(){ $(this).hide();} );
+  $("[data-tabtarget='"+target+"']").show();
+}
+
+$('.tabs').children('ul').each(function(){
+  // Initial Active Tab Init
+  var _this = this
+  $(_this).children('li').each(function(){
+    var _that = $(this);
+    if(_that.hasClass('is-active')){
+      activateTab(_that);
+      return;
+    }
+  });
+});
+
+$('.tabs ul').on('click', 'li', function(el){
+  // Tab Click Event
+  activateTab(this);
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  // Dropdowns
+
+  var $dropdowns = getAll('.dropdown:not(.is-hoverable)');
+
+  if ($dropdowns.length > 0) {
+    $dropdowns.forEach(function ($el) {
+      $el.addEventListener('click', function (event) {
+        event.stopPropagation();
+        $el.classList.toggle('is-active');
+      });
+    });
+
+    document.addEventListener('click', function (event) {
+      closeDropdowns();
+    });
+  }
+
+  function closeDropdowns() {
+    $dropdowns.forEach(function ($el) {
+      $el.classList.remove('is-active');
+    });
+  }
+
+  // Close dropdowns if ESC pressed
+  document.addEventListener('keydown', function (event) {
+    var e = event || window.event;
+    if (e.keyCode === 27) {
+      closeDropdowns();
+    }
+  });
+
+  // Functions
+
+  function getAll(selector) {
+    return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
+  }
+});
+
+
+
   function getPlayer() {
     var url = 'https://api.vimeworld.ru/user/name/' + inputIn.value;
     fetch(url).then(function(response) {
@@ -58,15 +141,13 @@
         return response.json().then(function(json) {
           try { GiveID(json[0].id) }
           catch(err) {
-          $.toast({
-            heading: 'Ошибка',
-            text: 'Неверный никнейм',
-            loader: false,
-            position: 'bottom-right',
-            class: 'bg-danger text-white border-10',
-            hideAfter: 2000,
-            allowToastClose: true,
-          });
+          bulmaToast.toast({
+            message: 'Неверный ник',
+            type: 'is-danger',
+            duration: 2000,
+            position: "bottom-right",
+            animate: { in: 'fadeIn', out: 'fadeOut' }
+          })
           }
           try { GiveGuild(json[0].guild, json[0].guild.name, json[0].guild.id, json[0].guild.avatar_url) }
           catch(err) {}
@@ -76,6 +157,7 @@
       }
     });
   }
+
   function getOnline() {
     var url = 'https://api.vimeworld.ru/online';
     fetch(url).then(function(response) {
@@ -95,7 +177,6 @@
   }
 
     function GiveID(id) {
-    document.querySelector('#id').innerHTML = id;
     var playerid = id;
     console.log(playerid);
     var url = 'https://api.vimeworld.ru/user/' + playerid + '/stats';
@@ -109,7 +190,7 @@
           Bridge(json.stats.BRIDGE.global.games, json.stats.BRIDGE.global.wins, json.stats.BRIDGE.global.kills, json.stats.BRIDGE.global.deaths, json.stats.BRIDGE.global.points)
         });
       }
-    });
+    }); 
     var url2 = 'https://api.vimeworld.ru/user/' + playerid + '/session';
     fetch(url2).then(function(response) {
       var contentType = response.headers.get("content-type");
@@ -120,25 +201,23 @@
       }
     });
   }
-
   function GiveSession(online){
     var onl = document.querySelector('#session');
     if(online == true){
       document.querySelector('#session').innerHTML = 'Онлайн';
-      onl.setAttribute("class", 'badge bg-success');
+      onl.setAttribute("class", 'tag is-success is-rounded m-1 is-medium');
     }
     if(online == false){
       document.querySelector('#session').innerHTML = 'Оффлайн';
-      onl.setAttribute("class", 'badge bg-danger');
+      onl.setAttribute("class", 'tag is-danger is-rounded m-1 is-medium');
     }
   }
     
     function GiveMore(username, level, levelPercentage, rank) {
       document.querySelector('#nick').innerHTML = username;
       document.querySelector('#lvl').innerHTML = level;
-      document.querySelector('#rank').innerHTML = rank;
-      var colorR = document.querySelector('#rank');
-      if (rank == 'PLAYER') {colorR.style.color = '#1266F1';}
+      var colorR = document.querySelector('#nick');
+      if (rank == 'PLAYER') {colorR.style.color = '';}
       if (rank == 'VIP') {colorR.style.color = '#00be00';}
       if (rank == 'PREMIUM') {colorR.style.color = '#00dada';}
       if (rank == 'HOLY') {colorR.style.color = '#ffba2d';}
@@ -147,39 +226,13 @@
       if (rank == 'YOUTUBE') {colorR.style.color = '#fe3f3f';}
       if (rank == 'DEV' || rank == 'ORGANIZER' || rank == 'ADMIN') {colorR.style.color = '#00bebe';}
       if (rank == 'MODER' || rank == 'WARDEN' || rank == 'CHIEF') {colorR.style.color = '#1b00ff';}
-      var elementg = document.querySelector('.guild');
-        elementg.style.visibility = 'hidden';
-      var barr = (levelPercentage*100) + '%';
-      var pbar = document.querySelector('.progress-bar');
-      pbar.style.width = barr;
-      var progressLvl = levelPercentage*100;
-      progressLvl_str=progressLvl.toFixed(1);
-      document.querySelector('#progress').innerHTML = progressLvl_str + '%';
+/*      var elementg = document.querySelector('.guild');
+        elementg.style.visibility = 'hidden';*/
+      var bar = (levelPercentage*100).toFixed(0);
+      document.querySelector('#barr').setAttribute("value", bar);
       Skin(username);
     }
 
-   function GiveGuild(guild, name, id, avatar_url) {
-      var elementg = document.querySelector('.guild');
-      if(guild == "null") {
-      }
-      else {
-        elementg.style.visibility = 'visible';
-      }
-      document.querySelector('#name').innerHTML = name;
-      var gavatar = document.querySelector('#avatar_url');
-      var guildd = new Image();
-      guildd.src = avatar_url;
-      guildd.onerror = function(){
-        gavatar.setAttribute("src", 'https://vimeworld.ru/images/guild.png');
-        gavatar.style.width = '32px';
-        gavatar.style.height = '32px';
-      }
-      guildd.onload = function(){
-        gavatar.setAttribute("src", avatar_url);
-        gavatar.style.width = '32px';
-        gavatar.style.height = '32px';
-      }
-   }
     function Skin(username){
           var skk = document.querySelector('#skin');
           var skk2 = document.querySelector('#skin-viewer');
@@ -194,6 +247,7 @@
                   var skin = steve;
                   SkinColor(skin);
                   SkinSet(skinn);
+                  console.log('НеСкинн')
                 }
                 skin.onload = function(){
                   var skinn = 'url(' + skkkkk + ')';
@@ -254,16 +308,16 @@
             });
          }
     }
-
+// Мини Игры
     function BW(Info1, Info2) {
-      var bwclassg = ['#bwkillsglobal', '#bwdeathsglobal', '#bwgamesglobal', '#bwwinsglobal', '#bwbedBreakedglobal', '#bwkdglobal', '#bwgwglobal', '#bwkgglobal', '#bwdgglobal', '#bwbgglobal'];
+      var bwclassg = ['#bwkg', '#bwdg', '#bwgg', '#bwwg', '#bwbBg', '#bwkdg', '#bwgwg', '#bwkgg', '#bwwdg', '#bwbg'];
       var bwg =  Match(Object.values(Info1));
       for (var i = 0; i < 10; i++) {
         if (bwg[i] == 'NaN') {bwg[i] = 0}
         if (bwg[i] == 'Infinity') {bwg[i] = '-'}
         document.querySelector(bwclassg[i]).innerHTML = bwg[i];
       }
-      var bwclassm = ['#bwkillsmonthly', '#bwdeathsmonthly', '#bwgamesmonthly', '#bwwinsmonthly', '#bwbedBreakedmonthly', '#bwkdmonthly', '#bwgwmonthly', '#bwkgmonthly', '#bwdgmonthly', '#bwbgmonthly'];
+      var bwclassm = ['#bwkm', '#bwdm', '#bwgm', '#bwwm', '#bwbBm', '#bwkdm', '#bwgwm', '#bwkgm', '#bwwdm', '#bwbm'];
       var bwm =  Match(Object.values(Info2));
       for (var i = 0; i < 10; i++) {
         if (bwm[i] == 'NaN') {bwm[i] = 0}
@@ -277,9 +331,8 @@
           document.querySelector(bwtab[i]).innerHTML = tabbw[i];
       }
     }
-
     function SW(Info1, Info2) {
-      var swclassg = ['#swkillsglobal', '#swdeathsglobal', '#swgamesglobal', '#swwinsglobal', '#swwinStreakglobal', '#swkdglobal', '#swgwglobal', '#swkgglobal', '#swdgglobal'];
+      var swclassg = ['#swkg', '#swdg', '#swgg', '#swwg', '#swwSg', '#swkdg', '#swgwg', '#swkgg', '#swdgg'];
       var sgg = Object.values(Info1);
       var swg = Match([sgg[2],sgg[3],sgg[1],sgg[0],sgg[8]]);
       for (var i = 0; i < 9; i++) {
@@ -287,7 +340,7 @@
         if (swg[i] == 'Infinity') {swg[i] = '-'}
         document.querySelector(swclassg[i]).innerHTML = swg[i];
       }
-      var swclassm = ['#swkillsmonthly', '#swdeathsmonthly', '#swgamesmonthly', '#swwinsmonthly', '#swwinStreakmonthly', '#swkdmonthly', '#swgwmonthly', '#swkgmonthly', '#swdgmonthly'];
+      var swclassm = ['#swkm', '#swdm', '#swgm', '#swwm', '#swwSm', '#swkdm', '#swgwm', '#swkgm', '#swdgm'];
       var smm = Object.values(Info2);
       var swm = Match([smm[2],smm[3],smm[1],smm[0],smm[8]]);
       for (var i = 0; i < 9; i++) {
@@ -302,16 +355,15 @@
           document.querySelector(swtab[i]).innerHTML = tabsw[i];
       }
     }
-
     function CP(Info1, Info2) {
-      var cpclassg = ['#cpkillsglobal', '#cpdeathsglobal', '#cpgamesglobal', '#cpwinsglobal', '#cpresourcePointsBreakedglobal', '#cpkdglobal', '#cpgwglobal', '#cpkgglobal', '#cpdgglobal', '#cpbgglobal']; 
+      var cpclassg = ['#cpkg', '#cpdg', '#cpgg', '#cpwg', '#cprPBg', '#cpkdg', '#cpgwg', '#cpkgg', '#cpdgg', '#cpbgg']; 
       var cpg = Match(Object.values(Info1));
       for (var i = 0; i < 10; i++) {
         if (cpg[i] == 'NaN') {cpg[i] = 0}
         if (cpg[i] == 'Infinity') {cpg[i] = '-'}
         document.querySelector(cpclassg[i]).innerHTML = cpg[i];
       }
-      var cpclassm = ['#cpkillsmonthly', '#cpdeathsmonthly', '#cpgamesmonthly', '#cpwinsmonthly', '#cpresourcePointsBreakedmonthly', '#cpkdmonthly', '#cpgwmonthly', '#cpkgmonthly', '#cpdgmonthly', '#cpbgmonthly']; 
+      var cpclassm = ['#cpkm', '#cpdm', '#cpgm', '#cpwm', '#cprPBm', '#cpkdm', '#cpgwm', '#cpkgm', '#cpdgm', '#cpbgm']; 
       var cpm = Match(Object.values(Info2));
       for (var i = 0; i < 10; i++) {
         if (cpm[i] == 'NaN') {cpm[i] = 0}
@@ -326,7 +378,7 @@
       }
     }
     function Bridge (games, wins, kills, deaths, points){
-      var brclass = ['#brkills', '#brdeaths', '#brgames', '#brwins', '#brpoints', '#brkd', '#brgw', '#brkg', '#brdg', '#brpg'];
+      var brclass = ['#brk', '#brd', '#brg', '#brw', '#brp', '#brkd', '#brgw', '#brkg', '#brdg', '#brpg'];
       var br = Match([kills, deaths, games, wins, points]);
       for (var i = 0; i < 10; i++) {
         if (br[i] == 'NaN') {br[i] = 0}
@@ -334,6 +386,7 @@
         document.querySelector(brclass[i]).innerHTML = br[i];
       }
     }
+// Расчёт статистики
     function Match(matchmas){
       //kills - matchmas[0] deaths - matchmas[1] games - matchmas[2] wins - matchmas[3] points, resourcePointsBreaked, winStreak, bedBreaked - matchmas[4]
       var kd = (matchmas[0] / matchmas[1]).toFixed(2);  // Убийсва\Смерти
@@ -350,11 +403,11 @@
       var tab5 = [];
       for (var i = 0; i < 5; i++) {
         tab4 = ((tab2[i+15]-tab2[i+5])/tab2[i+5]*100).toFixed(1);
-        if (tab4 < 0) { tab4 = '<span>' + tab4 + '% </span><span class="badge bg-danger rounded-pill"><i class="bi bi-caret-down-fill"></i></span>'; }
-        if (tab4 > 0) { tab4 = '<span>' + tab4 + '% </span><span class="badge bg-success rounded-pill"><i class="bi bi-caret-up-fill"></i></span>'; }
-        if (tab4 == 0) { tab4 = '<span>' + tab4 + '% </span><span class="badge bg-warning rounded-pill"><i class="bi bi-caret-right-fill"></i></span>'; }
-        if (tab4 == 'NaN') { tab4 = '<span>0% </span><span class="badge bg-warning rounded-pill"><i class="bi bi-caret-right-fill"></i></span>'; }
-        if (tab4 == 'Infinity') { tab4 = '<span>-% </span><span class="badge bg-warning rounded-pill"><i class="bi bi-caret-right-fill"></i></span>'; }
+        if (tab4 < 0) { tab4 = '<span>' + tab4 + '% </span><span class="tag is-rounded is-danger"><i class="ri-arrow-down-line"></i></span>'; }
+        if (tab4 > 0) { tab4 = '<span>' + tab4 + '% </span><span class="tag is-rounded is-success"><i class="ri-arrow-up-line"></i></span>'; }
+        if (tab4 == 0) { tab4 = '<span>' + tab4 + '% </span><span class="tag is-rounded is-warning"><i class="ri-arrow-right-s-line"></i></span>'; }
+        if (tab4 == 'NaN') { tab4 = '<span>0% </span><span class="tag is-rounded is-warning"><i class="ri-arrow-right-s-line"></i></span>'; }
+        if (tab4 == 'Infinity') { tab4 = '<span>-% </span><span class="tag is-rounded is-warning"><i class="ri-arrow-right-s-line"></i></span>'; }
         tab5[i] = tab4;
       }
       return tab5;

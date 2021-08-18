@@ -1,75 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VimeStatHelper</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
-  <link href="css/style.css" rel="stylesheet" type="text/css">
-  <link href="css/minecraft-skinviewer.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-</head>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VimeStat Helper</title>
+    <meta name="description" content="Статичный сайт созданный для работы c API VimeWorld." />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/minecraft-skinviewer.css" rel="stylesheet" type="text/css">
+  </head>
   <body>
-    <div class="container"> 
-      <div class="row">
-        <div class="col-md-4">
-          <h1>VimeStat <span class="badge bg-primary" style="border-radius: 10px;">Helper</span></h1> 
-        </div>
-        <div class="col-md-6"></div>
-        <div class="col-md-2" style="padding-top: 10px;">
-          <h4 class="text-center">Онлайн: <span id="online" class="text-primary"></span></h4>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3">
-          <div class="input-group mb-3">
-              <input type="text" class="form-control input-in" id="formGroupExampleInput" placeholder="Никнейм" style="border-radius: 10px 0 0 10px;" onsubmit="">
-                  <div class="dropdown">
-                    <button class="btn btn-outline-primary dropdown-toggle" style="border-radius: 0px;" type="button" id="dropdown" data-bs-toggle="dropdown"></button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown" style="border-radius: 10px; width: 200px;">
-                      <li class="padding">
-                        <a><a class="btn-link margin bm0"><i type="button" class="bi bi-sd-card"></i></a><a type="button" class="nick_bs0 text-decoration-none">None</a></a>
-                      </li>
-                      <li class="padding">
-                        <a><a class="btn-link margin bm1"><i type="button" class="bi bi-sd-card"></i></a><a type="button" class="nick_bs1 text-decoration-none">None</a></a>
-                      </li>
-                      <li class="padding">
-                        <a><a class="btn-link margin bm2"><i type="button" class="bi bi-sd-card"></i></a><a type="button" class="nick_bs2 text-decoration-none">None</a></a>
-                      </li>
-                      <li class="padding">
-                        <a><a class="btn-link margin bm3"><i type="button" class="bi bi-sd-card"></i></a><a type="button" class="nick_bs3 text-decoration-none">None</a></a>
-                      </li>
-                      <li class="padding">
-                        <a><a class="btn-link margin bm4"><i type="button" class="bi bi-sd-card"></i></a><a type="button" class="nick_bs4 text-decoration-none">None</a></a>
-                      </li>
-                    </ul>
+   <div class="container animate__animated animate__fadeIn" style="padding-top: 10px;">
+      <div class="tile is-ancestor">
+        <div class="tile is-vertical is-3">
+          <div class="tile">
+            <div class="tile is-parent">
+              <article class="tile is-child">
+                <div class="box">
+                  <div class="hero-body">
+                  <h1 class="title is-3 has-text-centered">VimeStat <span class="is-2 has-text-primary">Hepler</span><p class="subtitle is-4">Онлайн: <span class="has-text-primary" id="online"></span></p>
+                  </h1>
                   </div>
-              <button class="btn btn-outline-primary search" style="border-radius: 0 10px 10px 0;"><i class="bi bi-search"></i></button>
-              </div>
-            </div>
-            <div class="col-md-7"></div>
-          <div class="col-md-2">
-            <a type="button" href="https://www.donationalerts.com/r/miuno" class="btn btn-outline-primary w-100" style="border-radius: 10px;" target="_blank"> 
-              <i class="bi bi-cup-fill"></i> Buy Coffee
-            </a>
-        </div>
-      </div>
-    </div>
-    <div class="container"> 
-      <div class="row">
-       <div class="col-md-3 text-center">
-          <div class="container bg-white border-10" style="padding-top: 30px">
-            <img id="skin" class="border-15">
-            <h2 id="nick">Никнейм</h2>
-            <h4><span class="" style="border-radius: 15px;" id="session"></span></h4>
-            <h5>Ранг <span id="rank"></span></h5>
-            <div class="progress" style="height: 35px; border-radius: 10px;">
-              <div class="progress-bar" id="barr" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span id="progress"></span></div>
-            </div>
-            <h5 style="padding-top: 10px;">Уровень <span id="lvl" class="text-primary"></span></h5>
-            <h5>ID <span id="id" class="text-primary"></span></h5>
-            <h5 class="guild"><img id="avatar_url" class="border-10" src=""><span id="name" class="text-primary" style="padding-left: 10px;"></span></h5>
+                  <div class="level-item">
+                  <div class="field has-addons is-rounded">
+                    <p class="control"><input class="input is-primary is-rounded" type="text" placeholder="Никнейм" id="input-in"></p>
+                    <div class="dropdown">
+                        <p class="control">
+                          <button class="button is-primary arrow" aria-haspopup="true" aria-controls="dropdown-menu"><i class="ri-arrow-down-s-line"></i></button>
+                        </p>
+                      <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                        <div class="dropdown-content">
+                          <div class="dropdown-item"><a class="m-2 bm0"><i class="ri-save-3-fill"></i></a><a class="nick_bs0">Пусто</a></div>
+                          <div class="dropdown-item"><a class="m-2 bm1"><i class="ri-save-3-fill"></i></a><a class="nick_bs1">Пусто</a></div>
+                          <div class="dropdown-item"><a class="m-2 bm2"><i class="ri-save-3-fill"></i></a><a class="nick_bs2">Пусто</a></div>
+                          <div class="dropdown-item"><a class="m-2 bm3"><i class="ri-save-3-fill"></i></a><a class="nick_bs3">Пусто</a></div>
+                          <div class="dropdown-item"><a class="m-2 bm4"><i class="ri-save-3-fill"></i></a><a class="nick_bs4">Пусто</a></div>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="control"><button class="button is-primary is-rounded" id="search"><i class="ri-search-line"></i></button></p>
+                  </div>
+                </div>
+                </div>
+                <div class="box has-text-centered">
+                  <p><img class="avatar" id="skin"></p>
+                  <p class="title"><span class="m-1" id="nick">Никнейм</span></p>
+                  <p class="subtitle"><span class="has-text-weight-medium" id="session"></span></p>
+                  <div class="field has-addons subtitle is-rounded">
+                    <progress class="progress is-primary is-large m-1" id="barr" value="0" max="100"></progress>
+                    <span class="tag is-primary is-rounded has-text-weight-medium m-1" id="lvl"></span>
+                  </div>
           <div class="container skin-container"> 
             <!-- Skin Viewer HTML Elements -->
             <div id="skin-viewer" class="mc-skin-viewer-9x legacy cape spin" style="padding-top: 20px;">
@@ -188,245 +170,225 @@
               </div>
             </div>
           </div>
-            <div class="btn-group input-group" style="padding-top: 10px; padding-bottom: 10px;">
-              <a class="btn btn-outline-primary" id="skindownload" style="border-radius: 10px 0px 0px 10px;" target="_blank">Скин</a>
-              <a class="btn btn-outline-primary" id="capedownload" style="border-radius: 0px 10px 10px 0px;" target="_blank">Плащ</a>
-            </div>
+        <div class="tags has-addons is-justify-content-center">
+          <div class="has-text-weight-medium m-1">
+            <span class="tag is-rounded"><i class="ri-external-link-line"></i></span><a class="tag is-primary is-rounded" href="https://miuno.github.io" target="_blank">MIUNO</a>
+          </div>
+          <div class="has-text-weight-medium m-1">
+            <span class="tag is-rounded"><i class="ri-hand-heart-fill"></i></span><a class="tag is-primary is-rounded" href="https://www.donationalerts.com/r/miuno" target="_blank">Donate</a>
+          </div>
+          <div class="has-text-weight-medium m-1">
+            <span class="tag is-rounded"><i class="ri-github-fill"></i></span><a class="tag is-primary is-rounded" href="https://github.com/MIUNO" target="_blank">GitHub</a>
+          </div>
+          <div class="has-text-weight-medium m-1">
+            <span class="tag is-rounded"><i class="ri-github-fill"></i></span><a class="tag is-primary is-rounded" href="https://github.com/MIUNO/vimestat" target="_blank">Sources</a>
           </div>
         </div>
-        <div class="col-md-9">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="container">
-                  <div class="card-body bg-white border-10">
-                    <h3 class="card-title text-center text-primary" style="padding-bottom: 10px;">BedWars</h3>
-                      <ul class="nav nav-pills mb-3 justify-content-center" role="tablist">
-                        <li class="nav-item">
-                          <a class="nav-link active" style="border-radius: 10px 0px 0px 10px;" data-bs-toggle="tab" href="#bwglobal">За всё время</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" style="border-radius: 0px 10px 10px 0px;" data-bs-toggle="tab" href="#bwmonthly">За этот месяц</a>
-                        </li>
-                      </ul>
-                      <div class="tab-content">
-                        <div class="tab-pane active" id="bwglobal">
-                        <h5>Убийств <span id="bwkillsglobal" class="text-primary"></span></h5>
-                        <h5>Смертей <span id="bwdeathsglobal" class="text-primary"></span></h5>
-                        <h5>Игр <span id="bwgamesglobal" class="text-primary"></span></h5>
-                        <h5>Побед <span id="bwwinsglobal" class="text-primary"></span></h5>
-                        <h5>Сломаных кроватей <span id="bwbedBreakedglobal" class="text-primary"></span></h5>
-                        <h5 style="padding-top: 10px;">Коэффициент убийств <span id="bwkdglobal" class="text-primary"></span></h5>
-                        <h5>Коэффициент побед <span id="bwgwglobal" class="text-primary"></span></h5>
-                        <h5>Убийств за игру <span id="bwkgglobal" class="text-primary"></span></h5>
-                        <h5>Смертей за игру <span id="bwdgglobal" class="text-primary"></span></h5>
-                        <h5 style="padding-bottom: 10px;">Сломанных кроватей за игру <span id="bwbgglobal" class="text-primary"></span></h5>
-                      </div>
-                      <div class="tab-pane" id="bwmonthly">
-                        <h5>Убийств <span id="bwkillsmonthly" class="text-primary"></span></h5>
-                        <h5>Смертей <span id="bwdeathsmonthly" class="text-primary"></span></h5>
-                        <h5>Игр <span id="bwgamesmonthly" class="text-primary"></span></h5>
-                        <h5>Побед <span id="bwwinsmonthly" class="text-primary"></span></h5>
-                        <h5>Сломаных кроватей <span id="bwbedBreakedmonthly" class="text-primary"></span></h5>
-                        <h5 style="padding-top: 10px;">Коэффициент убийств <span id="bwkdmonthly" class="text-primary"></span></h5>
-                        <h5>Коэффициент побед <span id="bwgwmonthly" class="text-primary"></span></h5>
-                        <h5>Убийств за игру <span id="bwkgmonthly" class="text-primary"></span></h5>
-                        <h5>Смертей за игру <span id="bwdgmonthly" class="text-primary"></span></h5>
-                        <h5 style="padding-bottom: 10px;">Сломанных кроватей за игру <span id="bwbgmonthly" class="text-primary"></span></h5>
-                        </div>
-                      </div>
-                          <ul class="list-group list-group-flush">
-                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение коэффициента убийств</h6>
-                              <h6><span id="tabbwkd"></span></h6>
-                             </li>
-                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение коэффициента побед</h6>
-                              <h6 ><span id="tabbwgw"></span></h6>
-                             </li>
-                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение убийств за игру</h6>
-                              <h6><span id="tabbwgm"></span></h6>
-                             </li>
-                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение смертей за игру</h6>
-                              <h6><span id="tabbwdg"></span></h6>
-                             </li>
-                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение сломанных кроватей</h6>
-                              <h6><span id="tabbwbg"></span></h6>
-                             </li>
-                          </ul>
-                    </div>
-                  </div>
-                </div>
-
-              <div class="col-sm-6">
-                <div class="container">
-                  <div class="card-body bg-white border-10">
-                    <h3 class="card-title text-center text-primary" style="padding-bottom: 10px;">SkyWars</h3>
-                      <ul class="nav nav-pills mb-3 justify-content-center" role="tablist">
-                        <li class="nav-item">
-                          <a class="nav-link active" style="border-radius: 10px 0px 0px 10px;" data-bs-toggle="tab" href="#swglobal">За всё время</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" style="border-radius: 0px 10px 10px 0px;" data-bs-toggle="tab" href="#swmonthly">За этот месяц</a>
-                        </li>
-                      </ul>
-                      <div class="tab-content">
-                        <div class="tab-pane active" id="swglobal">
-                          <h5>Убийств <span id="swkillsglobal" class="text-primary"></span></h5>
-                          <h5>Смертей <span id="swdeathsglobal" class="text-primary"></span></h5>
-                          <h5>Игр <span id="swgamesglobal" class="text-primary"></span></h5>
-                          <h5>Побед <span id="swwinsglobal" class="text-primary"></span></h5>
-                          <!--<h5>Ничьих <span id="swdrawsglobal" class="text-primary"></span></h5> -->
-                          <h5>Серия побед <span id="swwinStreakglobal" class="text-primary"></span></h5>
-                          <h5 style="padding-top: 10px;">Коэффициент убийств <span id="swkdglobal" class="text-primary"></span></h5>
-                          <h5>Коэффициент побед <span id="swgwglobal" class="text-primary"></span></h5>
-                          <h5>Убийств за игру <span id="swkgglobal" class="text-primary"></span></h5>
-                          <h5 style="padding-bottom: 10px;">Смертей за игру <span id="swdgglobal" class="text-primary"></span></h5>
-                        </div>
-                        <div class="tab-pane" id="swmonthly">
-                          <h5>Убийств <span id="swkillsmonthly" class="text-primary"></span></h5>
-                          <h5>Смертей <span id="swdeathsmonthly" class="text-primary"></span></h5>
-                          <h5>Игр <span id="swgamesmonthly" class="text-primary"></span></h5>
-                          <h5>Побед <span id="swwinsmonthly" class="text-primary"></span></h5>
-                          <h5 style="visibility: hidden;">Серия побед <span id="swwinStreakmonthly" class="text-primary"> - </span></h5>
-                          <h5 style="padding-top: 10px;">Коэффициент убийств <span id="swkdmonthly" class="text-primary"></span></h5>
-                          <h5>Коэффициент побед <span id="swgwmonthly" class="text-primary"></span></h5>
-                          <h5>Убийств за игру <span id="swkgmonthly" class="text-primary"></span></h5>
-                          <h5 style="padding-bottom: 10px;">Смертей за игру <span id="swdgmonthly" class="text-primary"></span></h5>
-                        </div>
-                      </div>
-                          <ul class="list-group list-group-flush">
-                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение коэффициента убийств</h6>
-                              <h6><span id="tabswkd"></span></h6>
-                             </li>
-                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение коэффициента побед</h6>
-                              <h6><span id="tabswgw"></span></h6>
-                             </li>
-                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение убийств за игру</h6>
-                              <h6><span id="tabswgm"></span></h6>
-                             </li>
-                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение смертей за игру</h6>
-                              <h6><span id="tabswdg"></span></h6>
-                             </li>
-                          </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="container">
-                  <div class="card-body bg-white border-10">
-                    <h3 class="card-title text-center text-primary" style="padding-bottom: 10px;">ClashPoint</h3>
-                      <ul class="nav nav-pills mb-3 justify-content-center" role="tablist">
-                        <li class="nav-item">
-                          <a class="nav-link active" style="border-radius: 10px 0px 0px 10px;" data-bs-toggle="tab" href="#cpglobal">За всё время</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" style="border-radius: 0px 10px 10px 0px;" data-bs-toggle="tab" href="#cpmonthly">За этот месяц</a>
-                        </li>
-                      </ul>
-                      <div class="tab-content">
-                        <div class="tab-pane active" id="cpglobal">
-                        <h5>Убийств <span id="cpkillsglobal" class="text-primary"></span></h5>
-                        <h5>Смертей <span id="cpdeathsglobal" class="text-primary"></span></h5>
-                        <h5>Игр <span id="cpgamesglobal" class="text-primary"></span></h5>
-                        <h5>Побед <span id="cpwinsglobal" class="text-primary"></span></h5>
-                        <h5>Сломаных кроватей <span id="cpresourcePointsBreakedglobal" class="text-primary"></span></h5>
-                        <h5 style="padding-top: 10px;">Коэффициент убийств <span id="cpkdglobal" class="text-primary"></span></h5>
-                        <h5>Коэффициент побед <span id="cpgwglobal" class="text-primary"></span></h5>
-                        <h5>Убийств за игру <span id="cpkgglobal" class="text-primary"></span></h5>
-                        <h5>Смертей за игру <span id="cpdgglobal" class="text-primary"></span></h5>
-                        <h5 style="padding-bottom: 10px;">Сломанных точек за игру <span id="cpbgglobal" class="text-primary"></span></h5>
-                      </div>
-                      <div class="tab-pane" id="cpmonthly">
-                        <h5>Убийств <span id="cpkillsmonthly" class="text-primary"></span></h5>
-                        <h5>Смертей <span id="cpdeathsmonthly" class="text-primary"></span></h5>
-                        <h5>Игр <span id="cpgamesmonthly" class="text-primary"></span></h5>
-                        <h5>Побед <span id="cpwinsmonthly" class="text-primary"></span></h5>
-                        <h5>Сломаных кроватей <span id="cpresourcePointsBreakedmonthly" class="text-primary"></span></h5>
-                        <h5 style="padding-top: 10px;">Коэффициент убийств <span id="cpkdmonthly" class="text-primary"></span></h5>
-                        <h5>Коэффициент побед <span id="cpgwmonthly" class="text-primary"></span></h5>
-                        <h5>Убийств за игру <span id="cpkgmonthly" class="text-primary"></span></h5>
-                        <h5>Смертей за игру <span id="cpdgmonthly" class="text-primary"></span></h5>
-                        <h5 style="padding-bottom: 10px;">Сломанных точек за игру <span id="cpbgmonthly" class="text-primary"></span></h5>
-                        </div>
-                      </div>
-                          <ul class="list-group list-group-flush">
-                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение коэффициента убийств</h6>
-                              <h6><span id="tabcpkd"></span></h6>
-                             </li>
-                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение коэффициента побед</h6>
-                              <h6 ><span id="tabcpgw"></span></h6>
-                             </li>
-                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение убийств за игру</h6>
-                              <h6><span id="tabcpgm"></span></h6>
-                             </li>
-                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение смертей за игру</h6>
-                              <h6><span id="tabcpdg"></span></h6>
-                             </li>
-                             <li class="list-group-item d-flex justify-content-between align-items-center"><h6>Изменение сломанных точек</h6>
-                              <h6><span id="tabcpbg"></span></h6>
-                             </li>
-                          </ul>
-                    </div>
-                  </div>
-                </div>
-              <div class="col-sm-6">
-                <div class="container">
-                  <div class="card-body bg-white border-10">
-                    <h4 class="card-title text-center text-primary">Bridge</h4>
-                    <h5>Убийств <span id="brkills" class="text-primary"></span></h5>
-                    <h5>Смертей <span id="brdeaths" class="text-primary"></span></h5>
-                    <h5>Игр <span id="brgames" class="text-primary"></span></h5>
-                    <h5>Побед <span id="brwins" class="text-primary"></span></h5>
-                    <h5>Точек <span id="brpoints" class="text-primary"></span></h5>
-                    <h5 style="padding-top: 10px;">Коэффициент убийств <span id="brkd" class="text-primary"></span></h5>
-                    <h5>Коэффициент побед <span id="brgw" class="text-primary"></span></h5>
-                    <h5>Убийств за игру <span id="brkg" class="text-primary"></span></h5>
-                    <h5>Смертей за игру <span id="brdg" class="text-primary"></span></h5>
-                    <h5 style="padding-bottom: 10px;">Точек за игру <span id="brpg" class="text-primary"></span></h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-       </div>
-    </div>
-  </div>
-</div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="container">
-          <a>by <a class="text-decoration-none text-primary" href="https://miuno.github.io" target="_blank">MIUNO</a> aka SQWE</a>
-          <button type="button" class="btn btn-outline-primary" style="margin-left:15px; border-radius: 10px;" data-bs-toggle="modal" data-bs-target="#Modal">О сайте</button>
-        </div>
+         </div>
+        </article>
       </div>
     </div>
   </div>
-      </div>  
-        <div class="modal fade" id="Modal" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content" style="border-radius: 15px; background-color: #F9F7F7;">
-              <div class="modal-header">
-                <h4 class="modal-title">О сайте</h4>
-                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" aria-label="Close" style="border-radius: 10px;">
-                  <span aria-hidden="true">Закрыть</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="container">
-                  <div class="card-body bg-white border-10">
-                    <h5>Статичный сайт созданный для работы c <span class="text-primary">API VimeWorld</span>, на сайте можно просматривать глобальную и месячную статистику, а также расширенную по ограниченному списку мини-игр. Такую как: средний показатель по играм, сравнение показателей глобальной и месячной статистики. Благодаря <a class="text-decoration-none text-primary" href="https://github.com/rkkoszewski" target="_blank"><i class="bi bi-github"></i>rkkoszewski</a> на сайте есть 3D визуализация скина и плаща игрока, с возможностью их скачивания.</h5>
-                    <hr>
-                    <h5><i class="bi bi-github"></i><span> Сайт  </span><a class="text-decoration-none text-primary" href="https://github.com/MIUNO/vimestat" target="_blank">Github</a></h5>
-                    <h5><i class="bi bi-github"></i><span> Автор  </span><a class="text-decoration-none text-primary" href="https://github.com/MIUNO" target="_blank">Github</a></h5>
-                    <h5><i class="bi bi-cup"></i><span> Помочь в развитии  </span><a class="text-decoration-none text-primary" href="https://www.donationalerts.com/r/miuno" target="_blank">DonationAlerts</a></h5>
-                    <h5><i class="bi bi-at"></i><span> Личный сайт  </span><a class="text-decoration-none text-primary" href="https://miuno.github.io" target="_blank">MIUNO</a></h5>
-
+        <div class="tile is-parent">
+          <article class="tile is-child">
+                <div class="columns">
+                  <div class="column is-6"> <!--BedWars-->
+                    <div class="box">
+                      <nav class="navbar tabs is-toggle is-toggle-rounded" role="navigation" aria-label="main navigation">
+                        <div class="navbar-brand"><h1 class="navbar-item title is-4">BedWars</h1></div>
+                          <ul>
+                            <li class="tab is-active" data-tab="bw1" data-tabset="bw"><a><i class="ri-global-line"></a></i>
+                            <li class="tab" data-tab="bw2" data-tabset="bw"><a><i class="ri-calendar-2-line"></i></a></li>
+                            <li class="tab" data-tab="bw3" data-tabset="bw"><a><i class="ri-line-chart-fill"></i></a></li>
+                          </ul>
+                        </nav>
+                      <div class="content-tab" data-tabsettarget="bw">
+                        <div class="tab-pane is-active" data-tabtarget="bw1">
+                        <p class="is-size-4 has-text-centered">За всё время</p>
+                        <div class="is-size-5">
+                        <p>Убийств <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwkg">...</span></p>
+                        <p>Смертей <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwdg">...</span></p>
+                        <p>Игр <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwgg">...</span></p>
+                        <p>Побед <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwwg">...</span></p>
+                        <p>Сломаных кроватей <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwbBg">...</span></p>
+                        <hr>
+                        <p>Коэффициент убийств <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwkdg">...</span></p>
+                        <p>Коэффициент побед <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwgwg">...</span></p>
+                        <p>Убийств за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwkgg">...</span></p>
+                        <p>Смертей за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwwdg">...</span></p>
+                        <p>Сломанных кроватей за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwbg">...</span></p>
+                        </div>
+                        </div>
+                        <div class="tab-pane" data-tabtarget="bw2">
+                        <p class="is-size-4 has-text-centered">За месяц</p>
+                        <div class="is-size-5">
+                        <p>Убийств <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwkm"></span></p>
+                        <p>Смертей <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwdm"></span></p>
+                        <p>Игр <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwgm"></span></p>
+                        <p>Побед <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwwm"></span></p>
+                        <p>Сломаных кроватей <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwbBm"></span></p>
+                        <hr>
+                        <p>Коэффициент убийств <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwkdm"></span></p>
+                        <p>Коэффициент побед <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwgwm"></span></p>
+                        <p>Убийств за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwkgm"></span></p>
+                        <p>Смертей за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwwdm"></span></p>
+                        <p>Сломанных кроватей за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="bwbm"></span>
+                        </div>
+                        </div>
+                        <div class="tab-pane" data-tabtarget="bw3">
+                        <p class="is-size-4 has-text-centered">Изменение статистики</p>
+                        <div class="is-size-5">
+                        <p>Коэффициента убийств <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabbwkd"></span></p>
+                        <p>Коэффициента побед <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabbwgw"></span></p>
+                        <p>Убийств за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabbwgm"></span></p>
+                        <p>Смертей за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabbwdg"></span></p>
+                        <p>Сломанных кроватей <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabbwbg"></span></p>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="column is-6"> <!--SkyWars-->
+                    <div class="box">
+                      <nav class="navbar tabs is-toggle is-toggle-rounded" role="navigation" aria-label="main navigation">
+                        <div class="navbar-brand"><h1 class="navbar-item title is-4">SkyWars</h1></div>
+                          <ul>
+                            <li class="tab is-active" data-tab="sw1" data-tabset="sw"><a><i class="ri-global-line"></a></i>
+                            <li class="tab" data-tab="sw2" data-tabset="sw"><a><i class="ri-calendar-2-line"></i></a></li>
+                            <li class="tab" data-tab="sw3" data-tabset="sw"><a><i class="ri-line-chart-fill"></i></a></li>
+                          </ul>
+                        </nav>
+                      <div class="content-tab" data-tabsettarget="sw">
+                        <div class="tab-pane is-active" data-tabtarget="sw1">
+                        <p class="is-size-4 has-text-centered">За всё время</p>
+                        <div class="is-size-5">
+                        <p>Убийств <span class="has-text-link has-text-weight-medium is-pulled-right" id="swkg">...</span></p>
+                        <p>Смертей <span class="has-text-link has-text-weight-medium is-pulled-right" id="swdg">...</span></p>
+                        <p>Игр <span class="has-text-link has-text-weight-medium is-pulled-right" id="swgg">...</span></p>
+                        <p>Побед <span class="has-text-link has-text-weight-medium is-pulled-right" id="swwg">...</span></p>
+                        <p>Серия побед <span class="has-text-link has-text-weight-medium is-pulled-right" id="swwSg">...</span></p>
+                        <hr>
+                        <p>Коэффициент убийств <span class="has-text-link has-text-weight-medium is-pulled-right" id="swkdg">...</span></p>
+                        <p>Коэффициент побед <span class="has-text-link has-text-weight-medium is-pulled-right" id="swgwg">...</span></p>
+                        <p>Убийств за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="swkgg">...</span></p>
+                        <p>Смертей за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="swdgg">...</span></p>
+                        </div>
+                        </div>
+                        <div class="tab-pane" data-tabtarget="sw2">
+                        <p class="is-size-4 has-text-centered">За месяц</p>
+                        <div class="is-size-5">
+                        <p>Убийств <span class="has-text-link has-text-weight-medium is-pulled-right" id="swkm"></span></p>
+                        <p>Смертей <span class="has-text-link has-text-weight-medium is-pulled-right" id="swdm"></span></p>
+                        <p>Игр <span class="has-text-link has-text-weight-medium is-pulled-right" id="swgm"></span></p>
+                        <p>Побед <span class="has-text-link has-text-weight-medium is-pulled-right" id="swwm"></span></p>
+                        <p style="visibility: hidden;"><span class="has-text-link has-text-weight-medium is-pulled-right" id="swwSm"></span></p>
+                        <hr>
+                        <p>Коэффициент убийств <span class="has-text-link has-text-weight-medium is-pulled-right" id="swkdm"></span></p>
+                        <p>Коэффициент побед <span class="has-text-link has-text-weight-medium is-pulled-right" id="swgwm"></span></p>
+                        <p>Убийств за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="swkgm"></span></p>
+                        <p>Смертей за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="swdgm"></span></p>
+                        </div>
+                        </div>
+                        <div class="tab-pane" data-tabtarget="sw3">
+                        <p class="is-size-4 has-text-centered">Изменение статистики</p>
+                        <div class="is-size-5">
+                        <p>Коэффициента убийств <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabswkd"></span></p>
+                        <p>Коэффициента побед <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabswgw"></span></p>
+                        <p>Убийств за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabswgm"></span></p>
+                        <p>Смертей за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabswdg"></span></p>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
+                <div class="columns">
+                  <div class="column is-6"> <!--ClashPoint-->
+                    <div class="box">
+                      <nav class="navbar tabs is-toggle is-toggle-rounded" role="navigation" aria-label="main navigation">
+                        <div class="navbar-brand"><h1 class="navbar-item title is-4">ClashPoint</h1></div>
+                          <ul>
+                            <li class="tab is-active" data-tab="cp1" data-tabset="cp"><a><i class="ri-global-line"></a></i>
+                            <li class="tab" data-tab="cp2" data-tabset="cp"><a><i class="ri-calendar-2-line"></i></a></li>
+                            <li class="tab" data-tab="cp3" data-tabset="cp"><a><i class="ri-line-chart-fill"></i></a></li>
+                          </ul>
+                        </nav>
+                      <div class="content-tab" data-tabsettarget="cp">
+                        <div class="tab-pane is-active" data-tabtarget="cp1">
+                        <p class="is-size-4 has-text-centered">За всё время</p>
+                        <div class="is-size-5">
+                        <p>Убийств <span class="has-text-link has-text-weight-medium is-pulled-right" id="cpkg">...</span></p>
+                        <p>Смертей <span class="has-text-link has-text-weight-medium is-pulled-right" id="cpdg">...</span></p>
+                        <p>Игр <span class="has-text-link has-text-weight-medium is-pulled-right" id="cpgg">...</span></p>
+                        <p>Побед <span class="has-text-link has-text-weight-medium is-pulled-right" id="cpwg">...</span></p>
+                        <p>Сломанных точек  <span class="has-text-link has-text-weight-medium is-pulled-right" id="cprPBg">...</span></p>
+                        <hr>
+                        <p>Коэффициент убийств <span class="has-text-link has-text-weight-medium is-pulled-right" id="cpkdg">...</span></p>
+                        <p>Коэффициент побед <span class="has-text-link has-text-weight-medium is-pulled-right" id="cpgwg">...</span></p>
+                        <p>Убийств за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="cpkgg">...</span></p>
+                        <p>Смертей за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="cpdgg">...</span></p>
+                        <p>Сломанных точек за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="cpbgg">...</span></p>
+                        </div>
+                        </div>
+                        <div class="tab-pane" data-tabtarget="cp2">
+                        <p class="is-size-4 has-text-centered">За месяц</p>
+                        <div class="is-size-5">
+                        <p>Убийств <span class="has-text-link has-text-weight-medium is-pulled-right" id="cpkm">...</span></p>
+                        <p>Смертей <span class="has-text-link has-text-weight-medium is-pulled-right" id="cpdm">...</span></p>
+                        <p>Игр <span class="has-text-link has-text-weight-medium is-pulled-right" id="cpgm">...</span></p>
+                        <p>Побед <span class="has-text-link has-text-weight-medium is-pulled-right" id="cpwm">...</span></p>
+                        <p>Сломанных точек  <span class="has-text-link has-text-weight-medium is-pulled-right" id="cprPBm">...</span></p>
+                        <hr>
+                        <p>Коэффициент убийств <span class="has-text-link has-text-weight-medium is-pulled-right" id="cpkdm">...</span></p>
+                        <p>Коэффициент побед <span class="has-text-link has-text-weight-medium is-pulled-right" id="cpgwm">...</span></p>
+                        <p>Убийств за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="cpkgm">...</span></p>
+                        <p>Смертей за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="cpdgm">...</span></p>
+                        <p>Сломанных точек за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="cpbgm">...</span></p>
+                        </div>
+                        </div>
+                        <div class="tab-pane" data-tabtarget="cp3">
+                        <p class="is-size-4 has-text-centered">Изменение статистики</p>
+                        <div class="is-size-5">
+                        <p>Коэффициента убийств <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabcpkd"></span></p>
+                        <p>Коэффициента побед <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabcpgw"></span></p>
+                        <p>Убийств за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabcpgm"></span></p>
+                        <p>Смертей за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabcpdg"></span></p>
+                        <p>Сломанных точек <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabcpbg"></span></p>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="column is-6"> <!--Bridge-->
+                    <div class="box">
+                      <nav class="navbar tabs is-toggle is-toggle-rounded" role="navigation" aria-label="main navigation">
+                        <div class="navbar-brand"><h1 class="navbar-item title is-4">Bridge</h1></div>
+                        </nav>
+                      <div class="content-tab">
+                        <div class="tab-pane is-active">
+                        <p class="is-size-4 has-text-centered">За всё время</p>
+                        <div class="is-size-5">
+                        <p>Убийств <span class="has-text-link has-text-weight-medium is-pulled-right" id="brk">...</span></p>
+                        <p>Смертей <span class="has-text-link has-text-weight-medium is-pulled-right" id="brd">...</span></p>
+                        <p>Игр <span class="has-text-link has-text-weight-medium is-pulled-right" id="brg">...</span></p>
+                        <p>Побед <span class="has-text-link has-text-weight-medium is-pulled-right" id="brw">...</span></p>
+                        <p>Точек <span class="has-text-link has-text-weight-medium is-pulled-right" id="brp">...</span></p>
+                        <hr>
+                        <p>Коэффициент убийств <span class="has-text-link has-text-weight-medium is-pulled-right" id="brkd">...</span></p>
+                        <p>Коэффициент побед <span class="has-text-link has-text-weight-medium is-pulled-right" id="brgw">...</span></p>
+                        <p>Убийств за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="brkg">...</span></p>
+                        <p>Смертей за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="brdg">...</span></p>
+                        <p>Точек за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="brpg">...</span></p>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </article>
         </div>
-
-
+      </div>
+    </div>
 
   <!-- Yandex.Metrika counter -->
 <script type="text/javascript" >
@@ -442,10 +404,9 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/83562616" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vibrant.js/1.0.0/Vibrant.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vibrant.js/1.0.0/Vibrant.js"></script>
+    <script src="js/bulma-toast.min.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>

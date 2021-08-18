@@ -1,20 +1,31 @@
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+.box {
+  border-radius: 15px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+.arrow {
+  width: 0px;
+  border-radius: 0px;
+}
+.skin-container {
+  padding-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  height: 365px;
+}
+.avatar {
+  border-radius: 20px;
+}
+.input-area {
+  border-radius: 15px 0px 0px 15px;
+}
+.input-button {
+  border-radius: 0px 15px 15px 0px;
+}
+.tab-pane {
+  display: none;
+}
 
-.container {
-  background-color: #F9F7F7;
-  padding: 5px;
-  margin: 5px;
-  border-radius: 15px;
-}
-.margin{
-  margin: 10px;
-}
-.padding {
-  padding: 5px;
-}
-.border-10 {
-  border-radius: 10px;
-}
-.border-15 {
-  border-radius: 15px;
+.is-active {
+  display: initial;
 }
