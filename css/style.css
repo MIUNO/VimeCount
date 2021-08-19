@@ -1,7 +1,57 @@
+body {
+  
+}
 .box {
   border-radius: 15px;
   margin-bottom: 15px;
   margin-top: 15px;
+}
+.dropdown-content {
+  border-radius: 0px 15px 15px 15px;
+  transform-origin: top left;
+  animation: dropDown 250ms ease-in-out forwards;
+}
+.op {
+  border-radius: 15px;
+  background-color: whitesmoke;
+  transform: scale(1);
+  padding: 1px;
+  margin: 5px 12px 5px 12px;
+}
+.avatar {
+  height: 64px;
+  width: 64px;
+  border-radius: 20px;
+  background-color: #000;
+}
+.tabs.is-toggle a {
+  border-color: #dbdbdb;
+  border-style: solid;
+  border-width: 0px;
+  margin-bottom: 0;
+  position: relative;
+}
+.tabs.is-toggle li.is-active a {
+  background-color: #485fc7;
+  color: #fff;
+  z-index: 1;
+  transform: scale(1.1);
+  animation: Active 250ms ease-in-out forwards;
+}
+.tabs.is-toggle.is-toggle-rounded li:first-child a {
+  border-radius: 15px;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+.tabs.is-toggle.is-toggle-rounded li a {
+  border-radius: 15px;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+.tabs.is-toggle.is-toggle-rounded li:last-child a {
+  border-radius: 15px;
+  padding-left: 14px;
+  padding-right: 14px;
 }
 .arrow {
   width: 0px;
@@ -13,9 +63,6 @@
   border-radius: 15px;
   height: 365px;
 }
-.avatar {
-  border-radius: 20px;
-}
 .input-area {
   border-radius: 15px 0px 0px 15px;
 }
@@ -25,7 +72,25 @@
 .tab-pane {
   display: none;
 }
-
 .is-active {
   display: initial;
+}
+@keyframes dropDown {
+  0% {
+    transform: scaleX(0) scaleY(0)
+  }
+  100% {
+    transform: scaleX(1) scaleY(1)
+  }
+}
+@keyframes Active {
+  0% {
+    transform: scale(0.9);
+  }
+  20% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
 }

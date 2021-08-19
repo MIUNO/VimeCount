@@ -40,11 +40,11 @@
           if( c[i] == undefined) { c[i] = 'Пусто'; }
           document.querySelector(b[i]).innerHTML = c[i];
         }
-      nbs0.onclick = function (){ inputIn.value = localStorage.nick0; if (inputIn.value == 'undefined') { inputIn.value = ''; } getPlayer(); }
-      nbs1.onclick = function (){ inputIn.value = localStorage.nick1; if (inputIn.value == 'undefined') { inputIn.value = ''; } getPlayer(); }
-      nbs2.onclick = function (){ inputIn.value = localStorage.nick2; if (inputIn.value == 'undefined') { inputIn.value = ''; } getPlayer(); }
-      nbs3.onclick = function (){ inputIn.value = localStorage.nick3; if (inputIn.value == 'undefined') { inputIn.value = ''; } getPlayer(); }
-      nbs4.onclick = function (){ inputIn.value = localStorage.nick4; if (inputIn.value == 'undefined') { inputIn.value = ''; } getPlayer(); }
+      nbs0.onclick = function (){ inputIn.value = localStorage.nick0; if (inputIn.value == 'undefined') { inputIn.value = ''; } Save(inputIn); getPlayer(); }
+      nbs1.onclick = function (){ inputIn.value = localStorage.nick1; if (inputIn.value == 'undefined') { inputIn.value = ''; } Save(inputIn); getPlayer(); }
+      nbs2.onclick = function (){ inputIn.value = localStorage.nick2; if (inputIn.value == 'undefined') { inputIn.value = ''; } Save(inputIn); getPlayer(); }
+      nbs3.onclick = function (){ inputIn.value = localStorage.nick3; if (inputIn.value == 'undefined') { inputIn.value = ''; } Save(inputIn); getPlayer(); }
+      nbs4.onclick = function (){ inputIn.value = localStorage.nick4; if (inputIn.value == 'undefined') { inputIn.value = ''; } Save(inputIn); getPlayer(); }
 
       function Info(){
           bulmaToast.toast({
@@ -55,10 +55,9 @@
             animate: { in: 'fadeIn', out: 'fadeOut' }
           })
       }
-
-
-
-
+      function Save(inputIn){
+        localStorage.inputNick = inputIn.value;
+      }
 
 var activateTab = (el) => {
   // Activate Tab Function
@@ -272,11 +271,6 @@ document.addEventListener('DOMContentLoaded', function () {
                var cape3d = document.querySelectorAll('.ct3d')[i];
                cape3d.style.backgroundImage = cppppp;
            }
-          var skindw = document.querySelector('#skindownload');
-          skindw.setAttribute("href", 'https://skin.vimeworld.ru/raw/skin/' + username + '.png');
-          var capedw = document.querySelector('#capedownload');
-          capedw.setAttribute("href", 'https://skin.vimeworld.ru/raw/cape/' + username + '.png');
-
             function SkinSet(skinn){
                 for (var i = 0; i < 71; i++) {
                   var skin3d = document.querySelectorAll('.st3d')[i];

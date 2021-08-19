@@ -31,12 +31,14 @@
                           <button class="button is-primary arrow" aria-haspopup="true" aria-controls="dropdown-menu"><i class="ri-arrow-down-s-line"></i></button>
                         </p>
                       <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                        <div class="dropdown-content">
-                          <div class="dropdown-item"><a class="m-2 bm0"><i class="ri-save-3-fill"></i></a><a class="nick_bs0">Пусто</a></div>
-                          <div class="dropdown-item"><a class="m-2 bm1"><i class="ri-save-3-fill"></i></a><a class="nick_bs1">Пусто</a></div>
-                          <div class="dropdown-item"><a class="m-2 bm2"><i class="ri-save-3-fill"></i></a><a class="nick_bs2">Пусто</a></div>
-                          <div class="dropdown-item"><a class="m-2 bm3"><i class="ri-save-3-fill"></i></a><a class="nick_bs3">Пусто</a></div>
-                          <div class="dropdown-item"><a class="m-2 bm4"><i class="ri-save-3-fill"></i></a><a class="nick_bs4">Пусто</a></div>
+                        <div class="dropdown-content has-text-weight-medium">
+                          <div class="dropdown-item has-text-centered"><p class="is-size-6">Избранные ники</p></div>
+                          <div class="dropdown-item"></div>
+                          <div class="dropdown-item op"><a class="m-2 is-size-6 bm0"><i class="ri-save-3-fill"></i></a><a class="nick_bs0">Пусто</a></div>
+                          <div class="dropdown-item op"><a class="m-2 is-size-6 bm1"><i class="ri-save-3-fill"></i></a><a class="nick_bs1">Пусто</a></div>
+                          <div class="dropdown-item op"><a class="m-2 is-size-6 bm2"><i class="ri-save-3-fill"></i></a><a class="nick_bs2">Пусто</a></div>
+                          <div class="dropdown-item op"><a class="m-2 is-size-6 bm3"><i class="ri-save-3-fill"></i></a><a class="nick_bs3">Пусто</a></div>
+                          <div class="dropdown-item op"><a class="m-2 is-size-6 bm4"><i class="ri-save-3-fill"></i></a><a class="nick_bs4">Пусто</a></div>
                         </div>
                       </div>
                     </div>
@@ -47,7 +49,7 @@
                 <div class="box has-text-centered">
                   <p><img class="avatar" id="skin"></p>
                   <p class="title"><span class="m-1" id="nick">Никнейм</span></p>
-                  <p class="subtitle"><span class="has-text-weight-medium" id="session"></span></p>
+                  <p class="subtitle"><span class="has-text-weight-medium tag is-link is-rounded m-1 is-medium" id="session">Статус</span></p>
                   <div class="field has-addons subtitle is-rounded">
                     <progress class="progress is-primary is-large m-1" id="barr" value="0" max="100"></progress>
                     <span class="tag is-primary is-rounded has-text-weight-medium m-1" id="lvl"></span>
@@ -197,9 +199,9 @@
                       <nav class="navbar tabs is-toggle is-toggle-rounded" role="navigation" aria-label="main navigation">
                         <div class="navbar-brand"><h1 class="navbar-item title is-4">BedWars</h1></div>
                           <ul>
-                            <li class="tab is-active" data-tab="bw1" data-tabset="bw"><a><i class="ri-global-line"></a></i>
-                            <li class="tab" data-tab="bw2" data-tabset="bw"><a><i class="ri-calendar-2-line"></i></a></li>
-                            <li class="tab" data-tab="bw3" data-tabset="bw"><a><i class="ri-line-chart-fill"></i></a></li>
+                            <li class="tab m-1 is-active" data-tab="bw1" data-tabset="bw"><a><i class="ri-global-line"></a></i>
+                            <li class="tab m-1" data-tab="bw2" data-tabset="bw"><a><i class="ri-calendar-2-line"></i></a></li>
+                            <li class="tab m-1" data-tab="bw3" data-tabset="bw"><a><i class="ri-line-chart-fill"></i></a></li>
                           </ul>
                         </nav>
                       <div class="content-tab" data-tabsettarget="bw">
@@ -253,9 +255,9 @@
                       <nav class="navbar tabs is-toggle is-toggle-rounded" role="navigation" aria-label="main navigation">
                         <div class="navbar-brand"><h1 class="navbar-item title is-4">SkyWars</h1></div>
                           <ul>
-                            <li class="tab is-active" data-tab="sw1" data-tabset="sw"><a><i class="ri-global-line"></a></i>
-                            <li class="tab" data-tab="sw2" data-tabset="sw"><a><i class="ri-calendar-2-line"></i></a></li>
-                            <li class="tab" data-tab="sw3" data-tabset="sw"><a><i class="ri-line-chart-fill"></i></a></li>
+                            <li class="tab m-1 is-active" data-tab="sw1" data-tabset="sw"><a><i class="ri-global-line"></a></i>
+                            <li class="tab m-1" data-tab="sw2" data-tabset="sw"><a><i class="ri-calendar-2-line"></i></a></li>
+                            <li class="tab m-1" data-tab="sw3" data-tabset="sw"><a><i class="ri-line-chart-fill"></i></a></li>
                           </ul>
                         </nav>
                       <div class="content-tab" data-tabsettarget="sw">
@@ -308,9 +310,9 @@
                       <nav class="navbar tabs is-toggle is-toggle-rounded" role="navigation" aria-label="main navigation">
                         <div class="navbar-brand"><h1 class="navbar-item title is-4">ClashPoint</h1></div>
                           <ul>
-                            <li class="tab is-active" data-tab="cp1" data-tabset="cp"><a><i class="ri-global-line"></a></i>
-                            <li class="tab" data-tab="cp2" data-tabset="cp"><a><i class="ri-calendar-2-line"></i></a></li>
-                            <li class="tab" data-tab="cp3" data-tabset="cp"><a><i class="ri-line-chart-fill"></i></a></li>
+                            <li class="tab m-1 is-active" data-tab="cp1" data-tabset="cp"><a><i class="ri-global-line"></a></i>
+                            <li class="tab m-1" data-tab="cp2" data-tabset="cp"><a><i class="ri-calendar-2-line"></i></a></li>
+                            <li class="tab m-1" data-tab="cp3" data-tabset="cp"><a><i class="ri-line-chart-fill"></i></a></li>
                           </ul>
                         </nav>
                       <div class="content-tab" data-tabsettarget="cp">
