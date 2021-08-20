@@ -90,6 +90,15 @@ $('.tabs ul').on('click', 'li', function(el){
   activateTab(this);
 });
 
+$("#showModal").click(function() {
+  $(".modal").addClass("is-active");  
+});
+
+$("#close").click(function() {
+   $(".modal").removeClass("is-active");
+});
+
+
 document.addEventListener('DOMContentLoaded', function () {
 
   // Dropdowns
@@ -148,8 +157,6 @@ document.addEventListener('DOMContentLoaded', function () {
             animate: { in: 'fadeIn', out: 'fadeOut' }
           })
           }
-          try { GiveGuild(json[0].guild, json[0].guild.name, json[0].guild.id, json[0].guild.avatar_url) }
-          catch(err) {}
           try { GiveMore(json[0].username, json[0].level, json[0].levelPercentage, json[0].rank) }
           catch(err) {}
         });
@@ -157,61 +164,60 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  function getOnline() {
-    var url = 'https://api.vimeworld.ru/online';
-    fetch(url).then(function(response) {
-      var contentType = response.headers.get("content-type");
-      if(contentType && contentType.indexOf("application/json") !== -1) {
-        return response.json().then(function(json) {
-          GiveOnline(json.total)
-        });
-      }
-    });
-  }
-
-  setInterval(getOnline, 10000);
-
-  function GiveOnline(online){
-    document.querySelector('#online').innerHTML = online;
-  }
-
-    function GiveID(id) {
-    var playerid = id;
-    console.log(playerid);
-    var url = 'https://api.vimeworld.ru/user/' + playerid + '/stats';
-    fetch(url).then(function(response) {
-      var contentType = response.headers.get("content-type");
-      if(contentType && contentType.indexOf("application/json") !== -1) {
-        return response.json().then(function(json) {
-          BW(json.stats.BW.global, json.stats.BW.season.monthly)
-          SW(json.stats.SW.global, json.stats.SW.season.monthly)
-          CP(json.stats.CP.global, json.stats.CP.season.monthly)
-          Bridge(json.stats.BRIDGE.global.games, json.stats.BRIDGE.global.wins, json.stats.BRIDGE.global.kills, json.stats.BRIDGE.global.deaths, json.stats.BRIDGE.global.points)
-        });
-      }
-    }); 
-    var url2 = 'https://api.vimeworld.ru/user/' + playerid + '/session';
-    fetch(url2).then(function(response) {
-      var contentType = response.headers.get("content-type");
-      if(contentType && contentType.indexOf("application/json") !== -1) {
-        return response.json().then(function(json) {
-          GiveSession(json.online.value)
-        });
-      }
-    });
-  }
-  function GiveSession(online){
-    var onl = document.querySelector('#session');
-    if(online == true){
-      document.querySelector('#session').innerHTML = 'Онлайн';
-      onl.setAttribute("class", 'tag is-success is-rounded m-1 is-medium');
+function getOnline() {
+  var url = 'https://api.vimeworld.ru/online';
+  fetch(url).then(function(response) {
+    var contentType = response.headers.get("content-type");
+    if(contentType && contentType.indexOf("application/json") !== -1) {
+      return response.json().then(function(json) {
+        GiveOnline(json.total)
+      });
     }
-    if(online == false){
-      document.querySelector('#session').innerHTML = 'Оффлайн';
-      onl.setAttribute("class", 'tag is-danger is-rounded m-1 is-medium');
+  });
+}
+
+setInterval(getOnline, 10000);
+
+function GiveOnline(online){
+  document.querySelector('#online').innerHTML = online;
+}
+
+function GiveID(id) {
+  var playerid = id;
+  console.log(playerid);
+  var url = 'https://api.vimeworld.ru/user/' + playerid + '/stats';
+  fetch(url).then(function(response) {
+    var contentType = response.headers.get("content-type");
+    if(contentType && contentType.indexOf("application/json") !== -1) {
+      return response.json().then(function(json) {
+        BW(json.stats.BW.global, json.stats.BW.season.monthly)
+        SW(json.stats.SW.global, json.stats.SW.season.monthly)
+        CP(json.stats.CP.global, json.stats.CP.season.monthly)
+        Bridge(json.stats.BRIDGE.global.games, json.stats.BRIDGE.global.wins, json.stats.BRIDGE.global.kills, json.stats.BRIDGE.global.deaths, json.stats.BRIDGE.global.points)
+      });
     }
+  }); 
+  var url2 = 'https://api.vimeworld.ru/user/' + playerid + '/session';
+  fetch(url2).then(function(response) {
+  var contentType = response.headers.get("content-type");
+   if(contentType && contentType.indexOf("application/json") !== -1) {
+      return response.json().then(function(json) {
+        GiveSession(json.online.value)
+    });
+    }
+  });
+}
+function GiveSession(online){
+  var onl = document.querySelector('#session');
+  if(online == true){
+    document.querySelector('#session').innerHTML = 'Онлайн';
+    onl.setAttribute("class", 'tag is-success is-rounded m-1 is-medium');
   }
-    
+  if(online == false){
+    document.querySelector('#session').innerHTML = 'Оффлайн';
+    onl.setAttribute("class", 'tag is-danger is-rounded m-1 is-medium');
+  }
+}
     function GiveMore(username, level, levelPercentage, rank) {
       document.querySelector('#nick').innerHTML = username;
       document.querySelector('#lvl').innerHTML = level;

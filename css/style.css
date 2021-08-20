@@ -1,15 +1,19 @@
-body {
-  
+html, body {
+
 }
 .box {
   border-radius: 15px;
   margin-bottom: 15px;
   margin-top: 15px;
+  padding: 10px;
 }
 .dropdown-content {
-  border-radius: 0px 15px 15px 15px;
-  transform-origin: top left;
+  border-radius: 15px 0px 15px 15px;
+  transform-origin: top right;
   animation: dropDown 250ms ease-in-out forwards;
+}
+.guild {
+  border-radius: 10px;
 }
 .op {
   border-radius: 15px;
@@ -53,13 +57,16 @@ body {
   padding-left: 14px;
   padding-right: 14px;
 }
+.modal-card.window{
+  transform-origin: top;
+  animation: Window 200ms ease-in-out forwards;
+}
 .arrow {
   width: 0px;
   border-radius: 0px;
 }
 .skin-container {
   padding-top: 5px;
-  margin-bottom: 10px;
   border-radius: 15px;
   height: 365px;
 }
@@ -83,6 +90,14 @@ body {
     transform: scaleX(1) scaleY(1)
   }
 }
+@keyframes Window {
+  0% {
+    transform: scaleY(0)
+  }
+  100% {
+    transform:  scaleY(1)
+  }
+}
 @keyframes Active {
   0% {
     transform: scale(0.9);
@@ -92,5 +107,10 @@ body {
   }
   100% {
     transform: scale(1.1);
+  }
+}
+@media only screen and (max-width: 768px) {
+  html, body {
+    overflow-x:hidden;
   }
 }

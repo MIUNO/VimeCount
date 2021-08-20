@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VimeStat Helper</title>
     <meta name="description" content="Статичный сайт созданный для работы c API VimeWorld." />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -15,7 +15,6 @@
    <div class="container animate__animated animate__fadeIn" style="padding-top: 10px;">
       <div class="tile is-ancestor">
         <div class="tile is-vertical is-3">
-          <div class="tile">
             <div class="tile is-parent">
               <article class="tile is-child">
                 <div class="box">
@@ -26,11 +25,11 @@
                   <div class="level-item">
                   <div class="field has-addons is-rounded">
                     <p class="control"><input class="input is-primary is-rounded" type="text" placeholder="Никнейм" id="input-in"></p>
-                    <div class="dropdown">
+                    <div class="dropdown is-right">
                         <p class="control">
-                          <button class="button is-primary arrow" aria-haspopup="true" aria-controls="dropdown-menu"><i class="ri-arrow-down-s-line"></i></button>
+                          <button class="button is-primary arrow" aria-haspopup="true" aria-controls="nicks"><i class="ri-arrow-down-s-line"></i></button>
                         </p>
-                      <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                      <div class="dropdown-menu" id="nicks" role="menu">
                         <div class="dropdown-content has-text-weight-medium">
                           <div class="dropdown-item has-text-centered"><p class="is-size-6">Избранные ники</p></div>
                           <div class="dropdown-item"></div>
@@ -45,6 +44,7 @@
                     <p class="control"><button class="button is-primary is-rounded" id="search"><i class="ri-search-line"></i></button></p>
                   </div>
                 </div>
+
                 </div>
                 <div class="box has-text-centered">
                   <p><img class="avatar" id="skin"></p>
@@ -172,24 +172,54 @@
               </div>
             </div>
           </div>
-        <div class="tags has-addons is-justify-content-center">
-          <div class="has-text-weight-medium m-1">
-            <span class="tag is-rounded"><i class="ri-external-link-line"></i></span><a class="tag is-primary is-rounded" href="https://miuno.github.io" target="_blank">MIUNO</a>
-          </div>
-          <div class="has-text-weight-medium m-1">
-            <span class="tag is-rounded"><i class="ri-hand-heart-fill"></i></span><a class="tag is-primary is-rounded" href="https://www.donationalerts.com/r/miuno" target="_blank">Donate</a>
-          </div>
-          <div class="has-text-weight-medium m-1">
-            <span class="tag is-rounded"><i class="ri-github-fill"></i></span><a class="tag is-primary is-rounded" href="https://github.com/MIUNO" target="_blank">GitHub</a>
-          </div>
-          <div class="has-text-weight-medium m-1">
-            <span class="tag is-rounded"><i class="ri-github-fill"></i></span><a class="tag is-primary is-rounded" href="https://github.com/MIUNO/vimestat" target="_blank">Sources</a>
+      </div>
+        <div class="box">
+          <button class="button is-primary is-rounded" id="showModal" style="margin-right: 10px;">О сайте</button>
+          <a class="button is-primary is-rounded" href="https://www.donationalerts.com/r/miuno" target="_blank"><i class="ri-cup-line" style="padding-right: 3px;"></i>Buy Coffee</a>
+          <div class="modal">
+            <div class="modal-background" id="close"></div>
+            <div class="modal-card window">
+              <header class="modal-card-head">
+                <p class="modal-card-title">О сайте</p>
+              </header>
+              <section class="modal-card-body">
+                <p class="is-size-6">
+                  Статичный сайт созданный для работы c <a href="https://api.vimeworld.ru">API VimeWorld</a>, на сайте можно просматривать глобальную и месячную статистику, а также расширенную по ограниченному списку мини-игр. Такую как: средний показатель по играм, сравнение показателей глобальной и месячной статистики. Благодаря <a href="https://github.com/rkkoszewski"><i class="ri-github-fill"></i>rkkoszewski</a> на сайте есть 3D визуализация скина и плаща игрока, с возможностью их скачивания.
+                </p>
+              </section>
+              <footer class="modal-card-foot">
+                  <div class="field is-grouped is-grouped-multiline">
+                    <div class="control">
+                      <div class="tags has-addons">
+                        <span class="tag is-dark is-rounded"><i class="ri-external-link-line"></i></span>
+                        <span class="tag is-primary is-rounded"><a class="has-text-white" href="https://miuno.github.io" target="_blank">MIUNO</a></span>
+                      </div>
+                    </div>
+                    <div class="control">
+                      <div class="tags has-addons">
+                        <span class="tag is-dark is-rounded"><i class="ri-hand-heart-fill"></i></span>
+                        <span class="tag is-danger is-rounded"><a class="has-text-white" href="https://www.donationalerts.com/r/miuno" target="_blank">Donate</a></span>
+                      </div>
+                    </div>
+                    <div class="control">
+                      <div class="tags has-addons">
+                        <span class="tag is-dark is-rounded"><i class="ri-github-fill"></i></span>
+                        <span class="tag is-info is-rounded"><a class="has-text-white" href="https://github.com/MIUNO" target="_blank">GitHub</a></span>
+                      </div>
+                    </div>
+                    <div class="control">
+                      <div class="tags has-addons">
+                        <span class="tag is-dark is-rounded"><i class="ri-github-fill"></i></span>
+                        <span class="tag is-info is-rounded"><a class="has-text-white" href="https://github.com/MIUNO/vimestat" target="_blank">Sources</a></span>
+                      </div>
+                    </div>
+                  </div>
+              </footer>
+            </div>
           </div>
         </div>
-         </div>
         </article>
       </div>
-    </div>
   </div>
         <div class="tile is-parent">
           <article class="tile is-child">
@@ -391,7 +421,6 @@
         </div>
       </div>
     </div>
-
   <!-- Yandex.Metrika counter -->
 <script type="text/javascript" >
    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
