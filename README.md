@@ -1,2 +1,2 @@
 # VimeCount
-![Alt-текст](https://raw.githubusercontent.com/MIUNO/vimestat/main/скрин.png "")
+![Alt-текст](https://raw.githubusercontent.com/MIUNO/VimeCount/main/скрин.png "")
