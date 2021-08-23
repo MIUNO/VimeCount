@@ -15,6 +15,9 @@ body {
 .guild {
   border-radius: 10px;
 }
+.button_a {
+  text-align: center;
+}
 .op {
   border-radius: 15px;
   background-color: whitesmoke;
@@ -114,8 +117,15 @@ body {
     transform: scale(1.1);
   }
 }
-.menu {
-
+@media only screen and (max-width: 1407px) {
+  .hero-panel {
+    padding: 5px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+  .button_b{
+    margin: 5px;
+  }
 }
 @media only screen and (max-width: 768px) {
   html, body {
@@ -131,6 +141,9 @@ body {
     position:fixed;
   }
   .head {
-    height: 235px;
+    height: 180px;
+  }
+  .button_b{
+    margin: 0px;
   }
 }

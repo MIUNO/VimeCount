@@ -58,7 +58,7 @@
         localStorage.inputNick = inputIn.value;
       }
 $(window).scroll(function(){
-      if ($(this).scrollTop() > 175) {
+      if ($(this).scrollTop() > 115) {
           $('.menu').addClass('fixed');
           $('.menu').addClass('box');
       } else {
