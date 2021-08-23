@@ -54,20 +54,21 @@
             animate: { in: 'fadeIn', out: 'fadeOut' }
           })
       }
-      function Save(inputIn){
-        localStorage.inputNick = inputIn.value;
-      }
-      var aaaaa = window.screen.width;
-      console.log(aaaaa);
+  function Save(inputIn){
+    ocalStorage.inputNick = inputIn.value;
+  }
+
 $(window).scroll(function(){
-      if ($(this).scrollTop() > 115 && aaaaa <= 768) {
-          $('.menu').addClass('fixed');
-          $('.menu').addClass('box');
-      } else {
-          $('.menu').removeClass('fixed');
-          $('.menu').removeClass('box');
-      }
+  if ($(this).scrollTop() > 115 && window.screen.width <= 768) {
+    $('.menu').addClass('fixed');
+    $('.menu').addClass('box');
+  } else {
+    $('.menu').removeClass('fixed');
+    $('.menu').removeClass('box');
+  }
 });
+
+
 var activateTab = (el) => {
   // Activate Tab Function
   var target = $(el).attr('data-tab');
@@ -77,11 +78,9 @@ var activateTab = (el) => {
     $(this).removeClass('is-active');  
   });
   $(el).addClass('is-active');
-  
   $("[data-tabsettarget='"+tabsettarget+"']").children('[data-tabtarget]').each(function(){ $(this).hide();} );
   $("[data-tabtarget='"+target+"']").show();
 }
-
 $('.tabs').children('ul').each(function(){
   // Initial Active Tab Init
   var _this = this
@@ -93,7 +92,6 @@ $('.tabs').children('ul').each(function(){
     }
   });
 });
-
 $('.tabs ul').on('click', 'li', function(el){
   // Tab Click Event
   activateTab(this);
