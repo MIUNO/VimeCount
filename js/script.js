@@ -11,7 +11,6 @@
     }
   });
   getOnline();
-
       var nbs0 = document.querySelector('.nick_bs0');
       var nbs1 = document.querySelector('.nick_bs1');
       var nbs2 = document.querySelector('.nick_bs2');
@@ -58,7 +57,15 @@
       function Save(inputIn){
         localStorage.inputNick = inputIn.value;
       }
-
+$(window).scroll(function(){
+      if ($(this).scrollTop() > 175) {
+          $('.menu').addClass('fixed');
+          $('.menu').addClass('box');
+      } else {
+          $('.menu').removeClass('fixed');
+          $('.menu').removeClass('box');
+      }
+});
 var activateTab = (el) => {
   // Activate Tab Function
   var target = $(el).attr('data-tab');
