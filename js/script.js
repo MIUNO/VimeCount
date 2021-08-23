@@ -54,7 +54,7 @@ function Info(){
   })
 }
   function Save(inputIn){
-    ocalStorage.inputNick = inputIn.value;
+    localStorage.inputNick = inputIn.value;
   }
 
 $(window).scroll(function(){
