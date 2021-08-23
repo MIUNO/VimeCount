@@ -57,8 +57,10 @@
       function Save(inputIn){
         localStorage.inputNick = inputIn.value;
       }
+      var aaaaa = window.screen.width;
+      console.log(aaaaa);
 $(window).scroll(function(){
-      if ($(this).scrollTop() > 115) {
+      if ($(this).scrollTop() > 115 && aaaaa <= 768) {
           $('.menu').addClass('fixed');
           $('.menu').addClass('box');
       } else {
