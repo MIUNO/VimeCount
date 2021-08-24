@@ -149,7 +149,7 @@ search111.split('?').forEach(function(item) {
   if(item[4] != 'undefined'){ localStorage.nick3 = item[4]; }
   if(item[5] != 'undefined'){ localStorage.nick4 = item[5]; }
   if(item[6] != 'undefined'){ localStorage.inputNick = item[6]; inputIn.value = localStorage.inputNick; }
-  location.replace('https://miuno.github.io/VimeCount/beta');
+//  location.replace('https://miuno.github.io/VimeCount/beta');
   getPlayer();
 });
 
