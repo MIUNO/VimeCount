@@ -144,8 +144,7 @@ var search111 = window.location.search.substr(1), nicks = [];
 search111.split('?').forEach(function(item) {
   item = item.split('@');
   nicks = item[1];
-  let string = nicks;
-  let newArr = string.split(",");
+  var newArr = nicks.split(",");
   console.log(newArr[0]);
   console.log(newArr[1]);
   console.log(newArr[2]);
