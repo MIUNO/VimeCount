@@ -336,7 +336,7 @@ function BW(Info1, Info2) {
 
     var options = {
       chart: { id: 'bwchart', height: 185, width: "100%", type: "line", zoom: { enabled: false } },
-      colors:['hsl(204, 86%, 53%)', 'hsl(171, 100%, 41%)'],
+      colors:['hsl(217, 71%, 53%)', 'hsl(171, 100%, 41%)'],
       stroke: { curve: "smooth", width: 3 },
       series: [
         { name: "За всё время", data: [bwg[5],bwg[6],bwg[7],bwg[8],bwg[9]] },
@@ -377,7 +377,7 @@ function SW(Info1, Info2) {
   }
     var options = {
       chart: { id: 'swchart', height: 185, width: "100%", type: "line", zoom: { enabled: false } },
-      colors:['hsl(204, 86%, 53%)', 'hsl(171, 100%, 41%)'],
+      colors:['hsl(217, 71%, 53%)', 'hsl(171, 100%, 41%)'],
       stroke: { curve: "smooth", width: 3 },
       series: [
         { name: "За всё время", data: [swg[5],swg[6],swg[7],swg[8]] },
@@ -415,7 +415,7 @@ function CP(Info1, Info2) {
   }
     var options = {
       chart: { id: 'cpchart', height: 185, width: "100%", type: "line", zoom: { enabled: false } },
-      colors:['hsl(204, 86%, 53%)', 'hsl(171, 100%, 41%)'],
+      colors:['hsl(217, 71%, 53%)', 'hsl(171, 100%, 41%)'],
       stroke: { curve: "smooth", width: 3 },
       series: [
         { name: "За всё время", data: [cpg[5],cpg[6],cpg[7],cpg[8],cpg[9]] },
