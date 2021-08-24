@@ -130,12 +130,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-var myString = localStorage.nick0 + ',' + localStorage.nick1 + ',' + localStorage.nick2 + ',' + localStorage.nick3 + ',' + localStorage.nick4;
-var myPassword = "MIUNO";
-var encrypted = CryptoJS.AES.encrypt(myString, myPassword);
-var lll = '' + encrypted;
-console.log(lll);
-var advefgr = 'https://miuno.github.io/VimeCount/beta?nicks@' + encrypted;
+var myString = localStorage.nick0 + ',' + localStorage.nick1 + ',' + localStorage.nick2 + ',' + localStorage.nick3 + ',' + localStorage.nick4 + ',' + localStorage.inputNick;
+var advefgr = 'https://miuno.github.io/VimeCount/beta?nicks@' + myString;
 var qrcode = new QRCode(document.getElementById("qrcode"), {
   text: advefgr,
   width: 256,
@@ -149,15 +145,22 @@ var search111 = window.location.search.substr(1),
 search111.split('?').forEach(function(item) {
   item = item.split('@');
   nicks = item[1];
-  var decrypted = CryptoJS.AES.decrypt(nicks, myPassword);
-  let string = decrypted.toString(CryptoJS.enc.Utf8);
+  let string = nicks;
   let newArr = string.split(",");
-  console.log(newArr);
+  console.log(newArr[0]);
+  console.log(newArr[1]);
+  console.log(newArr[2]);
+  console.log(newArr[3]);
+  console.log(newArr[4]);
+  console.log(newArr[5]);
   localStorage.nick0 = newArr[0];
   localStorage.nick1 = newArr[1];
   localStorage.nick2 = newArr[2];
   localStorage.nick3 = newArr[3];
   localStorage.nick4 = newArr[4];
+  localStorage.inputNick = newArr[5];
+  inputIn.value = localStorage.inputNick;
+  getPlayer();
 });
 
 
