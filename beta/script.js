@@ -132,7 +132,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 var myString = localStorage.nick0 + ',' + localStorage.nick1 + ',' + localStorage.nick2 + ',' + localStorage.nick3 + ',' + localStorage.nick4 + ',' + localStorage.inputNick;
 var advefgr = 'https://miuno.github.io/VimeCount/beta?nicks@' + myString;
-console.log(advefgr);
 var qrcode = new QRCode(document.getElementById("qrcode"), {
   text: advefgr,
   width: 256,
