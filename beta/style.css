@@ -17,9 +17,6 @@ body {
   transform-origin: top left;
   animation: dropDown 250ms ease-in-out forwards;
 }
-img {
-  border-radius: 0px;
-}
 .qr {
   width: 256px;
   margin: auto;
