@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-var myString = '[' + localStorage.nick0 + ',' + localStorage.nick1 + ',' + localStorage.nick2 + ',' + localStorage.nick3 + ',' + localStorage.nick4 + ']';
+var myString = localStorage.nick0 + ',' + localStorage.nick1 + ',' + localStorage.nick2 + ',' + localStorage.nick3 + ',' + localStorage.nick4;
 var myPassword = "MIUNO";
 var encrypted = CryptoJS.AES.encrypt(myString, myPassword);
 var lll = '' + encrypted;
@@ -150,14 +150,14 @@ search111.split('?').forEach(function(item) {
   item = item.split('@');
   nicks = item[1];
   var decrypted = CryptoJS.AES.decrypt(nicks, myPassword);
-  console.log(decrypted.toString(CryptoJS.enc.Utf8));
-          bulmaToast.toast({
-            message: decrypted.toString(CryptoJS.enc.Utf8),
-            type: 'is-danger',
-            duration: 2000,
-            position: "bottom-right",
-            animate: { in: 'fadeIn', out: 'fadeOut' }
-          })
+  let string = decrypted.toString(CryptoJS.enc.Utf8);
+  let newArr = string.split(",");
+  console.log(newArr);
+  localStorage.nick0 = newArr[0];
+  localStorage.nick1 = newArr[1];
+  localStorage.nick2 = newArr[2];
+  localStorage.nick3 = newArr[3];
+  localStorage.nick4 = newArr[4];
 });
 
 
