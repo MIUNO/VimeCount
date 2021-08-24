@@ -128,6 +128,41 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   function getAll(selector) { return Array.prototype.slice.call(document.querySelectorAll(selector), 0); } });
 
+
+
+var myString = '[' + localStorage.nick0 + ',' + localStorage.nick1 + ',' + localStorage.nick2 + ',' + localStorage.nick3 + ',' + localStorage.nick4 + ']';
+var myPassword = "MIUNO";
+var encrypted = CryptoJS.AES.encrypt(myString, myPassword);
+var lll = '' + encrypted;
+console.log(lll);
+var advefgr = 'https://miuno.github.io/VimeCount/beta?nicks@' + encrypted;
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+  text: advefgr,
+  width: 256,
+  height: 256,
+  colorDark : "#000000",
+  colorLight : "#ffffff",
+  correctLevel : QRCode.CorrectLevel.H
+});
+var search111 = window.location.search.substr(1),
+  nicks = [];
+search111.split('?').forEach(function(item) {
+  item = item.split('@');
+  nicks = item[1];
+  var decrypted = CryptoJS.AES.decrypt(nicks, myPassword);
+  console.log(decrypted.toString(CryptoJS.enc.Utf8));
+          bulmaToast.toast({
+            message: decrypted.toString(CryptoJS.enc.Utf8),
+            type: 'is-danger',
+            duration: 2000,
+            position: "bottom-right",
+            animate: { in: 'fadeIn', out: 'fadeOut' }
+          })
+});
+
+
+
+
 function getPlayer() {
   var url = 'https://api.vimeworld.ru/user/name/' + inputIn.value;
   fetch(url).then(function(response) {

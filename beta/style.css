@@ -17,8 +17,12 @@ body {
   transform-origin: top left;
   animation: dropDown 250ms ease-in-out forwards;
 }
-.guild {
-  border-radius: 10px;
+img {
+  border-radius: 20px;
+}
+.qr {
+  width: 256px;
+  margin: auto;
 }
 .button_a {
   text-align: center;
