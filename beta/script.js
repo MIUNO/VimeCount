@@ -130,6 +130,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+var myString = localStorage.nick0 + ',' + localStorage.nick1 + ',' + localStorage.nick2 + ',' + localStorage.nick3 + ',' + localStorage.nick4 + ',' + localStorage.inputNick;
+var advefgr = 'https://miuno.github.io/VimeCount/beta?nicks@' + myString;
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+  text: advefgr,
+  width: 256,
+  height: 256,
+  colorDark : "#000000",
+  colorLight : "#ffffff",
+  correctLevel : QRCode.CorrectLevel.H
+});
+var search111 = window.location.search.substr(1), nicks = [];
+search111.split('?').forEach(function(item) {
+  item = item.split('@');
+  nicks = item[1];
+  var newArr = nicks.split(",");
+  console.log(newArr[0]);
+  console.log(newArr[1]);
+  console.log(newArr[2]);
+  console.log(newArr[3]);
+  console.log(newArr[4]);
+  console.log(newArr[5]);
+  if(newArr[0] == 'undefined'){ newArr[0] = ''; } localStorage.nick0 = newArr[0];
+  if(newArr[1] == 'undefined'){ newArr[1] = ''; } localStorage.nick1 = newArr[1];
+  if(newArr[2] == 'undefined'){ newArr[2] = ''; } localStorage.nick2 = newArr[2];
+  if(newArr[3] == 'undefined'){ newArr[3] = ''; } localStorage.nick3 = newArr[3];
+  if(newArr[4] == 'undefined'){ newArr[4] = ''; } localStorage.nick4 = newArr[4];
+  if(newArr[5] == 'undefined'){ newArr[5] = ''; } localStorage.inputNick = newArr[5];
+  if(newArr[6] == 'undefined'){ newArr[6] = ''; } inputIn.value = localStorage.inputNick;
+  location.replace('https://miuno.github.io/VimeCount/beta');
+  getPlayer();
+});
+/*
 var myString = localStorage.nick0 + '=' + localStorage.nick1 + '=' + localStorage.nick2 + '=' + localStorage.nick3 + '=' + localStorage.nick4 + '=' + localStorage.inputNick;
 var advefgr = 'https://miuno.github.io/VimeCount/beta?nicks@' + myString;
 var qrcode = new QRCode(document.getElementById("qrcode"), {
@@ -152,7 +184,7 @@ search111.split('?').forEach(function(item) {
 //  location.replace('https://miuno.github.io/VimeCount/beta');
   getPlayer();
 });
-
+*/
 
 
 
