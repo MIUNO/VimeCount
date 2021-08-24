@@ -132,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 var myString = localStorage.nick0 + ',' + localStorage.nick1 + ',' + localStorage.nick2 + ',' + localStorage.nick3 + ',' + localStorage.nick4 + ',' + localStorage.inputNick;
 var advefgr = 'https://miuno.github.io/VimeCount/beta?nicks@' + myString;
+console.log(advefgr);
 var qrcode = new QRCode(document.getElementById("qrcode"), {
   text: advefgr,
   width: 256,
@@ -159,7 +160,7 @@ search111.split('?').forEach(function(item) {
   if(newArr[4] == 'undefined'){ newArr[4] = ''; } localStorage.nick4 = newArr[4];
   if(newArr[5] == 'undefined'){ newArr[5] = ''; } localStorage.inputNick = newArr[5];
   if(newArr[6] == 'undefined'){ newArr[6] = ''; } inputIn.value = localStorage.inputNick;
-  window.location.replace('https://miuno.github.io/VimeCount/beta');
+  location.replace('https://miuno.github.io/VimeCount/beta');
   getPlayer();
 });
 
