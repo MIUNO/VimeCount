@@ -7,6 +7,10 @@ body {
   margin-top: 15px;
   padding: 15px;
 }
+
+.apexcharts-legend.apexcharts-align-center.position-bottom {
+  display: none;
+}
 .dropdownR {
   border-radius: 15px 0px 15px 15px;
   transform-origin: top right;
