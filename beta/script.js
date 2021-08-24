@@ -331,29 +331,16 @@ function BW(Info1, Info2) {
   for (var i = 0; i < 5; i++) {
     document.querySelector(bwtab[i]).innerHTML = tabbw[i];
   }
+  console.log(bwg[5],bwg[6],bwg[7],bwg[8],bwg[9]);
+  console.log(bwm[5],bwm[6],bwm[7],bwm[8],bwm[9]);
     var options = {
-      chart: {
-        height: 185,
-        width: "100%",
-        type: "line"
-      },
-      stroke: {
-        curve: "smooth",
-        width: 3
-      },
+      chart: { height: 185, width: "100%", type: "line" },
+      stroke: { curve: "smooth", width: 3 },
       series: [
-        {
-          name: "За всё время",
-          data: [bwg[5],bwg[6],bwg[7],bwg[8],bwg[9]]
-        },
-        {
-          name: "За месяц",
-          data: [bwm[5],bwm[6],bwm[7],bwm[8],bwm[9]]
-        }
+        { name: "За всё время", data: [bwg[5],bwg[6],bwg[7],bwg[8],bwg[9]] },
+        { name: "За месяц", data: [bwm[5],bwm[6],bwm[7],bwm[8],bwm[9]] }
       ],
-      xaxis: {
-        categories: ["1", "2", "3", "4", "5"]
-      }
+      xaxis: { categories: ["1", "2", "3", "4", "5"] }
     };
   var chart = new ApexCharts(document.querySelector("#chart_bw"), options);
   chart.render();
@@ -383,28 +370,13 @@ function SW(Info1, Info2) {
     document.querySelector(swtab[i]).innerHTML = tabsw[i];
   }
     var options = {
-      chart: {
-        height: 185,
-        width: "100%",
-        type: "line"
-      },
-      stroke: {
-        curve: "smooth",
-        width: 3
-      },
+      chart: { height: 185, width: "100%", type: "line" },
+      stroke: { curve: "smooth", width: 3 },
       series: [
-        {
-          name: "За всё время",
-          data: [swg[5],swg[6],swg[7],swg[8]]
-        },
-        {
-          name: "За месяц",
-          data: [swm[5],swm[6],swm[7],swm[8]]
-        }
+        { name: "За всё время", data: [swg[5],swg[6],swg[7],swg[8]] },
+        { name: "За месяц", data: [swm[5],swm[6],swm[7],swm[8]] }
       ],
-      xaxis: {
-        categories: ["1", "2", "3", "4"]
-      }
+      xaxis: { categories: ["1", "2", "3", "4"] }
     };
   var chart = new ApexCharts(document.querySelector("#chart_sw"), options);
   chart.render();
@@ -431,28 +403,13 @@ function CP(Info1, Info2) {
       document.querySelector(cptab[i]).innerHTML = tabcp[i];
   }
     var options = {
-      chart: {
-        height: 185,
-        width: "100%",
-        type: "line"
-      },
-      stroke: {
-        curve: "smooth",
-        width: 3
-      },
+      chart: { height: 185, width: "100%", type: "line" },
+      stroke: { curve: "smooth", width: 3 },
       series: [
-        {
-          name: "За всё время",
-          data: [cpg[5],cpg[6],cpg[7],cpg[8],cpg[9]]
-        },
-        {
-          name: "За месяц",
-          data: [cpm[5],cpm[6],cpm[7],cpm[8],cpm[9]]
-        }
+        { name: "За всё время", data: [cpg[5],cpg[6],cpg[7],cpg[8],cpg[9]] },
+        { name: "За месяц", data: [cpm[5],cpm[6],cpm[7],cpm[8],cpm[9]] }
       ],
-      xaxis: {
-        categories: ["1", "2", "3", "4", "5"]
-      }
+      xaxis: { categories: ["1", "2", "3", "4", "5"] }
     };
   var chart = new ApexCharts(document.querySelector("#chart_cp"), options);
   chart.render();
