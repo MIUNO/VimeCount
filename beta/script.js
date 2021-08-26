@@ -128,20 +128,26 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   function getAll(selector) { return Array.prototype.slice.call(document.querySelectorAll(selector), 0); } });
 
+var qrr = document.getElementById('qrr');
+qrr.onclick = function (){ QRCreate(); }
+function QRCreate(){
+  var element = document.getElementById("qrcode");
+  while (element.firstChild) { element.removeChild(element.firstChild); }
+    var bd = localStorage.nick0 + ',' + localStorage.nick1 + ',' + localStorage.nick2 + ',' + localStorage.nick3 + ',' + localStorage.nick4 + ',' + localStorage.inputNick;
+    var qrurl = 'https://miuno.github.io/VimeCount/beta?nicks=' + bd;
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+      text: qrurl,
+      width: 256,
+      height: 256,
+      colorDark : "#000000",
+      colorLight : "#ffffff",
+      correctLevel : QRCode.CorrectLevel.H
+    });
+}
 
-  var bd = localStorage.nick0 + ',' + localStorage.nick1 + ',' + localStorage.nick2 + ',' + localStorage.nick3 + ',' + localStorage.nick4 + ',' + localStorage.inputNick;
-  var qrurl = 'https://miuno.github.io/VimeCount/beta?nicks@' + bd;
-  var qrcode = new QRCode(document.getElementById("qrcode"), {
-    text: qrurl,
-    width: 256,
-    height: 256,
-    colorDark : "#000000",
-    colorLight : "#ffffff",
-    correctLevel : QRCode.CorrectLevel.H
-  });
-var search111 = window.location.search.substr(1), nicks = [];
-search111.split('?').forEach(function(item) {
-  item = item.split('@');
+var searchNicks = window.location.search.substr(1), nicks = [];
+searchNicks.split('?').forEach(function(item) {
+  item = item.split('=');
   nicks = item[1];
   var newArr = nicks.split(",");
   if(newArr[0] != 'undefined'){ localStorage.nick0 = newArr[0]; }
@@ -331,9 +337,6 @@ function BW(Info1, Info2) {
   for (var i = 0; i < 5; i++) {
     document.querySelector(bwtab[i]).innerHTML = tabbw[i];
   }
-  console.log(bwg[5],bwg[6],bwg[7],bwg[8],bwg[9]);
-  console.log(bwm[5],bwm[6],bwm[7],bwm[8],bwm[9]);
-
     var options = {
       chart: { id: 'bwchart', height: 185, width: "100%", type: "line", zoom: { enabled: false } },
       colors:['hsl(217, 71%, 53%)', 'hsl(171, 100%, 41%)'],
