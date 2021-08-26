@@ -134,7 +134,7 @@ function QRCreate(){
   var element = document.getElementById("qrcode");
   while (element.firstChild) { element.removeChild(element.firstChild); }
     var bd = localStorage.nick0 + ',' + localStorage.nick1 + ',' + localStorage.nick2 + ',' + localStorage.nick3 + ',' + localStorage.nick4 + ',' + localStorage.inputNick;
-    var qrurl = 'https://miuno.github.io/VimeCount?nicks=' + bd;
+    var qrurl = 'https://miuno.github.io/VimeCount?nicks@' + bd;
     var qrcode = new QRCode(document.getElementById("qrcode"), {
       text: qrurl,
       width: 256,
@@ -147,7 +147,7 @@ function QRCreate(){
 
 var searchNicks = window.location.search.substr(1), nicks = [];
 searchNicks.split('?').forEach(function(item) {
-  item = item.split('=');
+  item = item.split('@');
   nicks = item[1];
   var newArr = nicks.split(",");
   if(newArr[0] != 'undefined'){ localStorage.nick0 = newArr[0]; }
