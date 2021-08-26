@@ -25,12 +25,12 @@
                   <div class="level-item menu">
                   <div class="field has-addons is-rounded">
                     <p class="control"><input class="input is-primary is-rounded" type="text" placeholder="Никнейм" id="input-in"></p>
-                    <div class="dropdown">
+                    <div class="dropdown is-right">
                         <p class="control">
                           <button class="button is-primary arrow" aria-haspopup="true" aria-controls="nicks"><i class="ri-arrow-down-s-line"></i></button>
                         </p>
                       <div class="dropdown-menu" id="nicks" role="menu">
-                        <div class="dropdown-content has-text-weight-medium dropdownL">
+                        <div class="dropdown-content has-text-weight-medium">
                           <div class="dropdown-item has-text-centered"><p class="is-size-6">Избранные ники</p></div>
                           <div class="dropdown-item"></div>
                           <div class="dropdown-item op"><a class="m-2 is-size-6 bm0"><i class="ri-save-3-fill"></i></a><a class="nick_bs0">Пусто</a></div>
@@ -188,6 +188,8 @@
                 <p class="is-size-6">
                   Статичный сайт созданный для работы c <a href="https://api.vimeworld.ru">API VimeWorld</a>, на сайте можно просматривать глобальную и месячную статистику, а также расширенную по ограниченному списку мини-игр. Такую как: средний показатель по играм, сравнение показателей глобальной и месячной статистики. Благодаря <a href="https://github.com/rkkoszewski"><i class="ri-github-fill"></i>rkkoszewski</a> на сайте есть 3D визуализация скина и плаща игрока.
                 </p>
+                <button class="button is-primary is-rounded" id="qrr">Создать QRCode</button>
+                <div class="p-3" id="qrcode"></div>
               </section>
               <footer class="modal-card-foot">
                   <div class="field is-grouped is-grouped-multiline">
@@ -216,10 +218,10 @@
                       </div>
                     </div>
                   </div>
-              </footer>
+                </footer>
+              </div>
             </div>
           </div>
-        </div>
         </article>
       </div>
   </div>
@@ -278,6 +280,7 @@
                         <p>Смертей за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabbwdg"></span></p>
                         <p>Сломанных кроватей <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabbwbg"></span></p>
                         </div>
+                        <div id="chart_bw"></div>
                         </div>
                       </div>
                     </div>
@@ -331,6 +334,7 @@
                         <p>Убийств за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabswgm"></span></p>
                         <p>Смертей за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabswdg"></span></p>
                         </div>
+                        <div id="chart_sw"></div>
                         </div>
                       </div>
                     </div>
@@ -389,6 +393,7 @@
                         <p>Смертей за игру <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabcpdg"></span></p>
                         <p>Сломанных точек <span class="has-text-link has-text-weight-medium is-pulled-right" id="tabcpbg"></span></p>
                         </div>
+                        <div id="chart_cp"></div>
                         </div>
                       </div>
                     </div>
@@ -441,6 +446,8 @@
 <!-- /Yandex.Metrika counter -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vibrant.js/1.0.0/Vibrant.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="js/bulma-toast.min.js"></script>
     <script src="js/script.js"></script>
   </body>

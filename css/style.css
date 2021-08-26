@@ -7,6 +7,10 @@ body {
   margin-top: 15px;
   padding: 15px;
 }
+
+.apexcharts-legend.apexcharts-align-center.position-bottom {
+  display: none;
+}
 .dropdownR {
   border-radius: 15px 0px 15px 15px;
   transform-origin: top right;
@@ -16,9 +20,6 @@ body {
   border-radius: 15px 0px 15px 15px;
   transform-origin: top left;
   animation: dropDown 250ms ease-in-out forwards;
-}
-.guild {
-  border-radius: 10px;
 }
 .button_a {
   text-align: center;

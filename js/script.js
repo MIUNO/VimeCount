@@ -128,6 +128,38 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   function getAll(selector) { return Array.prototype.slice.call(document.querySelectorAll(selector), 0); } });
 
+var qrr = document.getElementById('qrr');
+qrr.onclick = function (){ QRCreate(); }
+function QRCreate(){
+  var element = document.getElementById("qrcode");
+  while (element.firstChild) { element.removeChild(element.firstChild); }
+    var bd = localStorage.nick0 + ',' + localStorage.nick1 + ',' + localStorage.nick2 + ',' + localStorage.nick3 + ',' + localStorage.nick4 + ',' + localStorage.inputNick;
+    var qrurl = 'https://miuno.github.io/VimeCount/beta?nicks=' + bd;
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+      text: qrurl,
+      width: 256,
+      height: 256,
+      colorDark : "#000000",
+      colorLight : "#ffffff",
+      correctLevel : QRCode.CorrectLevel.H
+    });
+}
+
+var searchNicks = window.location.search.substr(1), nicks = [];
+searchNicks.split('?').forEach(function(item) {
+  item = item.split('=');
+  nicks = item[1];
+  var newArr = nicks.split(",");
+  if(newArr[0] != 'undefined'){ localStorage.nick0 = newArr[0]; }
+  if(newArr[1] != 'undefined'){ localStorage.nick1 = newArr[1]; }
+  if(newArr[2] != 'undefined'){ localStorage.nick2 = newArr[2]; }
+  if(newArr[3] != 'undefined'){ localStorage.nick3 = newArr[3]; }
+  if(newArr[4] != 'undefined'){ localStorage.nick4 = newArr[4]; }
+  if(newArr[5] != 'undefined'){ localStorage.inputNick = newArr[5]; inputIn.value = localStorage.inputNick;}
+  location.replace('https://miuno.github.io/VimeCount/beta');
+  getPlayer();
+});
+
 function getPlayer() {
   var url = 'https://api.vimeworld.ru/user/name/' + inputIn.value;
   fetch(url).then(function(response) {
@@ -305,7 +337,24 @@ function BW(Info1, Info2) {
   for (var i = 0; i < 5; i++) {
     document.querySelector(bwtab[i]).innerHTML = tabbw[i];
   }
+    var options = {
+      chart: { id: 'bwchart', height: 185, width: "100%", type: "line", zoom: { enabled: false } },
+      colors:['hsl(217, 71%, 53%)', 'hsl(171, 100%, 41%)'],
+      stroke: { curve: "smooth", width: 3 },
+      series: [
+        { name: "За всё время", data: [bwg[5],bwg[6],bwg[7],bwg[8],bwg[9]] },
+        { name: "За месяц", data: [bwm[5],bwm[6],bwm[7],bwm[8],bwm[9]] }
+      ],
+      xaxis: { categories: ["1", "2", "3", "4", "5"] }
+    };
+  var chart = new ApexCharts(document.querySelector("#chart_bw"), options);
+  chart.render();
+  ApexCharts.exec('bwchart', "updateSeries", [
+    { name: "За всё время", data: [bwg[5],bwg[6],bwg[7],bwg[8],bwg[9]] },
+    { name: "За месяц", data: [bwm[5],bwm[6],bwm[7],bwm[8],bwm[9]] }
+  ]);
 }
+
 function SW(Info1, Info2) {
   var swclassg = ['#swkg', '#swdg', '#swgg', '#swwg', '#swwSg', '#swkdg', '#swgwg', '#swkgg', '#swdgg'];
   var sgg = Object.values(Info1);
@@ -329,6 +378,22 @@ function SW(Info1, Info2) {
   for (var i = 0; i < 4; i++) {
     document.querySelector(swtab[i]).innerHTML = tabsw[i];
   }
+    var options = {
+      chart: { id: 'swchart', height: 185, width: "100%", type: "line", zoom: { enabled: false } },
+      colors:['hsl(217, 71%, 53%)', 'hsl(171, 100%, 41%)'],
+      stroke: { curve: "smooth", width: 3 },
+      series: [
+        { name: "За всё время", data: [swg[5],swg[6],swg[7],swg[8]] },
+        { name: "За месяц", data: [swm[5],swm[6],swm[7],swm[8]] }
+      ],
+      xaxis: { categories: ["1", "2", "3", "4"] }
+    };
+    var chart = new ApexCharts(document.querySelector("#chart_sw"), options);
+    chart.render();
+  ApexCharts.exec('swchart', "updateSeries", [
+    { name: "За всё время", data: [swg[5],swg[6],swg[7],swg[8]] },
+    { name: "За месяц", data: [swm[5],swm[6],swm[7],swm[8]] }
+  ]);
 }
 function CP(Info1, Info2) {
   var cpclassg = ['#cpkg', '#cpdg', '#cpgg', '#cpwg', '#cprPBg', '#cpkdg', '#cpgwg', '#cpkgg', '#cpdgg', '#cpbgg']; 
@@ -351,6 +416,22 @@ function CP(Info1, Info2) {
   for (var i = 0; i < 5; i++) {
       document.querySelector(cptab[i]).innerHTML = tabcp[i];
   }
+    var options = {
+      chart: { id: 'cpchart', height: 185, width: "100%", type: "line", zoom: { enabled: false } },
+      colors:['hsl(217, 71%, 53%)', 'hsl(171, 100%, 41%)'],
+      stroke: { curve: "smooth", width: 3 },
+      series: [
+        { name: "За всё время", data: [cpg[5],cpg[6],cpg[7],cpg[8],cpg[9]] },
+        { name: "За месяц", data: [cpm[5],cpm[6],cpm[7],cpm[8],cpm[9]] }
+      ],
+      xaxis: { categories: ["1", "2", "3", "4", "5"] }
+    };
+  var chart = new ApexCharts(document.querySelector("#chart_cp"), options);
+  chart.render();
+  ApexCharts.exec('cpchart', "updateSeries", [
+    { name: "За всё время", data: [cpg[5],cpg[6],cpg[7],cpg[8],cpg[9]] },
+    { name: "За месяц", data: [cpm[5],cpm[6],cpm[7],cpm[8],cpm[9]] }
+  ]);
 }
 function Bridge (games, wins, kills, deaths, points){
   var brclass = ['#brk', '#brd', '#brg', '#brw', '#brp', '#brkd', '#brgw', '#brkg', '#brdg', '#brpg'];
