@@ -35,7 +35,7 @@ body {
   height: 64px;
   width: 64px;
   border-radius: 20px;
-  background-color: #000;
+  background-color: whitesmoke;
 }
 .tabs.is-toggle a {
   border-color: #dbdbdb;
