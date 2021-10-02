@@ -5,13 +5,20 @@
 */
 var inputIn = document.querySelector('#input-in'); // Поле ввода
 var search = document.querySelector('#search'); // Кнопка поиска
-inputIn.value = localStorage.inputNick;
+var searchnick = location.search.substr(1), keys = {};
+searchnick.split('?').forEach(function(item) {
+  item = item.split('=');
+  keys[item[0]] = item[1];
+});    
+inputIn.value = keys.nick;
+console.log(keys.nick);
 if (inputIn.value == 'undefined') { inputIn.value = ''; } else { getPlayer(); }
-search.onclick = function (){ getPlayer(); localStorage.inputNick = inputIn.value; }
+search.onclick = function (){ getPlayer(); toggleNick(); }
 $("#input-in").keyup(function(event){
   if(event.keyCode == 13){
     localStorage.inputNick = inputIn.value;
     getPlayer();
+    toggleNick();
   }
 });
 getOnline();
@@ -43,11 +50,15 @@ for(var i = 0; i < 5; i++){
   if( c[i] == undefined) { c[i] = 'Пусто'; }
   document.querySelector(b[i]).innerHTML = c[i];
 }
-nbs0.onclick = function (){ inputIn.value = localStorage.nick0; if (inputIn.value == 'undefined') { inputIn.value = ''; } Save(inputIn); getPlayer(); }
-nbs1.onclick = function (){ inputIn.value = localStorage.nick1; if (inputIn.value == 'undefined') { inputIn.value = ''; } Save(inputIn); getPlayer(); }
-nbs2.onclick = function (){ inputIn.value = localStorage.nick2; if (inputIn.value == 'undefined') { inputIn.value = ''; } Save(inputIn); getPlayer(); }
-nbs3.onclick = function (){ inputIn.value = localStorage.nick3; if (inputIn.value == 'undefined') { inputIn.value = ''; } Save(inputIn); getPlayer(); }
-nbs4.onclick = function (){ inputIn.value = localStorage.nick4; if (inputIn.value == 'undefined') { inputIn.value = ''; } Save(inputIn); getPlayer(); }
+nbs0.onclick = function (){ inputIn.value = localStorage.nick0; if (inputIn.value == 'undefined') { inputIn.value = ''; } toggleNick(); getPlayer(); }
+nbs1.onclick = function (){ inputIn.value = localStorage.nick1; if (inputIn.value == 'undefined') { inputIn.value = ''; } toggleNick(); getPlayer(); }
+nbs2.onclick = function (){ inputIn.value = localStorage.nick2; if (inputIn.value == 'undefined') { inputIn.value = ''; } toggleNick(); getPlayer(); }
+nbs3.onclick = function (){ inputIn.value = localStorage.nick3; if (inputIn.value == 'undefined') { inputIn.value = ''; } toggleNick(); getPlayer(); }
+nbs4.onclick = function (){ inputIn.value = localStorage.nick4; if (inputIn.value == 'undefined') { inputIn.value = ''; } toggleNick(); getPlayer(); }
+
+function toggleNick(){
+  history.replaceState(3, "nick", "?nick=" + inputIn.value); 
+}
 
 function Info(){
   bulmaToast.toast({
@@ -58,7 +69,6 @@ function Info(){
      nimate: { in: 'fadeIn', out: 'fadeOut' }
   })
 }
-function Save(inputIn){ localStorage.inputNick = inputIn.value; }
 
 $(window).scroll(function(){
   if ($(this).scrollTop() > 115 && window.screen.width <= 768) {
@@ -132,6 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function getAll(selector) { return Array.prototype.slice.call(document.querySelectorAll(selector), 0); } });
 
 function getPlayer() {
+
   var url = 'https://api.vimeworld.ru/user/name/' + inputIn.value + '?token=Dip60P3vscegiu5cSGxvovEDKqVjaSu';
   fetch(url).then((response) => { return response.json();}).then((json) => {
     try { GiveID(json[0].id); }
@@ -415,4 +426,3 @@ function MatchTab(tab2){
     }
   return tab5;
 }
-console.log(location.search);
