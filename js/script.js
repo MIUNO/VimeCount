@@ -1,3 +1,8 @@
+/*
+    автор говнокода
+    █▀▄▀█ █ █ █ █▄ █ █▀█
+    █ ▀ █ █ █▄█ █ ▀█ █▄█
+*/
 var inputIn = document.querySelector('#input-in'); // Поле ввода
 var search = document.querySelector('#search'); // Кнопка поиска
 inputIn.value = localStorage.inputNick;
@@ -53,9 +58,7 @@ function Info(){
      nimate: { in: 'fadeIn', out: 'fadeOut' }
   })
 }
-  function Save(inputIn){
-    localStorage.inputNick = inputIn.value;
-  }
+function Save(inputIn){ localStorage.inputNick = inputIn.value; }
 
 $(window).scroll(function(){
   if ($(this).scrollTop() > 115 && window.screen.width <= 768) {
@@ -128,102 +131,47 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   function getAll(selector) { return Array.prototype.slice.call(document.querySelectorAll(selector), 0); } });
 
-var qrr = document.getElementById('qrr');
-qrr.onclick = function (){ QRCreate(); }
-function QRCreate(){
-  var element = document.getElementById("qrcode");
-  while (element.firstChild) { element.removeChild(element.firstChild); }
-    var bd = localStorage.nick0 + ',' + localStorage.nick1 + ',' + localStorage.nick2 + ',' + localStorage.nick3 + ',' + localStorage.nick4 + ',' + localStorage.inputNick;
-    var qrurl = 'https://miuno.ru/VimeCount/index?nicks@' + bd;
-    var qrcode = new QRCode(document.getElementById("qrcode"), {
-      text: qrurl,
-      width: 256,
-      height: 256,
-      colorDark : "#000000",
-      colorLight : "#ffffff",
-      correctLevel : QRCode.CorrectLevel.H
-    });
-}
-
-var searchNicks = window.location.search.substr(1), nicks = [];
-searchNicks.split('?').forEach(function(item) {
-  item = item.split('@');
-  nicks = item[1];
-  var newArr = nicks.split(",");
-  if(newArr[0] != 'undefined'){ localStorage.nick0 = newArr[0]; }
-  if(newArr[1] != 'undefined'){ localStorage.nick1 = newArr[1]; }
-  if(newArr[2] != 'undefined'){ localStorage.nick2 = newArr[2]; }
-  if(newArr[3] != 'undefined'){ localStorage.nick3 = newArr[3]; }
-  if(newArr[4] != 'undefined'){ localStorage.nick4 = newArr[4]; }
-  if(newArr[5] != 'undefined'){ localStorage.inputNick = newArr[5]; inputIn.value = localStorage.inputNick;}
-  location.replace('https://miuno.ru/VimeCount/');
-  getPlayer();
-});
-
 function getPlayer() {
-  var url = 'https://api.vimeworld.ru/user/name/' + inputIn.value;
-  fetch(url).then(function(response) {
-    var contentType = response.headers.get("content-type");
-    if(contentType && contentType.indexOf("application/json") !== -1) {
-      return response.json().then(function(json) {
-        try { GiveID(json[0].id) }
-        catch(err) {
-          bulmaToast.toast({
-            message: 'Неверный ник',
-            type: 'is-danger',
-            duration: 2000,
-            position: "bottom-right",
-            animate: { in: 'fadeIn', out: 'fadeOut' }
-          })
-        }
-        try { GiveMore(json[0].username, json[0].level, json[0].levelPercentage, json[0].rank) }
-        catch(err) {}
-      });
-    }
+  var url = 'https://api.vimeworld.ru/user/name/' + inputIn.value + '?token=Dip60P3vscegiu5cSGxvovEDKqVjaSu';
+  fetch(url).then((response) => { return response.json();}).then((json) => {
+    try { GiveID(json[0].id); }
+    catch(err){
+      bulmaToast.toast({
+      message: 'Неверный ник',
+      type: 'is-danger',
+      duration: 2000,
+      position: "bottom-right",
+      animate: { in: 'fadeIn', out: 'fadeOut' }
+    })}
+    try { GiveMore(json[0].username, json[0].level, json[0].levelPercentage, json[0].rank); }
+    catch(err) {}
   });
 }
 
 function getOnline() {
-  var url = 'https://api.vimeworld.ru/online';
-  fetch(url).then(function(response) {
-    var contentType = response.headers.get("content-type");
-    if(contentType && contentType.indexOf("application/json") !== -1) {
-      return response.json().then(function(json) {
-        GiveOnline(json.total)
-      });
-    }
+  var url = 'https://api.vimeworld.ru/online?token=Dip60P3vscegiu5cSGxvovEDKqVjaSu';
+  fetch(url).then((response) => { return response.json();}).then((json) => {
+    GiveOnline(json.total);
   });
 }
-
 setInterval(getOnline, 10000);
 
 function GiveOnline(online){
   document.querySelector('#online').innerHTML = online;
 }
-
 function GiveID(id) {
   var playerid = id;
   console.log(playerid);
-  var url = 'https://api.vimeworld.ru/user/' + playerid + '/stats';
-  fetch(url).then(function(response) {
-    var contentType = response.headers.get("content-type");
-    if(contentType && contentType.indexOf("application/json") !== -1) {
-      return response.json().then(function(json) {
-        BW(json.stats.BW.global, json.stats.BW.season.monthly)
-        SW(json.stats.SW.global, json.stats.SW.season.monthly)
-        CP(json.stats.CP.global, json.stats.CP.season.monthly)
-        Bridge(json.stats.BRIDGE.global.games, json.stats.BRIDGE.global.wins, json.stats.BRIDGE.global.kills, json.stats.BRIDGE.global.deaths, json.stats.BRIDGE.global.points)
-      });
-    }
-  }); 
-  var url2 = 'https://api.vimeworld.ru/user/' + playerid + '/session';
-  fetch(url2).then(function(response) {
-  var contentType = response.headers.get("content-type");
-   if(contentType && contentType.indexOf("application/json") !== -1) {
-      return response.json().then(function(json) {
-        GiveSession(json.online.value)
-    });
-    }
+  var url = 'https://api.vimeworld.ru/user/' + playerid + '/stats?token=Dip60P3vscegiu5cSGxvovEDKqVjaSu';
+  fetch(url).then((response) => { return response.json();}).then((json) => {
+    BW(json.stats.BW.global, json.stats.BW.season.monthly);
+    SW(json.stats.SW.global, json.stats.SW.season.monthly);
+    CP(json.stats.CP.global, json.stats.CP.season.monthly);
+    Bridge(json.stats.BRIDGE.global.games, json.stats.BRIDGE.global.wins, json.stats.BRIDGE.global.kills, json.stats.BRIDGE.global.deaths, json.stats.BRIDGE.global.points);
+  });
+  var url2 = 'https://api.vimeworld.ru/user/' + playerid + '/session?token=Dip60P3vscegiu5cSGxvovEDKqVjaSu';
+  fetch(url2).then((response) => { return response.json();}).then((json) => {
+    GiveSession(json.online.value);
   });
 }
 function GiveSession(online){
@@ -467,3 +415,4 @@ function MatchTab(tab2){
     }
   return tab5;
 }
+console.log(location.search);
