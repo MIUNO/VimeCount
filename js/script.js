@@ -13,12 +13,11 @@ searchnick.split('?').forEach(function(item) {
 inputIn.value = keys.nick;
 console.log(keys.nick);
 if (inputIn.value == 'undefined') { inputIn.value = ''; } else { getPlayer(); }
-search.onclick = function (){ getPlayer(); toggleNick(); }
+search.onclick = function (){ getPlayer(); }
 $("#input-in").keyup(function(event){
   if(event.keyCode == 13){
     localStorage.inputNick = inputIn.value;
     getPlayer();
-    toggleNick();
   }
 });
 getOnline();
@@ -50,11 +49,11 @@ for(var i = 0; i < 5; i++){
   if( c[i] == undefined) { c[i] = 'Пусто'; }
   document.querySelector(b[i]).innerHTML = c[i];
 }
-nbs0.onclick = function (){ inputIn.value = localStorage.nick0; if (inputIn.value == 'undefined') { inputIn.value = ''; } toggleNick(); getPlayer(); }
-nbs1.onclick = function (){ inputIn.value = localStorage.nick1; if (inputIn.value == 'undefined') { inputIn.value = ''; } toggleNick(); getPlayer(); }
-nbs2.onclick = function (){ inputIn.value = localStorage.nick2; if (inputIn.value == 'undefined') { inputIn.value = ''; } toggleNick(); getPlayer(); }
-nbs3.onclick = function (){ inputIn.value = localStorage.nick3; if (inputIn.value == 'undefined') { inputIn.value = ''; } toggleNick(); getPlayer(); }
-nbs4.onclick = function (){ inputIn.value = localStorage.nick4; if (inputIn.value == 'undefined') { inputIn.value = ''; } toggleNick(); getPlayer(); }
+nbs0.onclick = function (){ inputIn.value = localStorage.nick0; if (inputIn.value == 'undefined') { inputIn.value = ''; } getPlayer(); }
+nbs1.onclick = function (){ inputIn.value = localStorage.nick1; if (inputIn.value == 'undefined') { inputIn.value = ''; } getPlayer(); }
+nbs2.onclick = function (){ inputIn.value = localStorage.nick2; if (inputIn.value == 'undefined') { inputIn.value = ''; } getPlayer(); }
+nbs3.onclick = function (){ inputIn.value = localStorage.nick3; if (inputIn.value == 'undefined') { inputIn.value = ''; } getPlayer(); }
+nbs4.onclick = function (){ inputIn.value = localStorage.nick4; if (inputIn.value == 'undefined') { inputIn.value = ''; } getPlayer(); }
 
 function toggleNick(){
   history.replaceState(3, "nick", "?nick=" + inputIn.value); 
@@ -145,7 +144,7 @@ function getPlayer() {
 
   var url = 'https://api.vimeworld.ru/user/name/' + inputIn.value + '?token=Dip60P3vscegiu5cSGxvovEDKqVjaSu';
   fetch(url).then((response) => { return response.json();}).then((json) => {
-    try { GiveID(json[0].id); }
+    try { GiveID(json[0].id); toggleNick(); }
     catch(err){
       bulmaToast.toast({
       message: 'Неверный ник',
