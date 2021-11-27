@@ -426,6 +426,7 @@ function MatchTab(tab2){
   return tab5;
 }
 
+
 // Украшательства
 function CheckNick(){
   var url666 = 'https://miuno.ru/VimeCount/base/nicks.json';
@@ -433,6 +434,7 @@ function CheckNick(){
     Obamus(json[0]);
   });
 }
+
 function Obamus(obama) {
   var obamapro = Object.values(obama);
   var i = obama.nicks;
