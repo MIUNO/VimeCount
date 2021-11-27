@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function getAll(selector) { return Array.prototype.slice.call(document.querySelectorAll(selector), 0); } });
 
 function getPlayer() {
-
+  CheckNick()
   var url = 'https://api.vimeworld.ru/user/name/' + inputIn.value + '?token=Dip60P3vscegiu5cSGxvovEDKqVjaSu';
   fetch(url).then((response) => { return response.json();}).then((json) => {
     try { GiveID(json[0].id); toggleNick(); }
@@ -425,3 +425,21 @@ function MatchTab(tab2){
     }
   return tab5;
 }
+
+// Украшательства
+function CheckNick(){
+  var url666 = 'https://miuno.ru/VimeCount/base/nicks.json';
+  fetch(url666).then((response) => { return response.json();}).then((json) => {
+    Obamus(json[0]);
+  });
+}
+function Obamus(obama) {
+  var obamapro = Object.values(obama);
+  var i = obama.nicks;
+  while(i){
+    if (inputIn.value == obamapro[i]) {
+      console.log("true");
+    }
+    i--;
+  }
+} 
