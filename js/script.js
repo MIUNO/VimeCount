@@ -431,12 +431,13 @@ function MatchTab(tab2){
 
 // Украшательства
 function CheckNick(){
-  var url666 = 'https://miuno.ru/VimeCount/base/nicks.json';
-  fetch(url666).then((response) => { return response.json();}).then((json) => {
+  var url = 'https://miuno.ru/VimeCount/base/nicks.json';
+  fetch(url).then((response) => { return response.json();}).then((json) => {
     StarNick(json[0]);
   });
 }
 function StarNick(nicks) {
+  console.log(Object.keys(nicks).length);
   var nicksValue = Object.values(nicks);
   var i = nicks.nicks;
   while(i){ if (inputIn.value == nicksValue[i]) { var a = 'true'; } i--; }
