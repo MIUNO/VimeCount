@@ -45,9 +45,11 @@ document.querySelector('.bm4').onclick = function (){
 }
 for(var i = 0; i < 5; i++){
   console.log(c[i]);
-  if( c[i] == null) { c[i] = 'Пусто'; }
-  if( c[i] == undefined) { c[i] = 'Пусто'; }
-  document.querySelector(b[i]).innerHTML = c[i];
+  var n = 'true';
+  if( c[i] == null) { c[i] = '← Сохранить'; var n = 'false'; }
+  if( c[i] == undefined) { c[i] = '← Сохранить'; var n = 'false'; }
+  if (n == 'true') { document.querySelector(b[i]).innerHTML = '<a>' + c[i] + '</a>'; }
+  if (n == 'false') { document.querySelector(b[i]).innerHTML = c[i]; }
 }
 nbs0.onclick = function (){ inputIn.value = localStorage.nick0; if (inputIn.value == 'undefined') { inputIn.value = ''; } getPlayer(); }
 nbs1.onclick = function (){ inputIn.value = localStorage.nick1; if (inputIn.value == 'undefined') { inputIn.value = ''; } getPlayer(); }
