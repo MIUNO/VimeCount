@@ -372,7 +372,7 @@ function CP(Info1, Info2) {
   var arr = [];
   var tabcp = MatchTab(arr.concat(cpg, cpm));
   for (var i = 0; i < 5; i++) {
-      document.querySelector(cptab[i]).innerHTML = tabcp[i];
+    document.querySelector(cptab[i]).innerHTML = tabcp[i];
   }
     var options = {
       chart: { id: 'cpchart', height: 185, width: "100%", type: "line", zoom: { enabled: false } },
@@ -431,17 +431,17 @@ function MatchTab(tab2){
 function CheckNick(){
   var url666 = 'https://miuno.ru/VimeCount/base/nicks.json';
   fetch(url666).then((response) => { return response.json();}).then((json) => {
-    Obamus(json[0]);
+    StarNick(json[0]);
   });
 }
-
-function Obamus(obama) {
-  var obamapro = Object.values(obama);
-  var i = obama.nicks;
-  while(i){
-    if (inputIn.value == obamapro[i]) {
-      console.log("true");
-    }
-    i--;
+function StarNick(nicks) {
+  var nicksValue = Object.values(nicks);
+  var i = nicks.nicks;
+  while(i){ if (inputIn.value == nicksValue[i]) { var a = 'true'; } i--; }
+  if (a == 'true') {
+    document.querySelector('#star').setAttribute("class", 'has-text-weight-medium tag is-warning has-text-white is-rounded m-1 is-medium');
+  }
+  else {
+    document.querySelector('#star').setAttribute("class", 'has-text-weight-medium tag is-warning has-text-white is-rounded m-1 is-medium hide');
   }
 } 

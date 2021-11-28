@@ -42,6 +42,14 @@ body {
   border-radius: 20px;
   background-color: whitesmoke;
 }
+.tagsss {
+  padding-left: 10px;
+  padding-top: 12px;
+  position: absolute;
+}
+.hide {
+  opacity: 0;
+}
 .tabs.is-toggle a {
   border-color: #dbdbdb;
   border-style: solid;
