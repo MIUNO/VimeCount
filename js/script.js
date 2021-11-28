@@ -29,19 +29,19 @@ var nbs4 = document.querySelector('.nick_bs4');
 var b = ['.nick_bs0', '.nick_bs1', '.nick_bs2', '.nick_bs3', '.nick_bs4'];
 var c = [localStorage.nick0, localStorage.nick1, localStorage.nick2, localStorage.nick3, localStorage.nick4];
 document.querySelector('.bm0').onclick = function (){
-  localStorage.nick0 = inputIn.value; document.querySelector('.nick_bs0').innerHTML = localStorage.nick0; Info();
+  localStorage.nick0 = inputIn.value; document.querySelector('.nick_bs0').innerHTML = '<a>' + localStorage.nick0 + '</a>'; Info();
 }
 document.querySelector('.bm1').onclick = function (){
-  localStorage.nick1 = inputIn.value; document.querySelector('.nick_bs1').innerHTML = localStorage.nick1; Info();
+  localStorage.nick1 = inputIn.value; document.querySelector('.nick_bs1').innerHTML = '<a>' + localStorage.nick1 + '</a>'; Info();
 }
 document.querySelector('.bm2').onclick = function (){
-  localStorage.nick2 = inputIn.value; document.querySelector('.nick_bs2').innerHTML = localStorage.nick2; Info();
+  localStorage.nick2 = inputIn.value; document.querySelector('.nick_bs2').innerHTML = '<a>' + localStorage.nick2 + '</a>'; Info();
 }
 document.querySelector('.bm3').onclick = function (){
-  localStorage.nick3 = inputIn.value; document.querySelector('.nick_bs3').innerHTML = localStorage.nick3; Info();
+  localStorage.nick3 = inputIn.value; document.querySelector('.nick_bs3').innerHTML = '<a>' + localStorage.nick3 + '</a>'; Info();
 }
 document.querySelector('.bm4').onclick = function (){
-  localStorage.nick4 = inputIn.value; document.querySelector('.nick_bs4').innerHTML = localStorage.nick4; Info();
+  localStorage.nick4 = inputIn.value; document.querySelector('.nick_bs4').innerHTML = '<a>' + localStorage.nick4 + '</a>'; Info();
 }
 for(var i = 0; i < 5; i++){
   console.log(c[i]);
