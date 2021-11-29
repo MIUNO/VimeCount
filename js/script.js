@@ -403,7 +403,14 @@ function Bridge (games, wins, kills, deaths, points){
   }
 }
 // Расчёт статистики
-function Match(matchmas){ //kills - matchmas[0] deaths - matchmas[1] games - matchmas[2] wins - matchmas[3] points, resourcePointsBreaked, winStreak, bedBreaked - matchmas[4]
+
+// matchmas[0] - kills
+// matchmas[1] - deaths
+// matchmas[2] - games
+// matchmas[3] - wins
+// matchmas[4] - points, resourcePointsBreaked, winStreak, bedBreaked
+
+function Match(matchmas){
   var kd = (matchmas[0] / matchmas[1]).toFixed(2);  // Убийсва\Смерти
   var gw = (matchmas[3] / (matchmas[2] - matchmas[3])).toFixed(2); // Победы\Поражения
   var kg = (matchmas[0] / matchmas[2]).toFixed(2);  // Среднее количество убийств за игру
@@ -433,14 +440,16 @@ function MatchTab(tab2){
 function CheckNick(){
   var url = 'https://miuno.ru/VimeCount/base/nicks.json';
   fetch(url).then((response) => { return response.json();}).then((json) => {
-    StarNick(json[0]);
+    StarNick(json);
   });
 }
 function StarNick(nicks) {
-  console.log(Object.keys(nicks).length);
-  var nicksValue = Object.values(nicks);
-  var i = nicks.nicks;
-  while(i){ if (inputIn.value == nicksValue[i]) { var a = 'true'; } i--; }
+  var i = Object.keys(nicks).length;
+  while(i)  {
+    if (inputIn.value == nicks[i - 1]) {
+      var a = 'true'; 
+    } i--; 
+  }
   if (a == 'true') {
     document.querySelector('#star').setAttribute("class", 'has-text-weight-medium tag is-warning has-text-white is-rounded m-1 is-medium');
   }
